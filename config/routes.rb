@@ -2,6 +2,8 @@ Mads2011::Application.routes.draw do
   post "user/login"
 
   post "user/logout"
+  
+  get "user/home"
 
   get "user/show"
 
@@ -55,6 +57,7 @@ Mads2011::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+  root :to => 'user#home'
 
   # See how all your routes lay out with "rake routes"
 

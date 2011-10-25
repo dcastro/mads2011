@@ -18,6 +18,7 @@
 	<% end %>
 
 <% else %>
+	Logged in as <%= User.find_by_username(session[:username]).name%>
 	<%= button_to "Logout", user_logout_path %>
 
 <% end %>
