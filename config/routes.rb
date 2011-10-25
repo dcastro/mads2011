@@ -1,4 +1,10 @@
 Mads2011::Application.routes.draw do
+  post "user/login"
+
+  post "user/logout"
+
+  get "user/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

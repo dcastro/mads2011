@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<% unless session[:username]%>
+	<%= form_tag user_login_path do %>
+		<%= label_tag 'username', "Username: " %>
+		<%= text_field_tag 'username' %>
+		<%= label_tag 'password', "Password: " %>
+		<%= password_field_tag 'password' %>
+		<%= submit_tag "Login" %>
+	<% end %>
+
+<% else %>
+	<%= button_to "Logout", user_logout_path %>
+
+<% end %>
 <%= yield %>
 
 </body>
