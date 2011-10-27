@@ -9,12 +9,16 @@ class UserController < ApplicationController
     end
     
     respond_to do |format|
-      format.html {  }
+      format.html { redirect_to home_url }
     end    
   end
 
   def logout
     session[:username] = nil
+    
+    respond_to do |format|
+      format.html { redirect_to home_url }
+    end    
   end
 
   def show
