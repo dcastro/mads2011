@@ -17,17 +17,19 @@
 <body id="hp">
 
 <% unless session[:username]%>
-	<%= form_tag user_login_path do %>
+	<%= form_tag users_login_path do %>
 		<%= label_tag 'username', "Username: " %>
 		<%= text_field_tag 'username' %>
 		<%= label_tag 'password', "Password: " %>
 		<%= password_field_tag 'password' %>
 		<%= submit_tag "Login" %>
 	<% end %>
+	<%= link_to "Register", users_new_path%>
+	
 
 <% else %>
 	Logged in as <%= User.find_by_username(session[:username]).name%>
-	<%= button_to "Logout", user_logout_path %>
+	<%= button_to "Logout", users_logout_path %>
 
 <% end %>
 <%= yield %>

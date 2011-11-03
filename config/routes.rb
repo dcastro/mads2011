@@ -1,11 +1,21 @@
 Mads2011::Application.routes.draw do
+
+=begin
   post "user/login"
-
   post "user/logout"
-  
   get "user/home"
-
   get "user/show"
+=end
+
+  #resources :users
+  controller :users do
+    post "users/login"
+    post "users/logout"
+    get ":id/show/" => :show
+    get 'users/new' => :new
+    post 'users/create' => :create
+  end
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -57,7 +67,7 @@ Mads2011::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => 'user#home', :as => 'home'
+  root :to => 'users#home', :as => 'home'
 
   # See how all your routes lay out with "rake routes"
 
