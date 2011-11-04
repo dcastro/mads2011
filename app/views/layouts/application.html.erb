@@ -36,7 +36,7 @@
 		</ul>		
 		
 		<!-- SOCIAL ICONS -->
-		<p id="nav-icons"><a href="#"><%= image_tag "nav-rss.png" %></a><a href="#"><%= image_tag "nav-twitter.png" %></p>
+		<p id="nav-icons"><a href="#"><%= image_tag "nav-rss.png" %></a><a href="#"><%= image_tag "nav-twitter.png" %></a></p>
 		
 		<!-- Login -->
 		<div id="login">
@@ -52,7 +52,7 @@
 			
 		
 		<% else %>
-			Logged in as <%= link_to session[:name], users_show_path(:id => session[:id])%>
+			<%= label_tag "Logged in as " %><%= link_to session[:name], users_show_path(:id => session[:id])%>
 			<%= button_to "Logout", users_logout_path, :form_class => "form_inline" %>
 		
 		<% end %>
