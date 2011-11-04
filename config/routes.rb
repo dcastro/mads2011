@@ -16,6 +16,7 @@ Mads2011::Application.routes.draw do
     get 'users/show/:id' => :show, :as => :users_show
     get 'users/new' => :new
     post 'users/create' => :create
+    get 'users/dynamic_search'
   end
   
 
