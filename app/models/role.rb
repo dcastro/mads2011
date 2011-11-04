@@ -5,6 +5,10 @@ class Role < ActiveRecord::Base
   ROLE_TYPES = ["Manager", "Developer", "Client"]
   validates :name, :inclusion => ROLE_TYPES
   
+  def self.role_types
+    ROLE_TYPES
+  end
+  
   
   
   

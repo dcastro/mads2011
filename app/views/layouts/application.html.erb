@@ -2,15 +2,9 @@
 <html>
 <head>
   <title>Mads2011</title>
-  <%= stylesheet_link_tag    "main" %>
-  <%= stylesheet_link_tag    "nivo" %>
-  <%= stylesheet_link_tag    "skin" %> 
+  <%= stylesheet_link_tag    "application" %>  
   
-  
-  <%= javascript_include_tag "jquery" %>
-  <%= javascript_include_tag "jquery" %>
-  <%= javascript_include_tag "cufon-yui" %>
-  <%= javascript_include_tag "font.font" %>
+  <%= javascript_include_tag "application" %>
   
   <%= csrf_meta_tags %>
 </head>
@@ -31,7 +25,7 @@
 				<%= link_to "<span>Homepage</span>".html_safe, home_path %>
 			</li>
 			<% if session[:username] %>
-				<li <%= "class='current'" if current_page?(projects_path) %>>
+				<li <%= "class='current'" if current_pages?(projects_path, new_project_path) %>>
 					<%= link_to "<span>Projects</span>".html_safe, projects_path %>
 				</li>
 			<% end %>

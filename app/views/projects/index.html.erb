@@ -1,10 +1,9 @@
 <h1>Listing projects</h1>
 
-<table>
+<table class="projects , table">
   <tr>
-    <th>Role</th>
-    <th>Feature</th>
     <th>Name</th>
+    <th>Members</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +11,8 @@
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%= project.role_id %></td>
-    <td><%= project.feature_id %></td>
     <td><%= project.name %></td>
+    <td><%= project.roles.count %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>

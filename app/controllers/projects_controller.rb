@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = User.find(session[:id]).projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.roles.build name: Role.role_types.first,
+                         user: User.find(session[:id])
 
     respond_to do |format|
       if @project.save
