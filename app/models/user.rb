@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :roles
   
   validates :username, :uniqueness => true
   validates :username, :name, :email, :presence => true
