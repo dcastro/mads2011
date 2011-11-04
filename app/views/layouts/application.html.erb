@@ -16,30 +16,13 @@
 </head>
 <body id="hp">
 
-<% unless session[:username]%>
-	<%= form_tag users_login_path do %>
-		<%= label_tag 'username', "Username: " %>
-		<%= text_field_tag 'username' %>
-		<%= label_tag 'password', "Password: " %>
-		<%= password_field_tag 'password' %>
-		<%= submit_tag "Login" %>
-	<% end %>
-	<%= link_to "Register", users_new_path%>
-	
-
-<% else %>
-	Logged in as <%= link_to session[:name], users_show_path(:id => session[:id])%>
-	<%= button_to "Logout", users_logout_path %>
-
-<% end %>
-<%= yield %>
 
 <div id="main">
 
 	<!-- HEADER -->
 	<div id="header" class="box">
 
-		<p id="logo"><a href="./" title="[Go to homepage]"><%= image_tag "logo.png" %></a></p>
+		<p id="logo"><a href="/" title="[Go to homepage]"><%= image_tag "logo.png" %></a></p>
 		<!-- INFO: Used font is named "BALLPARK", you can download it for free here: http://www.fontsquirrel.com/fonts/Ballpark -->
 
 		<!-- NAVIGATION -->
@@ -55,80 +38,37 @@
 		<!-- SOCIAL ICONS -->
 		<p id="nav-icons"><a href="#"><%= image_tag "nav-rss.png" %></a><a href="#"><%= image_tag "nav-twitter.png" %></p>
 		
+		<!-- Login -->
+		<div id="login">
+				<% unless session[:username]%>
+			<%= form_tag users_login_path, :class => "form_inline" do %>
+				<%= label_tag 'username', "Username: " %>
+				<%= text_field_tag 'username' %>
+				<%= label_tag 'password', "Password: " %>
+				<%= password_field_tag 'password' %>
+				<%= submit_tag "Login" %>
+			<% end %>
+			<%= button_to "Register", users_new_path, :method => :get, :form_class => "form_inline" %>
+			
+		
+		<% else %>
+			Logged in as <%= link_to session[:name], users_show_path(:id => session[:id])%>
+			<%= button_to "Logout", users_logout_path, :form_class => "form_inline" %>
+		
+		<% end %>
+
+		</div> <!-- Login -->
+		
 	</div> <!-- /header -->
 
-	<!-- WELCOME -->
-	<div id="welcome" class="box">
-
-		<div id="welcome-inner">
-
-			<h2>Hello world, we are London based new media company.</h2>
-
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi nunc, aliquam quis sollicitudin in, 
-			malesuada eu lectus. Vivamus sodales semper ultricies. Ut dui anteestem dignissim ac ornare eget, sollicitudin 
-			a libero. Donec quis sem magna, a venenatis felisti. Duis et arcu sed mi pharetra sagittis quis et mag. <strong>Mauris 
-			vitae vestibulum velit</strong> nuleia at venenatis justo. Duis malesuada purus eu mi adipiscing adipiscing. Donec esi.</p>
-		
-		</div> <!-- /welcome-inner -->
-
-		<!-- TWITTER -->
-		<div id="twitter" class="box">
-		
-			<ul>
-				<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi nunc, aliquam quis sollicitudin in, malesuada eu lectus. 
-				Vivamus sodales semper ultricies. Ut dui anteestem dignissim ac ornare eget, sollicitudin a libero. &ndash; <a href="#">58 minutes ago</a></li>
-			</ul>
-
-		</div> <!-- /twitter -->
-		
-		<div id="imac">
-		
-			<!-- REPLACE THESE 3 IMAGES WITH YOUR OWN IMAGES (WIDTH:371, HEIGHT:211) -->
-			<div id="slider" class="nivoSlider">
-				<%= image_tag "slide-01.jpg" %>
-				<%= image_tag "slide-02.jpg" %>
-				<%= image_tag "slide-03.jpg" %>
-			</div> <!-- /slider -->
-			
-		</div> <!-- /imac -->
-		
-	</div> <!-- /welcome -->
+	
 	
 	<!-- COLUMNS -->
 	<div id="section" class="box">
 
 		<!-- CONTENT -->
 		<div id="content">
-
-			<h2 class="nom">Meet our products</h2>		
-			
-			<ul class="products">
-				<li class="box">
-					<div class="products-img"><%= image_tag "product-01.jpg" %></div>
-					<!-- Photo: (c) Nic McPhee -->
-					<div class="products-desc">
-						<h3><a href="#">Web Design</a></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
-					</div> <!-- /products-desc -->
-				</li>
-				<li class="box">
-					<div class="products-img"><%= image_tag "product-02.jpg" %></div>
-					<!-- Photo: (c) Emran Kassim -->
-					<div class="products-desc">
-						<h3><a href="#">Graphic Design</a></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
-					</div> <!-- /products-desc -->
-				</li>
-				<li class="last box">
-					<div class="products-img"><%= image_tag "product-03.jpg" %></div>
-					<!-- Photo: (c) Scott Robinson -->
-					<div class="products-desc">
-						<h3><a href="#">Corporate Identity</a></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
-					</div> <!-- /products-desc -->
-				</li>
-			</ul>
-		
+			<%= yield %>
 		</div> <!-- /content -->
 
 		<!-- SIDEBAR -->
