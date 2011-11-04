@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  skip_before_filter :authorize, :only => [:home, :login, :show, :new, :create]
+  skip_before_filter :authorize, :only => [:home, :login, :show, :new, :create, :logout]
   
   # GET /users
   # GET /users.json
@@ -98,10 +98,15 @@ class UsersController < ApplicationController
       session[:username] = user.username
       session[:name] = user.name
       session[:id] = user.id
+      
+      respond_to do |format|
+        format.html { redirect_to home_url }
+      end  
+      return
     end
     
     respond_to do |format|
-      format.html { redirect_to home_url }
+      format.html { redirect_to home_url, :notice => "Invalid Login." }
     end    
   end
 
