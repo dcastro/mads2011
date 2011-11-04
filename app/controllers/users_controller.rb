@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  skip_before_filter :authorize, :only => [:home, :login, :show, :new, :create]
+  
   # GET /users
   # GET /users.json
   def index
@@ -104,6 +107,8 @@ class UsersController < ApplicationController
 
   def logout
     session[:username] = nil
+    session[:name] = nil
+    session[:id] = nil
     
     respond_to do |format|
       format.html { redirect_to home_url }
