@@ -27,8 +27,12 @@
 
 		<!-- NAVIGATION -->
 		<ul id="nav">
-			<li class="current"><a href="#"><span>Homepage</span></a></li>
-			<li><%= link_to "<span>Projects</span>".html_safe, projects_path %></li>
+			<li <%= "class='current'" if current_page?(home_path) %>>
+				<%= link_to "<span>Homepage</span>".html_safe, home_path %>
+			</li>
+			<li <%= "class='current'" if current_page?(projects_path) %>>
+				<%= link_to "<span>Projects</span>".html_safe, projects_path %>
+			</li>
 			<li><a href="#"><span>Products</span></a></li>
 			<li><a href="#"><span>Clients</span></a></li>
 			<li><a href="#"><span>Blog</span></a></li>
