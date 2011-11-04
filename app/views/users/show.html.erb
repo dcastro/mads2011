@@ -1,3 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1> <%= @user.name %>'s Profile</h1>
+
+
+<p>E-mail: <%= mail_to @user.email %></p>
+<% if @user.contact %>
+	<p>Contact: <%= @user.contact %> </p>
+<% end %>

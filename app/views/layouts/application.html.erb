@@ -28,7 +28,7 @@
 	
 
 <% else %>
-	Logged in as <%= User.find_by_username(session[:username]).name%>
+	Logged in as <%= link_to session[:name], users_show_path(:id => session[:id])%>
 	<%= button_to "Logout", users_logout_path %>
 
 <% end %>

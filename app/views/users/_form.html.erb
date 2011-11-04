@@ -32,8 +32,12 @@
         <%= f.password_field :password_confirmation, :size => 40 %>
       </div>
       <div class="field">
-      	
-      	
+        <%= f.label :email, 'E-mail' %><br />
+        <%= f.text_field :email, :size => 40 %>
+      </div>
+      <div class="field">
+        <%= f.label :contact, 'Contact' %><br />
+        <%= f.text_field :contact, :size => 40 %>
       </div>
       <div class="actions">
         <%= f.submit %>

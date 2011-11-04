@@ -50,6 +50,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:username] = @user.username
+        session[:name] = user.name
+        session[:id] = user.id
         format.html { redirect_to home_url, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
@@ -91,6 +93,8 @@ class UsersController < ApplicationController
   def login
     if user = User.authenticate(params[:username], params[:password])
       session[:username] = user.username
+      session[:name] = user.name
+      session[:id] = user.id
     end
     
     respond_to do |format|

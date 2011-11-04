@@ -11,7 +11,7 @@ Mads2011::Application.routes.draw do
   controller :users do
     post "users/login"
     post "users/logout"
-    get ":id/show/" => :show
+    get 'users/show/:id' => :show, :as => :users_show
     get 'users/new' => :new
     post 'users/create' => :create
   end

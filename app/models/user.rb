@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
   validates :username, :uniqueness => true
-  validates :username, :name, :presence => true
+  validates :username, :name, :email, :presence => true
   
   
   validates :password, :confirmation => true #checks if the "type your pw" and "re-type your pw" fields match
