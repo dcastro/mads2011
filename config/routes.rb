@@ -1,5 +1,7 @@
 Mads2011::Application.routes.draw do
 
+  resources :projects
+
 =begin
   post "user/login"
   post "user/logout"

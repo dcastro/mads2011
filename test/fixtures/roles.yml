@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: 
+  user_id: 1
+  project_id: 1
+
+two:
+  type: 
+  user_id: 1
+  project_id: 1
