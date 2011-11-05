@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  type: 
-  user_id: 1
-  project_id: 1
+  name: Manager
+  user: one
+  project: one
 
 two:
-  type: 
-  user_id: 1
-  project_id: 1
+  name: Developer
+  user: two
+  project: two

@@ -7,5 +7,5 @@ Given /^(?:|I )am logged in as "([^"]*)"$/ do |link|
 end
 
 Then /^(?:|I )should be logged out/ do
-	assert page.body.include?("action=\"/user/login\"")
+	assert page.body.include?("action=\"/users/login\"")
 end

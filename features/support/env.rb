@@ -51,6 +51,7 @@ end
 
 
 # LOAD FIXTURES
+#bundle exec rake db:setup RAILS_ENV=test
 
 Before do
   ActiveRecord::Fixtures.reset_cache

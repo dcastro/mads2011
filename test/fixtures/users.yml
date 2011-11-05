@@ -6,9 +6,9 @@ one:
   hashed_password: <%= User.encrypt_password('admin', SALT) %>
   salt: <%= SALT %>
   name: Administrador
-  email: MyString
-  contact: MyString
-  photo: MyString
+  email: admin@gmail.com
+  contact: 91 442 45 59
+  photo: 
 
 two:
   username: MyString
