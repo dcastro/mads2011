@@ -51,20 +51,6 @@
 
 </script>
 
-	<form class= "search" action=""  method="get">
-		
-		<input type="search" name="username" id="user" value="username" onfocus="if(this.value==this.defaultValue) this.value='';" onchange="" onkeydown="if (event.keyCode == 13) document.getElementById('submit').click()" />
-		
-		<!--
-			 
-		<input id="submit"  type="submit" value="Search"  class="buttonSubmitHide"/>	
-		
-		-->
-		
-	</form>
-
-
-
 <p>
   <b>Name:</b>
   <%= @project.name %>
@@ -79,3 +65,66 @@
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+
+<h2>Users</h2>
+
+<form class= "search" action=""  method="get">
+		
+	<input type="search" name="username" id="user" value="username" onfocus="if(this.value==this.defaultValue) this.value='';" onchange="" onkeydown="if (event.keyCode == 13) document.getElementById('submit').click()" />
+	
+	<!--
+		 
+	<input id="submit"  type="submit" value="Search"  class="buttonSubmitHide"/>	
+	
+	-->
+		
+</form>
+
+<table class="table">
+				<tr>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+					<th>Header</th>
+				</tr>
+				<tr>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="even">
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr class="even">
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+				<tr>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+					<td>Cell</td>
+				</tr>
+			</table>
+	
+	
+	
