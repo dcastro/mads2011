@@ -33,12 +33,18 @@
 			}
 		})
 		.data( "autocomplete" )._renderItem = function( ul, item ) {
+			
+			//alert(item.photo);
 			return $( "<li></li>" )
 				.data( "item.autocomplete", item )
 				.append( 
 				
-				"<a>"+item.name +"</a>")
+				"<a>"  +
+				"<img src=\"/assets/new_user.png\" width=\"30\" height=\"30\">"
+				+item.name +
+				"</a>")
 				.appendTo( ul );
+				
 		};		
 		
 	});

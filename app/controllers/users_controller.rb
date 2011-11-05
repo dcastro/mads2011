@@ -127,7 +127,7 @@ class UsersController < ApplicationController
   def dynamic_search
     @users = User.where(["name LIKE ?", '%' + params[:string] + '%'])
     render json: @users.to_json(
-                      :only => [:id, :name]
+                      :only => [:id, :name, :photo]
                  )
   end
   
