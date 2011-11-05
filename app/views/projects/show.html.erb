@@ -1,5 +1,64 @@
 <p id="notice"><%= notice %></p>
 
+
+ <script type="text/javascript" >
+
+	var selected_id;
+
+	$(function() {
+
+		$( "#user" ).autocomplete({
+			 source:  function(request, response) {
+			 
+			 			var tmp = "string="+request.term;
+			 
+					    $.ajax({
+					      url: "/users/dynamic_search",
+					      data: tmp,
+					      dataType: "json",
+					      type: "GET",
+					      success: response
+					    });
+					    
+					  },
+                minLength: 1,
+			focus: function( event, ui ) {
+				$( "#user" ).val( ui.item.name );
+				return false;
+			},
+			select: function( event, ui ) {
+				$( "#user" ).val( ui.item.name);
+				selected_id = ui.item.id;
+				return false;
+			}
+		})
+		.data( "autocomplete" )._renderItem = function( ul, item ) {
+			return $( "<li></li>" )
+				.data( "item.autocomplete", item )
+				.append( 
+				
+				"<a>"+item.name +"</a>")
+				.appendTo( ul );
+		};		
+		
+	});
+
+</script>
+
+	<form class= "search" action=""  method="get">
+		
+		<input type="search" name="username" id="user" value="username" onfocus="if(this.value==this.defaultValue) this.value='';" onchange="" onkeydown="if (event.keyCode == 13) document.getElementById('submit').click()" />
+		
+		<!--
+			 
+		<input id="submit"  type="submit" value="Search"  class="buttonSubmitHide"/>	
+		
+		-->
+		
+	</form>
+
+
+
 <p>
   <b>Name:</b>
   <%= @project.name %>
@@ -9,6 +68,7 @@
   <b>Repo:</b>
   <%= @project.repo %>
 </p>
+
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
