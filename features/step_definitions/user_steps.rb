@@ -1,7 +1,7 @@
-Given /^(?:|I )am logged in as "([^"]*)"$/ do |link|
+Given /^(?:|I )am logged in as "([^"]*)" with password "([^"]*)"$/ do |username, password|
 	visit(path_to("the homepage"))
-	fill_in "username", with: "admin"
-	fill_in "password", with: "admin"
+	fill_in "username", with: username
+	fill_in "password", with: password
 	click_button "Login"
 	
 end

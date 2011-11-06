@@ -11,10 +11,10 @@ one:
   photo: 
 
 two:
-  username: MyString
-  hashed_password: MyString
-  salt: MyString
-  name: MyString
+  username: dcastro
+  hashed_password: <%= User.encrypt_password('1234', SALT) %>
+  salt: <%= SALT %>
+  name: Diogo
   email: MyString
   contact: MyString
   photo: MyString
