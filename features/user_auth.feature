@@ -13,3 +13,9 @@ Feature: User Authentication
 		When I press "Logout"
 		Then I should be on the homepage
 		And I should be logged out
+		
+	Scenario: View Profile
+		Given I am logged in as "admin"
+		And I am on the homepage
+		When I follow "Administrador"
+		Then I should be on the admin's profile page

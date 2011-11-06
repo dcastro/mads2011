@@ -10,6 +10,9 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+      
+    when /^the (.*)'s profile page$/
+      users_show_path(:id => User.find_by_username($1).id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
