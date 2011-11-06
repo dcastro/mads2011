@@ -19,3 +19,22 @@ Feature: User Authentication
 		And I am on the homepage
 		When I follow "Administrador"
 		Then I should be on the admin's profile page
+		And I should see admin's email, contact and name
+
+	Scenario: Registration
+		Given I am on the homepage
+		When I press "Register"
+		And I fill in the following:
+			| Name		| Diogo Castro		|
+			| Username	| user_dcastro		|
+			| Password	| 1234				|
+			| Confirm	| 1234				|
+			| E-mail	| ei07171@fe.up.pt	|
+			| Contact	| 91 442 4559		|
+		And I press "Create Account"
+		And I go to the user_dcastro's profile page
+		Then I should see "Logged in as Diogo Castro"
+		And I should see user_dcastro's email, contact and name
+		
+		
+				
