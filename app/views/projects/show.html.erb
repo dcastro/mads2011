@@ -134,16 +134,23 @@
 
 
 <h2>Features</h2>
-<table class="table">
-	<tr>
-		<th>Name</th>
-		<th>State</th>
-	</tr>
-	<% @project.features.each do |feature| %>
+
+<% unless @project.features.empty? %>
+
+	<table class="table">
 		<tr>
-			<td><%= feature.name %></td>
-			<td><%= (feature.done)? "✔" : "✘" %></td>
+			<th>Name</th>
+			<th>State</th>
 		</tr>
-	<% end %>	
-</table>
+		<% @project.features.each do |feature| %>
+			<tr>
+				<td><%= link_to feature.name, features_show_path(:id => feature.id) %></td>
+				<td><%= (feature.done)? "✔" : "✘" %></td>
+			</tr>
+		<% end %>	
+	</table>
+
+<% else %>
+	There are no features in this project. Have you tried updating the project's state?
+<% end %>
 

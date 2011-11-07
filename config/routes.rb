@@ -1,5 +1,7 @@
 Mads2011::Application.routes.draw do
 
+  get "features/show"
+
   post "roles/create"
 
   post "roles/remove"
