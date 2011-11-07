@@ -77,6 +77,11 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
+    
+    @project.users.each do |u|
+      Notifier.project_deleted(@project, current_user, u.email ).deliver
+    end
+    
     @project.destroy
 
     respond_to do |format|
@@ -98,10 +103,9 @@ class ProjectsController < ApplicationController
     files = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
     p "**************************************************************************"
     files.each do |f|
-      primeiro_linha = File.open("#{f}").first
-      
-      #feature_name
-      #project.features.build(name: feature_name, done: false)
+      primeira_linha = File.open("#{f}").first
+      feature_name = primeira_linha.split(": ")[1]
+      project.features.create!(name: feature_name, done: false)
     end
     
     respond_to do |format|
