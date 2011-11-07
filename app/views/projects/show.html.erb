@@ -1,3 +1,5 @@
+﻿<%# encoding: UTF-8 %>
+
 <p id="notice"><%= notice %></p>
 
 
@@ -129,3 +131,19 @@
 	<% end %>
 	
 </table>
+
+
+<h2>Features</h2>
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>State</th>
+	</tr>
+	<% @project.features.each do |feature| %>
+		<tr>
+			<td><%= feature.name %></td>
+			<td><%= (feature.done)? "✔" : "✘" %></td>
+		</tr>
+	<% end %>	
+</table>
+
