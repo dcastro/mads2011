@@ -75,6 +75,11 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
+    
+    @project.users.each do |u|
+      Notifier.project_deleted(@project, current_user, u.email ).deliver
+    end
+    
     @project.destroy
 
     respond_to do |format|
