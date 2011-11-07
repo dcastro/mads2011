@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
@@ -96,7 +98,10 @@ class ProjectsController < ApplicationController
     files = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
     p "**************************************************************************"
     files.each do |f|
-      primeiro_linha = File.open("#{files[f]}").first
+      primeiro_linha = File.open("#{f}").first
+      
+      #feature_name
+      #project.features.build(name: feature_name, done: false)
     end
     
     respond_to do |format|
