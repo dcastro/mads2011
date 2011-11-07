@@ -1,6 +1,8 @@
 Mads2011::Application.routes.draw do
 
   resources :projects
+  
+  post "projects/update_state"
 
 =begin
   post "user/login"

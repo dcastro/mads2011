@@ -12,7 +12,7 @@ Role.delete_all
 
 
 @admin = User.create! username: "admin", password: "admin", name: "Sereno", email: "admin@gmail.com", contact: "91 101 01 01"
-@proj = Project.create! name: "Project XPTO", repo: "github.com/dcastro/mads2011.git"
+@proj = Project.create! name: "Project XPTO", repo: "http://github.com/dcastro/mads2011.git"
 
 @role = Role.create! user: @admin, project: @proj, name: "Manager"
 

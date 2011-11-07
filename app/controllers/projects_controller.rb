@@ -82,4 +82,28 @@ class ProjectsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  
+  def update_state
+    project = Project.find(params[:id])
+    p project.repo
+    
+    str = "git clone " + project.repo + " tmp/projects/" + project.id.to_s
+    p %x[#{str}]
+    
+    #TODO:  fazer parse em caso de erro
+    p "**************************************************************************"
+    files = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
+    p "**************************************************************************"
+    files.each do |f|
+      primeiro_linha = File.open("#{files[f]}").first
+    end
+    
+    respond_to do |format|
+      FileUtils.rm_rf "tmp/projects/" + project.id.to_s
+      format.html { redirect_to projects_url }
+      format.json { head :ok }
+      
+    end
+  end
 end
