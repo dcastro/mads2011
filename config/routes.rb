@@ -7,6 +7,8 @@ Mads2011::Application.routes.draw do
   post "roles/update"
 
   resources :projects
+  
+  post "projects/update_state"
 
 =begin
   post "user/login"

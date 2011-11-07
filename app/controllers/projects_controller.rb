@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
@@ -85,6 +87,32 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to projects_url }
       format.json { head :ok }
+    end
+  end
+  
+  
+  def update_state
+    project = Project.find(params[:id])
+    p project.repo
+    
+    str = "git clone " + project.repo + " tmp/projects/" + project.id.to_s
+    p %x[#{str}]
+    
+    #TODO:  fazer parse em caso de erro
+    p "**************************************************************************"
+    files = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
+    p "**************************************************************************"
+    files.each do |f|
+      primeira_linha = File.open("#{f}").first
+      feature_name = primeira_linha.split(": ")[1]
+      project.features.create!(name: feature_name, done: false)
+    end
+    
+    respond_to do |format|
+      FileUtils.rm_rf "tmp/projects/" + project.id.to_s
+      format.html { redirect_to projects_url }
+      format.json { head :ok }
+      
     end
   end
 end

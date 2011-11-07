@@ -11,10 +11,15 @@ Project.delete_all
 Role.delete_all
 
 
+<<<<<<< HEAD
+@admin = User.create! username: "admin", password: "admin", name: "Sereno", email: "admin@gmail.com", contact: "91 101 01 01"
+@proj = Project.create! name: "Project XPTO", repo: "http://github.com/dcastro/mads2011.git"
+=======
 @admin = User.create! username: "admin", password: "admin", name: "Sereno", email: "b.boy.souljah@gmail.com", contact: "91 101 01 01"
 @yuno = User.create! username: "yuno", password: "1234", name: "Yuno", email: "xyunox@gmail.com", contact: "91 11 11 111"
 
 @proj = Project.create! name: "Project XPTO", repo: "github.com/dcastro/mads2011.git"
+>>>>>>> c8a2ab99347c282c984ea7e8b5aa0cd39e799e06
 
 
 
