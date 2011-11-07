@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
 
   validate :password_must_be_present
   
+  def get_photo
+    if(self.photo)
+      photo
+    else
+      "/assets/new_user.png"
+     end
+  end
+  
   private
   def password_must_be_present
     errors.add(:password, "Missing password") unless hashed_password.present?
