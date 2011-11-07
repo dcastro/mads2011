@@ -16,5 +16,8 @@ Role.delete_all
 
 @role = Role.create! user: @admin, project: @proj, name: "Manager"
 
+20.times do |x|
+  User.create! username: "user" + x.to_s, password: "1234", name: "User " + x.to_s, email: x.to_s + "@gmail.com", contact: "91 101 01 01"
+end
 
 
