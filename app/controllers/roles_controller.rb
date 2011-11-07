@@ -29,6 +29,7 @@ class RolesController < ApplicationController
       end
       
     end
+    
   end
 
   def update
