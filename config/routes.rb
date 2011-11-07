@@ -1,5 +1,11 @@
 Mads2011::Application.routes.draw do
 
+  post "roles/create"
+
+  post "roles/remove"
+
+  post "roles/update"
+
   resources :projects
   
   post "projects/update_state"
