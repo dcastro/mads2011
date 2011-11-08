@@ -20,3 +20,10 @@ Then /^user "([^"]*)" should be a "([^"]*)" on project "([^"]*)"$/ do |user, rol
           project: @user.projects.find_by_name(project)
   )
 end
+
+Then /^"([^"]*)" should not be a member of "([^"]*)"$/ do |username, project|
+  assert Role.where(
+          user_id: User.find_by_username(username).id,
+          project_id: Project.find_by_name(project).id
+  ).empty?
+end

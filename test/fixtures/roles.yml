@@ -2,10 +2,15 @@
 
 one:
   name: Manager
-  user: one
+  user: Admin
   project: one
 
 two:
+  name: Manager
+  user: Admin
+  project: two
+
+three:
   name: Developer
-  user: two
+  user: Dcastro
   project: two

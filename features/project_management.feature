@@ -1,4 +1,4 @@
-Feature: Project Managment
+Feature: Project Management
 
 	Scenario: Creating Project
 		Given I am logged in as "admin" with password "admin"
@@ -25,3 +25,10 @@ Feature: Project Managment
 		And I press "Add"
 		Then user "Diogo" should be a "Developer" on project "Fixture Project"
 		
+	Scenario: Removing members
+		Given I am logged in as "admin" with password "admin"
+		And I am on the projects page
+		When I follow "Fixture Project 2"
+		Then I should see "Diogo"
+		When I press "remove_dcastro"
+		Then "dcastro" should not be a member of "Fixture Project 2"
