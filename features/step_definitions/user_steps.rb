@@ -4,6 +4,8 @@ Given /^(?:|I )am logged in as "([^"]*)" with password "([^"]*)"$/ do |username,
 	fill_in "password", with: password
 	click_button "Login"
 	
+	@user = User.find_by_username(username)
+	
 end
 
 Then /^(?:|I )should be logged out/ do
