@@ -102,17 +102,19 @@ class ProjectsController < ApplicationController
     
     #TODO:  fazer parse em caso de erro
     p "**************************************************************************"
-    files = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
+    filenames = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
     p "**************************************************************************"
-    files.each do |f|
-      primeira_linha = File.open("#{f}").first
+    filenames.each do |f|
+      file = File.open("#{f}")
+      primeira_linha = file.first.chomp
       feature_name = primeira_linha.split(": ")[1]
       project.features.create!(name: feature_name, done: false)
+      file.close
     end
     
     respond_to do |format|
       FileUtils.rm_rf "tmp/projects/" + project.id.to_s
-      format.html { redirect_to projects_url }
+      format.html { redirect_to project_url(project), notice: "Project updated successfully." }
       format.json { head :ok }
       
     end

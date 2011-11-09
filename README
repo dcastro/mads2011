@@ -1,8 +1,8 @@
 De modo a correr o servidor:
 1. Executar "bundle install"
-2. Executar "rake db:setup"
+2. Executar "bundle exec rake db:setup"
 3. Executar "rails server"
 
 Para correr os testes:
-1. Executar "rake db:setup RAILS_ENV=test"
-2. Executar "cucumber"
+1. Executar "bundle exec rake db:setup RAILS_ENV=test"
+2. Executar "cucumber" na raíz do projecto.
