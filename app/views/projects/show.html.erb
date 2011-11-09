@@ -6,13 +6,14 @@
  <script type="text/javascript" >
 	
 	var filled = false;
+	var projectid = <%= @project.id %>;
 
 	$(function() {
 
 		$( "#username" ).autocomplete({
 			 source:  function(request, response) {
 			 
-			 			var tmp = "string="+request.term;
+			 			var tmp = "string="+request.term+ "&projectid="+ projectid;
 			 
 					    $.ajax({
 					      url: "/users/dynamic_search",
