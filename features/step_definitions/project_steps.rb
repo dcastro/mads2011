@@ -27,3 +27,11 @@ Then /^"([^"]*)" should not be a member of "([^"]*)"$/ do |username, project|
           project_id: Project.find_by_name(project).id
   ).empty?
 end
+
+Then /^"([^"]*)" should be a feature of "([^"]*)"$/ do |feature, project|
+  @features = Project.find_by_name(project).features.map do |feature|
+    feature.name.chomp
+  end
+  
+  assert @features.include? feature
+end

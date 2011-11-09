@@ -5,3 +5,4 @@ one:
 
 two:
   name: Fixture Project 2
+  repo: https://github.com/dcastro/teste.git
