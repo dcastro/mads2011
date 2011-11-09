@@ -83,16 +83,20 @@
 
 <h2>Users</h2>
 
-<%= form_tag(roles_create_path, :method => "post", :onsubmit=>"return submitCheck()") do %>
-	<%= hidden_field_tag "projectid", @project.id %>
-	<%= hidden_field_tag "userid" %>
+<% if @user_type == "Manager"%>
 
-	<%= search_field_tag "username", "username" , :onfocus=>"if(this.value==this.defaultValue) this.value='';"%>
-  	
-  	<%= select_tag "usertype", "<option>Client</option><option>Developer</option><option>Manager</option>".html_safe  %>
-  	<%= submit_tag("Add") %>
-  
-  
+	<%= form_tag(roles_create_path, :method => "post", :onsubmit=>"return submitCheck()") do %>
+		
+		<%= hidden_field_tag "projectid", @project.id %>
+		<%= hidden_field_tag "userid" %>
+	
+		<%= search_field_tag "username", "username" , :onfocus=>"if(this.value==this.defaultValue) this.value='';"%>
+	  	
+	  	<%= select_tag "usertype", "<option>Client</option><option>Developer</option><option>Manager</option>".html_safe  %>
+	  	<%= submit_tag("Add") %>
+	  
+	<% end %>
+
 <% end %>
 
 <table class="table">
@@ -100,7 +104,10 @@
 	<tr>
 		<th>Name</th>
 		<th>Role</th>
-		<th></th>
+		<% if @user_type == "Manager"%>
+			<th></th>
+		<% end %>
+		
 	</tr>
 	<% i = 0 %>
 	<% @project.roles.each do |role|%>
@@ -114,17 +121,20 @@
 				<%= role.name %>
 			</td>
 			
-			<td>
-				<% if role.name != "Manager"%>
-				 
-					<%= form_tag(roles_remove_path, :method => "post") do %>
-						<%= hidden_field_tag "userid", role.user.id %>
-						<%= hidden_field_tag "projectid", @project.id %>
-					  	<%= submit_tag("Delete", id: "remove_" + role.user.username) %>
+			
+			<% if @user_type == "Manager"%>
+				<td>
+					<% if role.user_id !=  session[:id] %>
+					 
+						<%= form_tag(roles_remove_path, :method => "post") do %>
+							<%= hidden_field_tag "userid", role.user.id %>
+							<%= hidden_field_tag "projectid", @project.id %>
+						  	<%= submit_tag("Delete", id: "remove_" + role.user.username) %>
+						<% end %>
+						
 					<% end %>
-					
-				<% end %>
-			</td>
+				</td>
+			<% end %>
 			
 			</tr>
 			<% i+=1%>
