@@ -1,5 +1,3 @@
-require 'fileutils'
-
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
@@ -111,6 +109,24 @@ class ProjectsController < ApplicationController
       project.features.create!(name: feature_name, done: false)
       file.close
     end
+
+=begin    
+    p "***************BUNDLE INSTALL *****************"
+    p %x[cd tmp/projects/#{project.id.to_s} & bundle install]
+    
+    p "***************RAKE *****************"
+    puts %x[cd tmp/projects/#{project.id.to_s} & bundle exec rake db:setup RAILS_ENV=test]
+    
+    p "***************CUCUMBER *****************"
+=end
+
+    Dir.chdir("tmp/projects/#{project.id.to_s}") do
+      p %x[bundle install]
+      p %x[rake db:setup RAILS_ENV=test]   
+      cuke_result = %x[bundle exec cucumber RAILS_ENV=test]
+      puts cuke_result
+    end
+    
     
     respond_to do |format|
       FileUtils.rm_rf "tmp/projects/" + project.id.to_s
