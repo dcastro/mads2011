@@ -93,15 +93,15 @@ class ProjectsController < ApplicationController
   def update_state
     project = Project.find(params[:id])
     project.features.destroy_all
-    p project.repo
+    project.repo
     
     str = "git clone " + project.repo + " tmp/projects/" + project.id.to_s
-    p %x[#{str}]
+    %x[#{str}]
     
     #TODO:  fazer parse em caso de erro
-    p "**************************************************************************"
+    #p "**************************************************************************"
     filenames = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
-    p "**************************************************************************"
+    #p "**************************************************************************"
     filenames.each do |f|
       file = File.open("#{f}")
       primeira_linha = file.first.chomp
@@ -121,10 +121,10 @@ class ProjectsController < ApplicationController
 =end
 
     Dir.chdir("tmp/projects/#{project.id.to_s}") do
-      p %x[bundle install]
-      p %x[rake db:setup RAILS_ENV=test]   
-      cuke_result = %x[bundle exec cucumber RAILS_ENV=test]
-      puts cuke_result
+      %x[bundle install]
+      %x[rake db:setup RAILS_ENV=test]   
+      cuke_result = %x[bundle exec cucumber -f json RAILS_ENV=test]
+      #puts cuke_result
     end
     
     
