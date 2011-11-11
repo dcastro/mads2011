@@ -125,6 +125,49 @@ class ProjectsController < ApplicationController
       %x[rake db:setup RAILS_ENV=test]   
       cuke_result = %x[bundle exec cucumber -f json RAILS_ENV=test]
       #puts cuke_result
+      parsed_msg =cuke_result.match(/[^\[]*(.*)/).to_a
+      parsed_msg = parsed_msg.second
+      
+      json = ActiveSupport::JSON.decode(parsed_msg)
+      
+       json.each do |feature|
+         feature_name = feature["name"]
+         feature_description = feature["description"]
+         
+          #inserir na BD e obter id
+                  
+         scenario_array = fearure["elements"]
+         scenario_array.each do |scenario|
+           
+            scenario_name = scenario["name"]
+            scenario_line = scenario["line"]
+            scenario_description = scenario["description"]
+          
+            #inserir na BD e obter id
+          
+            step_array = scenario["steps"]
+            step_array do |step|
+           
+              step_keyword = step["keyword"]
+              step_name = step["name"]
+              step_line = step["line"]
+              step_status = step["result"]["status"]
+              
+              step_err_msg
+              #pode dar erro aqui porque so existe emnsagem de erro caso de erro
+              if step_status == "failed"
+                step_err_msg = step["result"]["error_message"] 
+              
+              
+              #inserir na bd
+            
+            end
+          end
+         
+         end
+         
+      end
+      
     end
     
     
