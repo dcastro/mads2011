@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  scenario_id: 1
+  keyword: MyString
+  name: MyString
+  line: 1
+  location: MyString
+  status: MyString
+  error_msg: MyText
+
+two:
+  scenario_id: 1
+  keyword: MyString
+  name: MyString
+  line: 1
+  location: MyString
+  status: MyString
+  error_msg: MyText

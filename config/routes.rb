@@ -1,5 +1,7 @@
 Mads2011::Application.routes.draw do
 
+  get "steps/show"
+
   get "scenarios/show"
 
   get "features/show"
