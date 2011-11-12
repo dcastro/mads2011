@@ -131,44 +131,34 @@ class ProjectsController < ApplicationController
       json = ActiveSupport::JSON.decode(parsed_msg)
       
        json.each do |feature|
-         feature_name = feature["name"]
-         feature_description = feature["description"]
          
-          #inserir na BD e obter id
+          @feature = Feature.new  :name => feature["name"],
+                                  :description => feature["description"]
+          
                   
-         scenario_array = fearure["elements"]
-         scenario_array.each do |scenario|
+         feature["elements"].each do |scenario|
            
-            scenario_name = scenario["name"]
-            scenario_line = scenario["line"]
-            scenario_description = scenario["description"]
-          
-            #inserir na BD e obter id
-          
-            step_array = scenario["steps"]
-            step_array do |step|
+            @feature.scenarios.build :name => scenario["name"],
+                                    :line => scenario["line"],
+                                    :description => scenario["decription"]
+                    
+            scenario["steps"].each do |step|
            
-              step_keyword = step["keyword"]
-              step_name = step["name"]
-              step_line = step["line"]
-              step_status = step["result"]["status"]
-              
-              step_err_msg
-              #pode dar erro aqui porque so existe emnsagem de erro caso de erro
-              if step_status == "failed"
-                step_err_msg = step["result"]["error_message"] 
-              
-              
-              #inserir na bd
-            
+              @feature.scenarios.steps.build  :keyword => step["keyword"],
+                                            :name => step["name"],
+                                            :line => step["line"],
+                                            :location => step["match"]["location"],
+                                            :status => step["result"]["status"],
+                                            :error_msg => step["result"]["error_message"]
             end
           end
-         
-         end
-         
+          if @feature.save
+            puts "Deu bem"
+          else
+            puts "Erro"
+          end 
+        end         
       end
-      
-    end
     
     
     respond_to do |format|
