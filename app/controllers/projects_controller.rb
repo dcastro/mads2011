@@ -131,22 +131,28 @@ class ProjectsController < ApplicationController
       json = ActiveSupport::JSON.decode(parsed_msg)
       
        json.each do |feature|
-          completed = true
+          feature_completed = true
           @feature = Feature.new  :name => feature["name"],
                                   :description => feature["description"],
                                   :project => project
           
                   
          feature["elements"].each do |scenario|
-           
+            scenario_completed = true
             @feature.scenarios.build :name => scenario["name"],
                                     :line => scenario["line"],
                                     :description => scenario["decription"]
                     
             scenario["steps"].each do |step|
-              if completed == true
+              if feature_completed == true
                 if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
-                  completed = false
+                  feature_completed = false
+                end
+              end
+              
+              if scenario_completed == true
+                if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
+                  scenario_completed = false
                 end
               end
                 
@@ -157,9 +163,11 @@ class ProjectsController < ApplicationController
                                             :status => step["result"]["status"],
                                             :error_msg => step["result"]["error_message"]
             end
+            
+            @feature.scenarios.last.completed = scenario_completed
           end
           
-          @feature.done = completed
+          @feature.done = feature_completed
           
           if @feature.save
             puts "Deu bem"

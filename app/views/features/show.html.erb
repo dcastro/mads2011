@@ -26,8 +26,7 @@ $(document).ready(function(){
 
 
 	<% @feature.scenarios.each do |scenario| %>
-		<h5 class="scenario_head">
-			<!-- se tivessemos uma varaivel pra dizer se ta completo tb dava jeito -->
+		<h5 class="scenario_head" <%= (scenario.completed)? "style=background-color:#36D88E;": "style=background-color:#FF5D40;" %>>
 			<%= scenario.name %>: <%= scenario.description %>
 		</h5>
 		<div class="scenario_body">
