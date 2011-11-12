@@ -134,7 +134,7 @@ class ProjectsController < ApplicationController
           completed = true
           @feature = Feature.new  :name => feature["name"],
                                   :description => feature["description"],
-                                  :project_id => project
+                                  :project => project
           
                   
          feature["elements"].each do |scenario|

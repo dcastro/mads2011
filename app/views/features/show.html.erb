@@ -1,4 +1,42 @@
 <p id="notice"><%= notice %></p>
-
 <h2> <%= @feature.name %></h2>
+<h3> <%= @feature.description %></h3>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".scenario_body").hide();
+	$(".comments_body").hide();
+
+	
+	$(".scenario_head").toggle(function(){
+		$(this).next(".scenario_body").slideDown(100);
+	}, function(){
+		$(this).next(".scenario_body").slideUp(300);
+	});
+	
+	$(".comments_head").toggle(function(){
+		$(this).next(".comments_body").slideDown(100);
+	}, function(){
+		$(this).next(".comments_body").slideUp(300);
+	});
+
+});
+</script>
+
+
+	<% @feature.scenarios.each do |scenario| %>
+		<h5 class="scenario_head">
+			<!-- se tivessemos uma varaivel pra dizer se ta completo tb dava jeito -->
+			<%= scenario.name %>: <%= scenario.description %>
+		</h5>
+		<div class="scenario_body">
+		<% scenario.steps.each do |step|%>
+			
+				
+				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+		
+		<%end%>
+		</div>
+	<% end %>
 

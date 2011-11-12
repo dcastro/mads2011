@@ -1,3 +1,33 @@
 // Place all the styles related to the Features controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+p {
+padding: 0 0 1em;
+}
+
+.scenario_head {
+padding: 5px 10px 5px 10px;
+cursor: pointer;
+position: relative;
+background-color:#36D88E;
+margin:1px;
+margin-top: 20px;
+
+}
+.scenario_body {
+padding: 5px 10px 5px 30px;
+background-color:#F4F4F8;
+}
+
+.passed {
+  color: green;
+}
+
+.skipped {
+  color: yellow;
+}
+
+.failed {
+  color: red;
+}
