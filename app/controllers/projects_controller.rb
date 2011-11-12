@@ -131,7 +131,7 @@ class ProjectsController < ApplicationController
       json = ActiveSupport::JSON.decode(parsed_msg)
       
        json.each do |feature|
-          completed = true;
+          completed = true
           @feature = Feature.new  :name => feature["name"],
                                   :description => feature["description"],
                                   :project_id => project
@@ -146,7 +146,7 @@ class ProjectsController < ApplicationController
             scenario["steps"].each do |step|
               if completed == true
                 if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
-                  completed = false;
+                  completed = false
                 end
               end
                 
