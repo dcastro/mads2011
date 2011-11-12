@@ -102,13 +102,13 @@ class ProjectsController < ApplicationController
     #p "**************************************************************************"
     filenames = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
     #p "**************************************************************************"
-    filenames.each do |f|
-      file = File.open("#{f}")
-      primeira_linha = file.first.chomp
-      feature_name = primeira_linha.split(": ")[1]
-      project.features.create!(name: feature_name, done: false)
-      file.close
-    end
+    #filenames.each do |f|
+    #  file = File.open("#{f}")
+    #  primeira_linha = file.first.chomp
+    #  feature_name = primeira_linha.split(": ")[1]
+    #  project.features.create!(name: feature_name, done: false)
+    #  file.close
+    #end
 
 =begin    
     p "***************BUNDLE INSTALL *****************"
@@ -130,6 +130,7 @@ class ProjectsController < ApplicationController
       
       json = ActiveSupport::JSON.decode(parsed_msg)
       
+<<<<<<< HEAD
        
         json.each do |json_feature|
 
@@ -142,10 +143,19 @@ class ProjectsController < ApplicationController
                                description: json_feature["description"])
 
 
+=======
+       json.each do |feature|
+          completed = true;
+          @feature = Feature.new  :name => feature["name"],
+                                  :description => feature["description"],
+                                  :project_id => project
+          
+>>>>>>> bug do parse das features corrigido
                   
          scenario_array = fearure["elements"]
          scenario_array.each do |json_scenario|
            
+<<<<<<< HEAD
           
             @feature.scenarios.build(
                     name: json_scenario["name"] ,
@@ -180,6 +190,36 @@ class ProjectsController < ApplicationController
          
          end
          
+=======
+            @feature.scenarios.build :name => scenario["name"],
+                                    :line => scenario["line"],
+                                    :description => scenario["decription"]
+                    
+            scenario["steps"].each do |step|
+              if completed == true
+                if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
+                  completed = false;
+                end
+              end
+                
+              @feature.scenarios.last.steps.build  :keyword => step["keyword"],
+                                            :name => step["name"],
+                                            :line => step["line"],
+                                            :location => step["match"]["location"],
+                                            :status => step["result"]["status"],
+                                            :error_msg => step["result"]["error_message"]
+            end
+          end
+          
+          @feature.done = completed
+          
+          if @feature.save
+            puts "Deu bem"
+          else
+            puts "Erro"
+          end 
+        end         
+>>>>>>> bug do parse das features corrigido
       end
       
     end

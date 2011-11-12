@@ -9,6 +9,11 @@
 User.delete_all
 Project.delete_all
 Role.delete_all
+Feature.delete_all
+Scenario.delete_all
+Step.delete_all
+
+
 
 
 @admin = User.create! username: "admin", password: "admin", name: "Sereno", email: "b.boy.souljah@gmail.com", contact: "91 101 01 01"
