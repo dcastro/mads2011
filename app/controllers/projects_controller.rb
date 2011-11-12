@@ -129,8 +129,8 @@ class ProjectsController < ApplicationController
       parsed_msg = parsed_msg.second
       
       json = ActiveSupport::JSON.decode(parsed_msg)
-       
-      json.each do |feature|
+      
+       json.each do |feature|
           completed = true;
           @feature = Feature.new  :name => feature["name"],
                                   :description => feature["description"],
@@ -169,10 +169,12 @@ class ProjectsController < ApplicationController
         end         
       end
     
+    
     respond_to do |format|
       FileUtils.rm_rf "tmp/projects/" + project.id.to_s
       format.html { redirect_to project_url(project), notice: "Project updated successfully." }
       format.json { head :ok }
-       end 
+      
     end
-
+  end
+end
