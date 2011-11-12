@@ -129,68 +129,16 @@ class ProjectsController < ApplicationController
       parsed_msg = parsed_msg.second
       
       json = ActiveSupport::JSON.decode(parsed_msg)
-      
-<<<<<<< HEAD
        
-        json.each do |json_feature|
-
-
-         #feature_name = feature["name"]
-        # feature_description = feature["description"]
-         
-          @feature = Feature.new(
-                               name: json_feature["name"] ,
-                               description: json_feature["description"])
-
-
-=======
-       json.each do |feature|
+      json.each do |feature|
           completed = true;
           @feature = Feature.new  :name => feature["name"],
                                   :description => feature["description"],
                                   :project_id => project
           
->>>>>>> bug do parse das features corrigido
                   
-         scenario_array = fearure["elements"]
-         scenario_array.each do |json_scenario|
+         feature["elements"].each do |scenario|
            
-<<<<<<< HEAD
-          
-            @feature.scenarios.build(
-                    name: json_scenario["name"] ,
-                    line: json_scenario["line"],
-                    description: json_scenario["description"])
-          
-            step_array = scenario["steps"]
-            step_array do |json_step|
-           
-              step_keyword = step["keyword"]
-              step_name = step["name"]
-              step_line = step["line"]
-              step_status = step["result"]["status"]
-              
-               @feature.scenarios.steps.build(
-                    name: json_step["name"] ,
-                    line: json_step["line"],
-                    step_status: json_step["result"]["status"],
-                    keyword: json_step["keyword"])
-          
-              
-              step_err_msg
-              #pode dar erro aqui porque so existe emnsagem de erro caso de erro
-              #if json_step["result"]["status"] == "failed"
-              #  step_err_msg = step["result"]["error_message"] 
-              
-              
-              #inserir na bd
-            
-            end
-          end
-         
-         end
-         
-=======
             @feature.scenarios.build :name => scenario["name"],
                                     :line => scenario["line"],
                                     :description => scenario["decription"]
@@ -219,11 +167,7 @@ class ProjectsController < ApplicationController
             puts "Erro"
           end 
         end         
->>>>>>> bug do parse das features corrigido
       end
-      
-    end
-    
     
     respond_to do |format|
       FileUtils.rm_rf "tmp/projects/" + project.id.to_s
