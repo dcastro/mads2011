@@ -77,15 +77,20 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     
-    @project.users.each do |u|
-      Notifier.project_deleted(@project, current_user, u.email ).deliver
-    end
-    
-    @project.destroy
-
     respond_to do |format|
-      format.html { redirect_to projects_url }
-      format.json { head :ok }
+      if current_user.role_in_project(@project.id) == "Manager"
+        @project.users.each do |u|
+          Notifier.project_deleted(@project, current_user, u.email ).deliver
+        end
+        
+        @project.destroy
+      
+        format.html { redirect_to projects_url }
+        format.json { head :ok }
+      else
+        format.html { redirect_to projects_url, notice: "Only managers are allowed to destroy this project." }
+        format.json { head :method_not_allowed }
+      end
     end
   end
   

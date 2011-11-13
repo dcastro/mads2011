@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Listing projects</h1>
 
 <table class="projects , table">
@@ -15,7 +17,7 @@
     <td><%= project.roles.count %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= destroy_tag project %></td>
   </tr>
 <% end %>
 </table>

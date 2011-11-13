@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
 
   validate :password_must_be_present
   
+  
+  def role_in_project(project_id)
+    
+    self.roles.where(project_id: project_id).first.name
+    
+  end
+  
+  
   def get_photo
     if(self.photo)
       photo
