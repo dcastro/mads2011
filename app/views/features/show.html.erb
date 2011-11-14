@@ -6,19 +6,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".scenario_body").hide();
-	$(".comments_body").hide();
 
 	
 	$(".scenario_head").toggle(function(){
 		$(this).next(".scenario_body").slideDown(100);
 	}, function(){
 		$(this).next(".scenario_body").slideUp(300);
-	});
-	
-	$(".comments_head").toggle(function(){
-		$(this).next(".comments_body").slideDown(100);
-	}, function(){
-		$(this).next(".comments_body").slideUp(300);
 	});
 
 });
@@ -34,6 +27,9 @@ $(document).ready(function(){
 			
 				
 				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+				<%if step.error_msg != "" %>
+					<p style="background-color:red;"> <%= step.error_msg%><p>
+				<%end %>
 		
 		<%end%>
 		</div>
