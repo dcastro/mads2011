@@ -19,6 +19,7 @@ end
 group :test, :development do
   gem 'cucumber-rails'
   gem 'database_cleaner'
+  gem 'ffi', " = 1.0.9"
 end
 
 
