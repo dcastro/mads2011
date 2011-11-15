@@ -1,4 +1,6 @@
 Mads2011::Application.routes.draw do
+  
+  get "implemented_steps/match"
 
   post "suggestion_scenarios/create"
 
