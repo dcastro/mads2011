@@ -2,6 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+show_errors = (error) ->
+  $("#suggestion_errors span").text(error)
+  $("#suggestion_errors").fadeTo(300, 1).delay(1000).fadeTo(300, 0)
+
 $ ->
   $("div.new_steps").delegate ".add_step", "click", ->
     $("div.new_steps .steps").append '''
@@ -27,6 +31,36 @@ $ ->
     if $("div.new_steps .new_step").size() == 0
       $("#no_steps_error").effect("pulsate", { times:3 }, 200);
 
+
+
+  #form validation
+  $("#suggestion_errors").fadeTo 0, 0
+  
+  $(".new_suggestion_scenario").submit ->
+    
+    #validate name
+    unless $("#suggestion_scenario_name").val()
+      show_errors("Please choose a name for this suggestion.")
+      return false
+    
+    #validate number of steps
+    unless $(this).find(".new_step").length > 0
+      show_errors("Please add at least one step.")
+      return false
+    
+    #validate empty steps
+    success = true
+    $(".new_steps input").each ->
+      
+      unless $(this).val()
+        show_errors("Please fill in all steps/tables or delete the empty ones.")
+        success = false
+        return false
+    
+    unless success
+      return false
+    
+    return true
 
 
 

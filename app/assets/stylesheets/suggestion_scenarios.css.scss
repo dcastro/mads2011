@@ -15,6 +15,11 @@
   max-height: 60%;
   
   overflow: scroll;
+  
+  #suggestion_errors {
+    color: red;
+    font-weight:bold;
+  }
 }
 
 .new_step {
