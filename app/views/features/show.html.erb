@@ -7,22 +7,6 @@
 <h2> <%= @feature.name %></h2>
 <h3> <%= @feature.description %></h3>
 
-
-
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".scenario_body").hide();
-
-	
-	$(".scenario_head").toggle(function(){
-		$(this).next(".scenario_body").slideDown(100);
-	}, function(){
-		$(this).next(".scenario_body").slideUp(300);
-	});
-
-});
-</script>
-
 <%= render partial: "suggestion_scenarios/form"%>
 
 	<% @feature.scenarios.each do |scenario| %>
@@ -45,13 +29,21 @@ $(document).ready(function(){
 
 	
 	<% @feature.suggestion_scenarios.each do |scenario| %>
+	
 		<h5 class="scenario_head" <%= (true)? "style=background-color:#AAAAAA;": "style=background-color:#FF5D40;" %> >
+			<!-- <%= link_to image_tag('thrash_can.png', height: '25', class: 'thrash_can'), suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), method: :post, confirm: 'Are you sure you want to delete this suggestion?' %>
+			-->
+			<%= form_tag suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), class: "destroy_suggestion" do %>
+			<% end %>
 			
+		
+			<%= image_tag('thrash_can.png', height: '25', class: 'thrash_can') %>
 			
 			<%= image_tag "under_construction-1.png", height: '20'%>
 			
 			<%= scenario.name %>: <%= scenario.description %>
 		</h5>
+		
 		<div class="scenario_body">
 			<div class="suggestion_author">
 				Suggested by <%= link_to scenario.user.name, users_show_path(id: scenario.user.id) %>

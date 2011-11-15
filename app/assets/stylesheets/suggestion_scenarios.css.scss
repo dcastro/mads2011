@@ -100,3 +100,11 @@ div.suggestion_author {
   float: right;
 }
 
+img.thrash_can {
+  float: right;
+  z-index: 10;
+}
+
+form.destroy_suggestion {
+  display: inline;
+}

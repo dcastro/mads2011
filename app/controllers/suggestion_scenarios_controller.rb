@@ -30,6 +30,15 @@ class SuggestionScenariosController < ApplicationController
   end
 
   def destroy
+    suggestion = SuggestionScenario.find(params[:suggestion_scenario_id])
+    id = suggestion.feature.id
+    
+    if suggestion.destroy
+      redirect_to features_show_url(id: id), notice: "Suggestion successfully deleted."
+    else
+      redirect_to features_show_url(id: id), notice: "An error occurred while trying to delete the suggestion."
+    end
+    
   end
 
 end
