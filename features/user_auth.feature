@@ -11,13 +11,13 @@ Feature: User Authentication
 		Scenarios:
 			| username		| password			| action							|
 			| admin_user	| 1234				| see "Logged in as Administrador"	|
-			| test_user		| wrong_password	| see "Logged in as"			|
+			| test_user		| wrong_password	| not see "Logged in as"			|
 		
 
 	Scenario: Logout
 		Given I am logged in as "admin" with password "admin"
 		And I am on the homepage
-		When I press "Logout"
+		When I follow "Logout"
 		Then I should be on the homepage
 		And I should be logged out
 		
@@ -30,7 +30,7 @@ Feature: User Authentication
 
 	Scenario: Registration
 		Given I am on the homepage
-		When I press "Register"
+		When I follow "Register"
 		And I fill in the following:
 			| Name		| Diogo Castro		|
 			| Username	| user_dcastro		|

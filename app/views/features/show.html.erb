@@ -31,8 +31,6 @@
 	<% @feature.suggestion_scenarios.each do |scenario| %>
 	
 		<h5 class="scenario_head" <%= (true)? "style=background-color:#AAAAAA;": "style=background-color:#FF5D40;" %> >
-			<!-- <%= link_to image_tag('thrash_can.png', height: '25', class: 'thrash_can'), suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), method: :post, confirm: 'Are you sure you want to delete this suggestion?' %>
-			-->
 			<%= form_tag suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), class: "destroy_suggestion" do %>
 			<% end %>
 			

@@ -202,7 +202,7 @@ class ProjectsController < ApplicationController
                 @feature.scenarios.last.steps.build  :keyword => step["keyword"].chop,
                                               :name => step["name"],
                                               :line => step["line"],
-                                              :location => step["match"]["location"],
+                                              #:location => step["match"]["location"],
                                               :status => status,
                                               :error_msg => errormsg
                   
@@ -228,6 +228,7 @@ class ProjectsController < ApplicationController
             puts "Deu bem"
           else
             puts "Erro"
+            puts @feature.errors.full_messages
           end 
         end         
       end

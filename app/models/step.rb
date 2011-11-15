@@ -3,5 +3,5 @@ class Step < ActiveRecord::Base
   has_many :step_rows, :dependent => :destroy
 
   
-  validates :keyword, :name, :line, :status, :location, :presence => true
+  validates :keyword, :name, :line, :status, :presence => true
 end

@@ -2,8 +2,8 @@
 
 one:
   suggestion_step_id: 1
-  order: 1
+  row_num: 1
 
 two:
   suggestion_step_id: 1
-  order: 1
+  row_num: 1

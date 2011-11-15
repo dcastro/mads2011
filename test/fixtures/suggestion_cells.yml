@@ -2,8 +2,8 @@
 
 one:
   suggestion_row_id: 1
-  order: 1
+  cell_num: 1
 
 two:
   suggestion_row_id: 1
-  order: 1
+  cell_num: 1
