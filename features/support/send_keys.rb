@@ -66,4 +66,4 @@ module SendKeys
   end
 end
 
-Capybara::Node.send :include, SendKeys
+Capybara::Node::Element.send :include, SendKeys

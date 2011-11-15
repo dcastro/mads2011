@@ -7,17 +7,15 @@ Feature: Suggest a new scenario
 	Scenario:
 		Given I am logged in as "admin" with password "admin"
 		And the following suggestion data:
-			| name			| New Suggestion				|
-			| description	| This is a dummy suggestion	|
+			| Name			| New Suggestion				|
+			| Description	| This is a dummy suggestion	|
 		And the following suggestion steps:
-			| keyword	| name									| rows & cells	|
-			| Given		| I am on the homepage					|				|
-			| When		| I add the following product:			| name, Iran Costa Debut Album & price, 19.99 & description, brand new |
-			| Then		| I should see it in the products page	|				|
-		And I am on the projects page
-		When I follow "Fixture Project 2"
-		And I follow "Fixture Feature"
-		And I AJAX click2 on "Suggestion"
-		#And lol
-		And I send [alt, p] to "input#suggestion_scenario_name"
+			| keyword	| name									| rows & cells															|
+			| Given		| I am on the homepage					|																		|
+			| When		| I add the following product:			| name, Iran Costa Debut Album & price, 19.99 & description, brand new	|
+			| Then		| I should see it in the products page	|																		|
+		And I am on the feature "Fixture Feature" page
+		When I open and fill in the suggestions form
+		And I press "Create Suggestion"
 		Then lol
+		Then I should see the new suggestion
