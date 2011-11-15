@@ -33,9 +33,3 @@ Feature: Project Management
 		When I press "remove_dcastro"
 		Then "dcastro" should not be a member of "Fixture Project 2"
 
-	Scenario: Update Features
-		Given I am logged in as "admin" with password "admin"
-		And I am on the projects page
-		When I follow "Fixture Project 2"
-		And I press "Update State"	
-		Then "Lol" should be a feature of "Fixture Project 2"

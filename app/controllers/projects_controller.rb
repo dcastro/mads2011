@@ -161,7 +161,7 @@ class ProjectsController < ApplicationController
                 end
               end
                 
-              @feature.scenarios.last.steps.build  :keyword => step["keyword"],
+              @feature.scenarios.last.steps.build  :keyword => step["keyword"].chop,
                                             :name => step["name"],
                                             :line => step["line"],
                                             :location => step["match"]["location"],

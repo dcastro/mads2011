@@ -35,3 +35,21 @@ Then /^"([^"]*)" should be a feature of "([^"]*)"$/ do |feature, project|
   
   assert @features.include? feature
 end
+
+
+Then /^feature "([^"]*)" should have the following scenarios:$/ do |feature_name, scenarios|
+  feature = Feature.find_by_name(feature_name)
+  
+  scenarios.rows.flatten.each do |scenario|
+    assert feature.scenarios.collect(&:name).include? scenario
+  end
+end
+
+Then /^scenario "([^"]*)" should have the following steps:$/ do |scenario_name, steps|
+  scenario = Scenario.find_by_name(scenario_name)
+  
+  steps.hashes.each do |step|
+    assert (not scenario.steps.where(name: step["Name"], keyword: step["Keyword"]).empty?)
+  end
+end
+
