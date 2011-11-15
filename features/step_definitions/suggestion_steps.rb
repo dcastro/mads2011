@@ -1,24 +1,9 @@
 Given /^the following suggestion data:$/ do |table|
-
   @sug_data = table
 end
 
 Given /^the following suggestion steps:$/ do |table|
   @sug_steps =  table
-end
-
-Then /^lol$/ do
-  sleep 8
-end
-
-When /^I AJAX click2 on "([^"]*)"/ do |link_text|
-  # page.evaluate_script %Q{ $('.ui-menu-item a:contains("#{link_text}")').trigger("mouseenter").click(); }
-  page.driver.browser.execute_script %Q{ $('div:contains("#{link_text}")').trigger("mouseenter").click(); }
-end
-
-When /^I send ([^"]*)$/ do |keys|
-  step %{I send #{keys} to "body"}
-  sleep 1
 end
 
 When /^I open and fill in the suggestions form$/ do 
@@ -39,6 +24,7 @@ When /^I open and fill in the suggestions form$/ do
   end
   
   @sug_steps.hashes.each_with_index do |step_data, index|
+    #no ambito de cada step
     with_scope("step no. " + (index + 1).to_s) do
       
       #preenche os campos keyword e nome
@@ -67,3 +53,47 @@ When /^I open and fill in the suggestions form$/ do
   end
   
 end
+
+
+Then /^I should see the new suggestion$/ do
+  
+  page.driver.browser.execute_script %Q{ $('h5').trigger("mouseenter").click(); }
+  
+  @sug_data.rows_hash.each do |name, value|
+    step %{I should see "#{value}"}
+  end
+  
+  @sug_steps.hashes.each_with_index do |step_data, index|
+    
+    step %{I should see "#{ step_data["keyword"]  }"}
+    step %{I should see "#{ step_data["name"]     }"}
+  
+    step_data["rows & cells"].split(/\s*&\s*/).each do |row|
+      row.split( /\s*,\s*/ ).each do |cell|
+        step %{I should see "#{cell}"}
+      end
+    end
+  end
+end
+
+
+Given /^the following suggestion belongs to the feature "([^"]*)":$/ do |name, table|
+  
+  @suggestion = Feature.find_by_name(name).suggestion_scenarios.create! table.rows_hash
+  @suggestion.user = @user
+  @suggestion.save!
+  
+end
+
+When /^I delete this suggestion$/ do
+  
+  page.driver.browser.execute_script %Q{ $('h5:contains("#{ @suggestion.name }") .thrash_can').trigger("mouseenter").click(); }
+  
+end
+
+Then /^I should no longer see this suggestion$/ do
+  
+  step %{I should not see "#{@suggestion.name}"}
+  
+end
+

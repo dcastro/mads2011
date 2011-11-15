@@ -4,7 +4,7 @@ Feature: Suggest a new scenario
 	I want to be able to suggest a new scenario for a given feature
 
 	@javascript
-	Scenario:
+	Scenario: Suggest a new Scenario
 		Given I am logged in as "admin" with password "admin"
 		And the following suggestion data:
 			| Name			| New Suggestion				|
@@ -17,5 +17,14 @@ Feature: Suggest a new scenario
 		And I am on the feature "Fixture Feature" page
 		When I open and fill in the suggestions form
 		And I press "Create Suggestion"
-		Then lol
 		Then I should see the new suggestion
+
+	@javascript
+	Scenario: Delete a suggestion
+		Given I am logged in as "admin" with password "admin"
+		And the following suggestion belongs to the feature "Fixture Feature":
+			| name			| New Suggestion				|
+			| description	| This is a dummy suggestion	|
+		And I am on the feature "Fixture Feature" page
+		When I delete this suggestion
+		Then I should no longer see this suggestion
