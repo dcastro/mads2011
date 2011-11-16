@@ -28,3 +28,23 @@ Then /^(?:|I )should see ([^"]*)'s ([^"]*)/ do |username, fields|
   end
 
 end
+
+
+Given /^the following user records:$/ do |table|
+  table.hashes.each do |user|
+    User.create! username: user["username"],
+                  password: user["password"],
+                  password_confirmation: user["password"],
+                  name: user["name"],
+                  email: user["email"] || "a@a.com"
+  end
+end
+  
+When /^I login with username "([^"]*)" and password "([^"]*)"$/ do |username, password|
+  visit(path_to("the homepage"))
+  fill_in "username", with: username
+  fill_in "password", with: password
+  click_button "Login"
+end
+
+
