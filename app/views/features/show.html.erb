@@ -83,7 +83,7 @@
 			</div>
 		<% scenario.suggestion_steps.each do |step|%>
 				
-				<p><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
 				
 				<table class="step_table" border="1" bordercolor="#CCCCCC" rules="all">
 					<% step.suggestion_rows.each do |row|%>
@@ -94,6 +94,9 @@
 		                </tr>
 	                <%end%>
                 </table>
+                <%if step.error_msg != "" %>
+					<p style="background-color:red;"> <%= step.error_msg%><p>
+				<%end %>
 		
 		<%end%>
 		</div>

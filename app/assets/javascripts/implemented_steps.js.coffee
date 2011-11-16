@@ -1,6 +1,9 @@
 $ ->
   project_id = $("#feature").data("projectid")
-  $('div.new_step > input[name="name[]"]').autocomplete(
+  
+  $(document).delegate 'div.new_step > input[name="name[]"]', 'focusin', ->
+  
+    $(this).autocomplete(
       source: (request, response) ->
         
         
@@ -18,6 +21,10 @@ $ ->
          
          
       ).data("autocomplete")._renderItem = (ul, item) ->
-        return $("<li></li>").data("item.autocomplete", item).append( item.value ).appendTo(ul)
+        if item.match == 0
+          html = "<li></li>"
+        else
+          html = "<li class='matched_step'></li>"
+        return $(html).data("item.autocomplete", item).append( item.name ).appendTo(ul)
         
         

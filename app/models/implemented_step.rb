@@ -47,11 +47,14 @@ class ImplementedStep < ActiveRecord::Base
   
   public
   def match(string)
+    
+    return 1 if string.match self.name
+    
     reg = String.new(self.name)
     
     while not reg.empty?
       if string.match /#{reg + '$'}/i #case insensitive partial match
-        return true
+        return 0
       end
       
       case reg
