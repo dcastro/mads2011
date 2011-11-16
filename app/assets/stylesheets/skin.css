@@ -2,7 +2,7 @@
 RESET & HTML ELEMENTS
 -------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-body {background-color:#FFF; color:#000;}
+body {background-color:#C3CEEE; color:#000;}
 a {border-bottom:1px dotted #CCC; color:#06C;}
 a:hover, a:focus {color:#000; background-color: transparent; }
 h3 {color:#06C;}
