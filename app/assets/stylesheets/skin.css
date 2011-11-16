@@ -4,7 +4,7 @@ RESET & HTML ELEMENTS
 
 body {background-color:#FFF; color:#000;}
 a {border-bottom:1px dotted #CCC; color:#06C;}
-a:hover, a:focus {color:#000;}
+a:hover, a:focus {color:#000; background-color: transparent; }
 h3 {color:#06C;}
 table.table {border:1px solid #CCC;}
 table.table th, table.table td {border:1px solid #CCC;}
@@ -15,6 +15,8 @@ table.table tr.even td {background-color:#EEE;}
 LAYOUT
 -------------------------------------------------------------------------------------------------------------------------------------------------- */
 
+#login a:hover {color: #FFF;}
+
 #header #nav a {color:#FFF; text-shadow:1px 1px 0px #000;}
 #header #nav .current a {color:#FFF;}
 #section {background-color:#FFF;}
@@ -22,7 +24,7 @@ LAYOUT
 #contact address span {color:#CCC;}
 #footer {border-top:1px solid #DDD; color:#555;}
 #footer a {color:#555;}
-#footer a:hover {color:#000;}
+/*#footer a:hover {color:#000;}*/
 
 /* --------------------------------------------------------------------------------------------------------------------------------------------------
 PAGE: HOMEPAGE (body#hp)
