@@ -1,11 +1,18 @@
 Feature: User Authentication
 
-	Scenario: Login
-		Given I am on the homepage
-		When I fill in "username" with "admin"
-		And I fill in "password" with "admin"
-		And I press "Login"
-		Then I should see "Logged in as Administrador"
+	Scenario Outline: Login
+		Given the following user records:
+			| username		| password	| name			|
+			| admin_user	| 1234		| Administrador	|
+			| test_user		| 1234		| User X		|
+		When I login with username "<username>" and password "<password>"
+		Then I should <action>
+		
+		Scenarios:
+			| username		| password			| action							|
+			| admin_user	| 1234				| see "Logged in as Administrador"	|
+			| test_user		| wrong_password	| not see "Logged in as"			|
+		
 
 	Scenario: Logout
 		Given I am logged in as "admin" with password "admin"
