@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    begin
+    begin   
       @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to home_url, :notice => 'Invalid user.'
