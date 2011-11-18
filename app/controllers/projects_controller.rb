@@ -128,7 +128,7 @@ class ProjectsController < ApplicationController
     Dir.chdir("tmp/projects/#{project.id.to_s}") do
       %x[bundle install]
       %x[rake db:setup RAILS_ENV=test]   
-      cuke_result = %x[bundle exec cucumber -f json RAILS_ENV=test]
+      cuke_result = %x[bundle exec cucumber -f json -f pdf --out ../../../public/reports/#{project.id.to_s}.pdf RAILS_ENV=test]
       #puts cuke_result
       parsed_msg =cuke_result.match(/[^\[]*(.*)/).to_a
       parsed_msg = parsed_msg.second
