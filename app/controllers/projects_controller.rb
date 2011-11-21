@@ -98,7 +98,8 @@ class ProjectsController < ApplicationController
   def update_state
     project = Project.find(params[:id])
     project.features.destroy_all
-    project.repo
+    
+    FileUtils.rm_rf "tmp/projects/" + project.id.to_s
     
     str = "git clone " + project.repo + " tmp/projects/" + project.id.to_s
     %x[#{str}]

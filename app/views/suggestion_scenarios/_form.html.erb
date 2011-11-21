@@ -1,0 +1,16 @@
+<%= form_for(@sc, :url => users_create_path) do |f| %>
+  <% if @sc.errors.any? %>
+  <% end %>
+  
+  <fieldset>
+  	<legend>Suggest a new scenario that you find useful</legend>
+  	
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    
+  </fieldset>
+  
+  
+<% end %>
