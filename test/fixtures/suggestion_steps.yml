@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  suggestion_scenario_id: 1
+  name: MyString
+  keyword: MyString
+
+two:
+  suggestion_scenario_id: 1
+  name: MyString
+  keyword: MyString

@@ -1,8 +1,8 @@
 Mads2011::Application.routes.draw do
 
-  get "suggestion_scenarios/create"
+  post "suggestion_scenarios/create"
 
-  get "suggestion_scenarios/destroy"
+  post "suggestion_scenarios/destroy"
 
   get "steps/show"
 

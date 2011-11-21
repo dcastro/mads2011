@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118173234) do
+ActiveRecord::Schema.define(:version => 20111121133808) do
 
   create_table "features", :force => true do |t|
     t.integer  "project_id"
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(:version => 20111118173234) do
     t.integer  "user_id"
     t.text     "description"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suggestion_steps", :force => true do |t|
+    t.integer  "suggestion_scenario_id"
+    t.string   "name"
+    t.string   "keyword"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

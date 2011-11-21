@@ -1,4 +1,4 @@
-<%= form_for(@sc, :url => users_create_path) do |f| %>
+<%= form_for(@sc, :url => suggestion_scenarios_create_path) do |f| %>
   <% if @sc.errors.any? %>
   <% end %>
   
@@ -10,6 +10,10 @@
       <%= f.text_field :name %>
     </div>
     
+    
+    <div class="actions">
+      <%= f.submit "Create Account" %>
+    </div>
   </fieldset>
   
   
