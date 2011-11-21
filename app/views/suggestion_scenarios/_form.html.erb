@@ -1,3 +1,9 @@
+<div id="new_suggestion">
+	
+	<div id="hotkeys">
+		<%= image_tag "keyboard.gif" -%> Hotkeys
+	</div>
+
 <%= form_for(@sc, :url => suggestion_scenarios_create_path) do |f| %>
   <% if @sc.errors.any? %>
   <% end %>
@@ -10,11 +16,18 @@
       <%= f.text_field :name %>
     </div>
     
+    <div class="new_steps">
+	    <%= render :partial => "suggestion_steps/form"%>    
+	    <%= render :partial => "suggestion_steps/form"%>   
+    </div> 
+    
     
     <div class="actions">
-      <%= f.submit "Create Account" %>
+      <%= f.submit "Create Suggestion" %>
     </div>
   </fieldset>
   
   
 <% end %>
+</div>
+
