@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  example_row_id: 1
+  name: MyString
+
+two:
+  example_row_id: 1
+  name: MyString

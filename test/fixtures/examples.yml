@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  scenario_id: 1
+  keyword: MyText
+  name: MyText
+  description: MyText
+  line: 1
+
+two:
+  scenario_id: 1
+  keyword: MyText
+  name: MyText
+  description: MyText
+  line: 1
