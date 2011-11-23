@@ -68,6 +68,7 @@ newStep = () ->
       </tr>
   
   '''
+  $("#no_steps_error").hide()
 
 
   
