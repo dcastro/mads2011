@@ -62,7 +62,7 @@ newStep = () ->
   
     <div class="new_step">
       <span class="remove_step">-</span>
-        <select id="usertype" name="usertype">
+        <select id="keyword_" name="keyword[]">
           <option>Given</option>
           <option>When</option>
           <option>And</option>
@@ -85,20 +85,46 @@ createTable = () ->
     step = $(".new_steps :focus").parent()
     
     #proibe a existencia de mais que uma tabela
-    if(step.find('table').size() > 0)
+    table = step.find('table')
+    if(table.size() > 0)
+      table.remove()
       return
     
-    position = $(".new_step").index(step)
+    step_index = $(".new_step").index(step)
     
     step.append '''
     
           <table class="step_table">
             <tr>
-              <td> <input id="cell_" name="cell[]" placeholder="keyword" size="10" type="text"></td>
-              <td> <input id="cell_" name="cell[]" placeholder="keyword" size="10" type="text"></td>
+              <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
+              <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
+            </tr>
+            <tr>
+              <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
+              <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
             </tr>
           </table>              
     '''
+    
+    
+tableActions = (e) ->
+  console.log e.which
+  
+  switch e.which
+    when 87 #Alt + w -> remove row
+      alert 'w'
+    when 65 #Alt + a -> remove column
+      alert 'a'
+    when 83 #Alt + s -> add row
+      console.log(this)
+      addRow($(this))
+    when 68 #Alt + d -> add column
+      alert 'd'
+  
+  event.preventDefault()
+  
+addRow = (table) ->
+  table.find('input').val('lool')
 
 $ ->
     $("div#new_suggestion").append '''
@@ -106,9 +132,16 @@ $ ->
           <a id="popupHotkeysClose">x</a>
           <h1>Hotkeys</h1>
           <p>
-              <p><span class="hotkey">Alt + S:</span> New Step </p>
+              <p><span class="hotkey">Alt + N:</span> New Step </p>
               <p><span class="hotkey">Alt + X:</span> Remove Last Step </p>  
+              <p><span class="hotkey">Alt + T:</span> Add/Remove Table </p>
               <p><span class="hotkey">Alt + C:</span> Create Suggestion</p>                
+              <br/>
+              <p>Tables</p>
+                <p><span class="hotkey">Alt + W:</span> Remove Row</p>  
+                <p><span class="hotkey">Alt + A:</span> Remove Column</p>  
+                <p><span class="hotkey">Alt + S:</span> Add Row</p>  
+                <p><span class="hotkey">Alt + D:</span> Add Column</p>  
               <br/>
               <p><span class="hotkey">Alt + H:</span> Brings up this dialog </p>
               <p><span class="hotkey">Esc:</span> Closes this dialog </p>
@@ -140,12 +173,15 @@ $ ->
     #open/close with Alt + H
     $(document).bind('keyup', 'Alt+h', helpHotkey );
     
-    $(document).bind('keyup', 'Alt+s', newStep )
+    $(document).bind('keyup', 'Alt+n', newStep )
 
     $(document).bind('keyup', 'Alt+x', removeStep )
     
     #aplicada apenas aos inputs directamente descendente do step
     #exlcui inputs da tabela -> previne tabelas dentro de tabelas
-    $(".new_steps .new_step > input").bind('keyup', 'Alt+t', createTable)
+    #$(".new_steps .new_step > input").bind('keyup', 'Alt+t', createTable)
+    $(document).delegate ".new_steps .new_step > input", 'keyup', 'Alt+t', createTable
+    
+    $(document).delegate ".new_steps .new_step table", 'keydown', 'Alt+w Alt+a Alt+s Alt+d', tableActions
       
 

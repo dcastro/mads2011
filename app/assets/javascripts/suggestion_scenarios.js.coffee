@@ -8,7 +8,7 @@ $ ->
     
       <div class="new_step">
         <span class="remove_step">-</span>
-        <select id="usertype" name="usertype">
+        <select id="keyword_" name="keyword[]">
           <option>Given</option>
           <option>When</option>
           <option>And</option>
