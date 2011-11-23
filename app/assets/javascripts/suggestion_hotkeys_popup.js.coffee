@@ -62,7 +62,12 @@ newStep = () ->
   
     <div class="new_step">
       <span class="remove_step">-</span>
-      <input id="keyword_" name="keyword[]" placeholder="keyword" size="10" type="text">
+        <select id="usertype" name="usertype">
+          <option>Given</option>
+          <option>When</option>
+          <option>And</option>
+          <option>Then</option>
+        </select>
       <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
       <span class="add_step">+</span>
     </div>

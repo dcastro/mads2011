@@ -1,6 +1,6 @@
 <div class="new_step">
 	<span class="remove_step">-</span>
-	<%= text_field_tag "keyword[]", nil,  size: 10, placeholder: "keyword"%>
+	<%= select_tag "usertype", "<option>Given</option><option>When</option><option>And</option><option>Then</option>".html_safe  %>
 	<%= text_field_tag "name[]", nil, size: 45, placeholder: "step description"%>
 	<span class="add_step">+</span>
 </div>
