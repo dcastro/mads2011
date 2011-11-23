@@ -36,4 +36,24 @@ $(document).ready(function(){
 	<% end %>
 
 
+	
+	<% @feature.scenarios.each do |scenario| %>
+		<h5 class="scenario_head" <%= (true)? "style=background-color:#AAAAAA;": "style=background-color:#FF5D40;" %> >
+			
+			
+			<%= image_tag "under_construction-1.png" , :size => "16x16" %>
+			
+			<%= scenario.name %>: <%= scenario.description %>
+		</h5>
+		<div class="scenario_body">
+		<% scenario.steps.each do |step|%>
+			
+				
+				<p><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+
+		
+		<%end%>
+		</div>
+	<% end %>
+
 	<%= render partial: "suggestion_scenarios/form"%>
