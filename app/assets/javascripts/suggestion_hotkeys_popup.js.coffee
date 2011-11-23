@@ -69,8 +69,10 @@ newStep = () ->
   
   '''
 
+removeStep = () ->
+#   $("div.new_steps").delegate ".remove_step", "click", ->
+     $("tbody tr:last-child").remove()
 
-  
 $ ->
     $("div#new_suggestion").append '''
         <div id="popupHotkeys">
@@ -78,7 +80,7 @@ $ ->
           <h1>Hotkeys</h1>
           <p>
               <p><span class="hotkey">Alt + S:</span> New Step </p>
-                
+              <p><span class="hotkey">Alt + X:</span> Remove Last Step </p>                
               <br/>
               <p><span class="hotkey">Alt + H:</span> Brings up this dialog </p>
               <p><span class="hotkey">Esc:</span> Closes this dialog </p>
@@ -111,6 +113,8 @@ $ ->
     $(document).bind('keyup', 'Alt+h', helpHotkey );
     
     $(document).bind('keyup', 'Alt+s', newStep )
+
+    $(document).bind('keyup', 'Alt+x', removeStep )
 
       
 
