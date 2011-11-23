@@ -54,6 +54,16 @@ LAYOUT
 	color: #06C;
 }
 
+#login #nav2 li {display:inline; margin:0; padding:0;}
+#login #nav2 li a {padding: 6.5px 0 6.5px; padding-left:15px; background:url("../assets/nav2-l.png") 0 0px no-repeat; text-decoration:none; color: #000;}
+#login #nav2 li a span {padding: 6.5px 0 6.5px;padding-right:15px; background:url("../assets/nav2-r.png") 100% 0px no-repeat;}
+#login #nav2 li a:hover {background-position:0 -30px;}
+#login #nav2 li a:hover span {background-position:100% -30px;}
+
+.loginbutton{
+	position:absolute; top:-45px; left:0; margin:0;
+}
+
 #login {position:absolute; right:5px;}
 .form_inline, .form_inline div {
 	display: inline;
