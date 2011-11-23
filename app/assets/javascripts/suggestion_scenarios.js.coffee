@@ -4,13 +4,20 @@
 
 $ ->
   $("div.new_steps").delegate ".add_step", "click", ->
-      $("div.new_steps tbody").append '''
-      
-          <tr class="new_step">
-            <td> <span class="remove_step">-</span> </td>
-            <td><input id="keyword_" name="keyword[]" placeholder="keyword" size="10" type="text"></td>
-            <td><input id="name_" name="name[]" placeholder="step description" size="50" type="text"></td>
-            <td><span class="add_step">+</span></td>
-          </tr>
-      
-      '''
+    $("div.new_steps tbody").append '''
+    
+        <tr class="new_step">
+          <td> <span class="remove_step">-</span> </td>
+          <td><input id="keyword_" name="keyword[]" placeholder="keyword" size="10" type="text"></td>
+          <td><input id="name_" name="name[]" placeholder="step description" size="50" type="text"></td>
+          <td><span class="add_step">+</span></td>
+        </tr>
+    
+    '''
+
+  $("div.new_steps").delegate ".remove_step", "click", ->
+    $(this).parent().parent().remove()
+
+
+
+
