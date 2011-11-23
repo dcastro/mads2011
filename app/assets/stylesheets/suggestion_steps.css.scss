@@ -1,12 +1,12 @@
 div.new_steps {
 
   //esconde todos os butoes '+'
-  table .add_step {
+  .new_step .add_step {
     display: none;
   }
 
   //mostra apenas o ultimo
-  tr:last-child {
+  .new_step:last-child {
     .add_step {
       display: inline;
     }
@@ -14,5 +14,9 @@ div.new_steps {
   
   #no_steps_error {
     display:none;
+  }
+  
+  .step_table {
+    margin-left: 30px;
   }
 }
