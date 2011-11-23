@@ -4,19 +4,27 @@
 
 $ ->
   $("div.new_steps").delegate ".add_step", "click", ->
-    $("div.new_steps tbody").append '''
+    $("div.new_steps .steps").append '''
     
-        <tr class="new_step">
-          <td> <span class="remove_step">-</span> </td>
-          <td><input id="keyword_" name="keyword[]" placeholder="keyword" size="10" type="text"></td>
-          <td><input id="name_" name="name[]" placeholder="step description" size="50" type="text"></td>
-          <td><span class="add_step">+</span></td>
-        </tr>
+      <div class="new_step">
+        <span class="remove_step">-</span>
+        <select id="usertype" name="usertype">
+          <option>Given</option>
+          <option>When</option>
+          <option>And</option>
+          <option>Then</option>
+        </select>
+        <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
+        <span class="add_step">+</span>
+      </div>
     
     '''
+    $("#no_steps_error").hide()
 
   $("div.new_steps").delegate ".remove_step", "click", ->
-    $(this).parent().parent().remove()
+    $(this).parent().remove()
+    if $("div.new_steps .new_step").size() == 0
+      $("#no_steps_error").effect("pulsate", { times:3 }, 200);
 
 
 

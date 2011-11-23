@@ -147,7 +147,31 @@ class ProjectsController < ApplicationController
             scenario_completed = true
             @feature.scenarios.build :name => scenario["name"],
                                     :line => scenario["line"],
-                                    :description => scenario["decription"]
+                                    :description => scenario["decription"],
+                                    :type => scenario["type"]
+
+=begin                        
+            if scenario["type"] == "scenario_outline"
+              example = scenario["examples"]
+              
+              @feature.scenarios.last.example.build :keyword =>  example["keyword"],
+                                                    :name =>  example["name"],
+                                                    :line =>  example["line"],
+                                                    :description =>  example["description"]
+                
+              
+              example["rows"].each do |row|
+                
+                @feature.scenarios.example.last.example_row.new
+                
+                row["cells"].each do |cell|
+                  
+                    @feature.scenarios.example.example_row.last.example_cell.build :name => cell
+                  
+                end
+              end
+            end
+=end
                     
             scenario["steps"].each do |step|
               if feature_completed == true
@@ -168,6 +192,19 @@ class ProjectsController < ApplicationController
                                             :location => step["match"]["location"],
                                             :status => step["result"]["status"],
                                             :error_msg => step["result"]["error_message"]
+                
+=begin
+              if step["rows"] != nil
+                step["rows"].each do |row|
+                  @feature.scenarios.step.last.step_row.new
+                  
+                   row["cells"].each do |cell|
+                       @feature.scenarios.step.step_row.last.step_cell.build :name => cell    
+                   end
+                end
+              end                            
+=end                           
+                                            
             end
             
             @feature.scenarios.last.completed = scenario_completed

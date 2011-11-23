@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121133808) do
+ActiveRecord::Schema.define(:version => 20111123155839) do
+
+  create_table "example_cells", :force => true do |t|
+    t.integer  "example_row_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "example_rows", :force => true do |t|
+    t.integer  "scenario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "examples", :force => true do |t|
+    t.integer  "scenario_id"
+    t.text     "keyword"
+    t.text     "name"
+    t.text     "description"
+    t.integer  "line"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "features", :force => true do |t|
     t.integer  "project_id"
@@ -45,6 +68,20 @@ ActiveRecord::Schema.define(:version => 20111121133808) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed"
+    t.string   "type"
+  end
+
+  create_table "step_cells", :force => true do |t|
+    t.integer  "step_row_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "step_rows", :force => true do |t|
+    t.integer  "step_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "steps", :force => true do |t|

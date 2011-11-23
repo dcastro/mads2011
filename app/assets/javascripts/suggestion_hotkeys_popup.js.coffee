@@ -58,19 +58,48 @@ helpHotkey = () ->
     
 
 newStep = () ->
-  $("div.new_steps tbody").append '''
+  $("div.new_steps .steps").append '''
   
-      <tr class="new_step">
-        <td> <span class="remove_step">-</span> </td>
-        <td><input id="keyword_" name="keyword[]" placeholder="keyword" size="10" type="text"></td>
-        <td><input id="name_" name="name[]" placeholder="step description" size="50" type="text"></td>
-        <td><span class="add_step">+</span></td>
-      </tr>
+    <div class="new_step">
+      <span class="remove_step">-</span>
+        <select id="usertype" name="usertype">
+          <option>Given</option>
+          <option>When</option>
+          <option>And</option>
+          <option>Then</option>
+        </select>
+      <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
+      <span class="add_step">+</span>
+    </div>
   
   '''
+  $("#no_steps_error").hide()
+
+removeStep = () ->
+     $(".new_steps .new_step:last-child").remove()
+     if $("div.new_steps .new_step").size() == 0
+        $("#no_steps_error").effect("pulsate", { times:3 }, 200);
 
 
-  
+createTable = () ->
+    step = $(".new_steps :focus").parent()
+    
+    #proibe a existencia de mais que uma tabela
+    if(step.find('table').size() > 0)
+      return
+    
+    position = $(".new_step").index(step)
+    
+    step.append '''
+    
+          <table class="step_table">
+            <tr>
+              <td> <input id="cell_" name="cell[]" placeholder="keyword" size="10" type="text"></td>
+              <td> <input id="cell_" name="cell[]" placeholder="keyword" size="10" type="text"></td>
+            </tr>
+          </table>              
+    '''
+
 $ ->
     $("div#new_suggestion").append '''
         <div id="popupHotkeys">
@@ -78,7 +107,8 @@ $ ->
           <h1>Hotkeys</h1>
           <p>
               <p><span class="hotkey">Alt + S:</span> New Step </p>
-                
+              <p><span class="hotkey">Alt + X:</span> Remove Last Step </p>  
+              <p><span class="hotkey">Alt + C:</span> Create Suggestion</p>                
               <br/>
               <p><span class="hotkey">Alt + H:</span> Brings up this dialog </p>
               <p><span class="hotkey">Esc:</span> Closes this dialog </p>
@@ -112,5 +142,10 @@ $ ->
     
     $(document).bind('keyup', 'Alt+s', newStep )
 
+    $(document).bind('keyup', 'Alt+x', removeStep )
+    
+    #aplicada apenas aos inputs directamente descendente do step
+    #exlcui inputs da tabela -> previne tabelas dentro de tabelas
+    $(".new_steps .new_step > input").bind('keyup', 'Alt+t', createTable)
       
 
