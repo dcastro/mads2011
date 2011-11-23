@@ -170,7 +170,7 @@ class ProjectsController < ApplicationController
                 end
               end
             end
-              
+             
                     
             scenario["steps"].each do |step|
               if feature_completed == true
@@ -191,19 +191,19 @@ class ProjectsController < ApplicationController
                                             :location => step["match"]["location"],
                                             :status => step["result"]["status"],
                                             :error_msg => step["result"]["error_message"]
-                                            
-                                            
-              if step["rows"] != NULL
-                for step["rows"].each do |row|
+                
+              /*  
+              if step["rows"] != nil
+                step["rows"].each do |row|
                   @feature.scenarios.step.last.step_row.new
                   
-                   for row["cells"].each do |cell|
-                       @feature.scenarios.step.step_row.last.step_cell.build :name => cell
-                      
-                   
+                   row["cells"].each do |cell|
+                       @feature.scenarios.step.step_row.last.step_cell.build :name => cell    
                    end
-                  
-              end
+                end
+              end                            
+                */                            
+                                            
             end
             
             @feature.scenarios.last.completed = scenario_completed
