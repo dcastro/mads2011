@@ -68,6 +68,7 @@ newStep = () ->
       </tr>
   
   '''
+  $("#no_steps_error").hide()
 
 removeStep = () ->
 #   $("div.new_steps").delegate ".remove_step", "click", ->

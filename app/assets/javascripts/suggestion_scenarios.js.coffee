@@ -14,9 +14,12 @@ $ ->
         </tr>
     
     '''
+    $("#no_steps_error").hide()
 
   $("div.new_steps").delegate ".remove_step", "click", ->
     $(this).parent().parent().remove()
+    if $("div.new_steps tbody > tr").size() == 0
+      $("#no_steps_error").effect("pulsate", { times:3 }, 200);
 
 
 
