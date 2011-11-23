@@ -1,0 +1,14 @@
+div.new_steps {
+
+  //esconde todos os butoes '+'
+  .add_step {
+    display: none;
+  }
+
+  //mostra apenas o ultimo
+  tr:last-child {
+    .add_step {
+      display: inline;
+    }
+  }
+}

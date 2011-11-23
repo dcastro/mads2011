@@ -1,5 +1,6 @@
-<div class="new_step">
-<%= text_field_tag "keyword[]", nil,  size: 10, placeholder: "keyword"%>
-<%= text_field_tag "name[]", nil, size: 50, placeholder: "step description"%>
-
-</div>
+<tr class="new_step">
+	<td> <span class="remove_step">-</span> </td>
+	<td><%= text_field_tag "keyword[]", nil,  size: 10, placeholder: "keyword"%></td>
+	<td><%= text_field_tag "name[]", nil, size: 50, placeholder: "step description"%></td>
+	<td ><span class="add_step">+</span></td>
+</tr>
