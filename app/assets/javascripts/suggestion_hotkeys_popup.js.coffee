@@ -81,7 +81,8 @@ $ ->
           <h1>Hotkeys</h1>
           <p>
               <p><span class="hotkey">Alt + S:</span> New Step </p>
-              <p><span class="hotkey">Alt + X:</span> Remove Last Step </p>                
+              <p><span class="hotkey">Alt + X:</span> Remove Last Step </p>  
+              <p><span class="hotkey">Alt + C:</span> Create Suggestion</p>                
               <br/>
               <p><span class="hotkey">Alt + H:</span> Brings up this dialog </p>
               <p><span class="hotkey">Esc:</span> Closes this dialog </p>
