@@ -71,8 +71,9 @@ newStep = () ->
   $("#no_steps_error").hide()
 
 removeStep = () ->
-#   $("div.new_steps").delegate ".remove_step", "click", ->
      $("tbody tr:last-child").remove()
+     if $("div.new_steps tbody > tr").size() == 0
+        $("#no_steps_error").effect("pulsate", { times:3 }, 200);
 
 $ ->
     $("div#new_suggestion").append '''
