@@ -93,19 +93,41 @@ createTable = () ->
     step_index = $(".new_step").index(step)
     
     step.append '''
-    
+      <div class="step_table_container">
           <table class="step_table" data-step="''' + step_index + '''">
             <tbody>
               <tr data-index=1>
                 <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
                 <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
+                <td class="table_controls">
+                  <span class="arrow_up"> <img src="/assets/arrow_up.png"/> </span>
+                  <span class="arrow_down"> <img src="/assets/arrow_down.png"/> </span>
+                </td>
               </tr>
               <tr data-index=2>
                 <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
                 <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
+                <td class="table_controls">
+                  <span class="arrow_up"> <img src="/assets/arrow_up.png"/> </span>
+                  <span class="arrow_down"> <img src="/assets/arrow_down.png"/> </span>
+                </td>
               </tr>
+              
+              <tr class="table_vert_controls">
+                <td>
+                  <span class="arrow_left"> <img src="/assets/arrow_left.png"/> </span>
+                  <span class="arrow_right"> <img src="/assets/arrow_right.png"/> </span>
+                </td>
+                <td>
+                  <span class="arrow_left"> <img src="/assets/arrow_left.png"/> </span>
+                  <span class="arrow_right"> <img src="/assets/arrow_right.png"/> </span>
+                </td>
+              </tr>
+              
             </tbody>
-          </table>              
+
+          </table>    
+        </div>       
     '''
     
     
@@ -130,34 +152,49 @@ tableActions = (e) ->
   
 addRow = (table) ->
   index = table.data('step')
-  n_rows = table.find('tr').length
-  n_cells = table.find('td').length / n_rows
-  
+  n_rows = table.find('tr:not(.table_vert_controls)').length
+  n_cells = table.find('tr:not(.table_vert_controls) > td:not(.table_controls)').length / n_rows
+    
   new_row = "<tr data-index=" + (n_rows + 1) + ">"
   for num in [1..n_cells]
     new_row += '<td> <input id="row_" name="row[' + index + '][' + (n_rows + 1) + '][]" size="10" type="text"></td>'
+    
+  new_row += '''
+      <td class="table_controls">
+          <span class="arrow_up"> <img src="/assets/arrow_up.png"/> </span>
+          <span class="arrow_down"> <img src="/assets/arrow_down.png"/> </span>
+      </td>
+  '''
   new_row += "</tr>"
   
-  table.append new_row
+  table.find("tr:not(.table_vert_controls)").last().after new_row
   
   
 addColumn = (table) ->
   index = table.data('step')
   
-  table.find('tr').each ->
+  table.find('tr:not(.table_vert_controls)').each ->
     new_cell = '<td> <input id="row_" name="row[' + index + '][' + $(this).data('index') + '][]" size="10" type="text"></td>'
-    $(this).append new_cell
+    #$(this).append new_cell
+    $(this).find("td:not(.table_controls)").last().after new_cell
+    #alert $(this).find("td:not(.table_controls)").last().length
+  $("tr.table_vert_controls").append '''
+      <td>
+        <span class="arrow_left"> <img src="/assets/arrow_left.png"/> </span>
+        <span class="arrow_right"> <img src="/assets/arrow_right.png"/> </span>
+      </td>
+  '''
     
     
 removeRow = (table) ->
-  return if table.find('tr').length == 1
-  table.find('tr:last-child').remove()
+  return if table.find('tr:not(.table_vert_controls)').length == 1
+  table.find('tr:not(.table_vert_controls)').last().remove()
   
 removeColumn = (table) ->
-  return if table.find('tr').first().find('td').length == 1
+  return if table.find('tr').first().find('td:not(.table_controls)').length == 1
   
   table.find('tr').each ->
-    $(this).find('td:last-child').remove()
+    $(this).find("td:not(.table_controls)").last().remove()
   
   
 

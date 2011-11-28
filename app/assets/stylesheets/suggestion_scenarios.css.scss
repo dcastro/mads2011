@@ -1,3 +1,79 @@
 // Place all the styles related to the suggestion_scenarios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_step {
+
+/*  overflow:auto;
+  
+  .step_table_container {
+    display: table;
+  }
+
+  table {
+    float: left;
+  }
+ 
+  span.step_table_controls {
+
+    float: left;
+    display:inline-block;
+    vertical-align: middle;
+  }
+  
+  */
+  tr:not(.table_vert_controls) {
+    .table_controls {
+      img {
+        max-height: 20px;
+        max-width: auto;
+      }
+      
+      span {
+        display: block;
+        display:none;
+      }
+      
+    }
+  }
+  
+  tr:nth-last-child(2) .table_controls .arrow_down {
+
+        display: inline;
+
+  }
+  
+  tr:not(.table_vert_controls):first-child:not(:nth-last-child(2)) .table_controls .arrow_up{
+    display: inline;
+  }
+  
+  .table_vert_controls {
+    img {
+        max-height: 20px;
+        max-width: auto;
+    }
+      
+    span {
+      display: block;
+      display:none;
+    }
+    
+    .arrow_right {
+      float: right;
+    }
+  }
+  
+  tr.table_vert_controls {
+    td:last-child .arrow_right {
+      display:inline;
+    }
+    
+    td:first-child:not(:last-child) .arrow_left {
+      display:inline;
+    }
+    
+  }
+  
+  
+
+}
