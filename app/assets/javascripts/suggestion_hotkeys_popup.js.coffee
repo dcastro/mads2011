@@ -94,15 +94,17 @@ createTable = () ->
     
     step.append '''
     
-          <table class="step_table">
-            <tr>
-              <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
-              <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
-            </tr>
-            <tr>
-              <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
-              <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
-            </tr>
+          <table class="step_table" data-step="''' + step_index + '''">
+            <tbody>
+              <tr>
+                <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
+                <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
+              </tr>
+              <tr>
+                <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
+                <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
+              </tr>
+            </tbody>
           </table>              
     '''
     
@@ -125,6 +127,17 @@ tableActions = (e) ->
   
 addRow = (table) ->
   table.find('input').val('lool')
+  index = table.data('step')
+  n_rows = table.find('tr').length
+  n_cells = table.find('td').length / n_rows
+  
+  new_row = "<tr>"
+  for num in [1..n_cells]
+    new_row += '<td> <input id="row_" name="row[' + index + '][' + (n_rows + 1) + '][]" size="10" type="text"></td>'
+  new_row += "</tr>"
+  
+  table.append new_row
+  
 
 $ ->
     $("div#new_suggestion").append '''
