@@ -96,11 +96,11 @@ createTable = () ->
     
           <table class="step_table" data-step="''' + step_index + '''">
             <tbody>
-              <tr>
+              <tr data-index=1>
                 <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
                 <td> <input id="row_" name="row[''' + step_index + '''][1][]" size="10" type="text"></td>
               </tr>
-              <tr>
+              <tr data-index=2>
                 <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
                 <td> <input id="row_" name="row[''' + step_index + '''][2][]" size="10" type="text"></td>
               </tr>
@@ -114,29 +114,51 @@ tableActions = (e) ->
   
   switch e.which
     when 87 #Alt + w -> remove row
-      alert 'w'
+      console.log(this)
+      removeRow($(this))
     when 65 #Alt + a -> remove column
-      alert 'a'
+      console.log(this)
+      removeColumn($(this))
     when 83 #Alt + s -> add row
       console.log(this)
       addRow($(this))
     when 68 #Alt + d -> add column
-      alert 'd'
+      console.log(this)
+      addColumn($(this))
   
   event.preventDefault()
   
 addRow = (table) ->
-  table.find('input').val('lool')
   index = table.data('step')
   n_rows = table.find('tr').length
   n_cells = table.find('td').length / n_rows
   
-  new_row = "<tr>"
+  new_row = "<tr data-index=" + (n_rows + 1) + ">"
   for num in [1..n_cells]
     new_row += '<td> <input id="row_" name="row[' + index + '][' + (n_rows + 1) + '][]" size="10" type="text"></td>'
   new_row += "</tr>"
   
   table.append new_row
+  
+  
+addColumn = (table) ->
+  index = table.data('step')
+  
+  table.find('tr').each ->
+    new_cell = '<td> <input id="row_" name="row[' + index + '][' + $(this).data('index') + '][]" size="10" type="text"></td>'
+    $(this).append new_cell
+    
+    
+removeRow = (table) ->
+  return if table.find('tr').length == 1
+  table.find('tr:last-child').remove()
+  
+removeColumn = (table) ->
+  return if table.find('tr').first().find('td').length == 1
+  
+  table.find('tr').each ->
+    $(this).find('td:last-child').remove()
+  
   
 
 $ ->
