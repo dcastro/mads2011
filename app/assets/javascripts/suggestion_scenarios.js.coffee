@@ -15,6 +15,7 @@ $ ->
           <option>Then</option>
         </select>
         <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
+        <span class="table_button"><img alt="Table" height="17" src="/assets/table.jpg"></span>
         <span class="add_step">+</span>
       </div>
     

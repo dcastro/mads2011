@@ -71,6 +71,7 @@ newStep = () ->
           <option>Then</option>
         </select>
       <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
+      <span class="table_button"><img alt="Table" height="17" src="/assets/table.jpg"></span>
       <span class="add_step">+</span>
     </div>
   
@@ -84,7 +85,7 @@ removeStep = () ->
 
 
 createTable = () ->
-    step = $(".new_steps :focus").parent()
+    step = $(this).parent()
     
     #proibe a existencia de mais que uma tabela
     table = step.find('table')
@@ -288,4 +289,4 @@ $ ->
       table = $(this).parents("table")
       addRow(table = $(this).parents("table"))
       
-    
+    $(document).delegate ".table_button", "click", createTable
