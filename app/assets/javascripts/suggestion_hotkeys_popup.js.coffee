@@ -1,4 +1,6 @@
 popupStatus = 0;
+vtable = -1
+
 
 #centering popup
 centerPopup = () -> 
@@ -87,6 +89,7 @@ createTable = () ->
     #proibe a existencia de mais que uma tabela
     table = step.find('table')
     if(table.size() > 0)
+      vtable = -1
       table.remove()
       return
     
@@ -129,24 +132,26 @@ createTable = () ->
           </table>    
         </div>       
     '''
-    
-    
+  
 tableActions = (e) ->
   console.log e.which
+  
+  if vtable == -1
+    return
   
   switch e.which
     when 87 #Alt + w -> remove row
       console.log(this)
-      removeRow($(this))
+      removeRow(vtable)
     when 65 #Alt + a -> remove column
       console.log(this)
-      removeColumn($(this))
+      removeColumn(vtable)
     when 83 #Alt + s -> add row
       console.log(this)
-      addRow($(this))
+      addRow(vtable)
     when 68 #Alt + d -> add column
       console.log(this)
-      addColumn($(this))
+      addColumn(vtable)
   
   event.preventDefault()
   
@@ -259,8 +264,12 @@ $ ->
     #exlcui inputs da tabela -> previne tabelas dentro de tabelas
     $(document).delegate ".new_steps .new_step > input", 'keyup', 'Alt+t', createTable
     
-    $(document).delegate ".new_steps .new_step table", 'keydown', 'Alt+w Alt+a Alt+s Alt+d', tableActions
-      
+    
+    #$(document).delegate ".new_steps .new_step table", 'keydown', 'Alt+w Alt+a Alt+s Alt+d', tableActions
+    $(document).bind('keydown', 'Alt+w Alt+a Alt+s Alt+d', tableActions)
+    
+    $(document).delegate ".new_steps .new_step table.step_table", "focus", ->
+      vtable = $(this)
     
     #controlos manuais das tabelas
     $(document).delegate ".arrow_right", "click", ->
