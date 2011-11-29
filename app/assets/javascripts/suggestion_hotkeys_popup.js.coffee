@@ -133,6 +133,8 @@ createTable = () ->
           </table>    
         </div>       
     '''
+    
+    vtable = step.find("table.step_table")
   
 tableActions = (e) ->
   console.log e.which
