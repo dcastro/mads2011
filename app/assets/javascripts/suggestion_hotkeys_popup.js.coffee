@@ -155,10 +155,12 @@ addRow = (table) ->
   n_rows = table.find('tr:not(.table_vert_controls)').length
   n_cells = table.find('tr:not(.table_vert_controls) > td:not(.table_controls)').length / n_rows
     
+  #inicializa a linha e respectivas cells
   new_row = "<tr data-index=" + (n_rows + 1) + ">"
   for num in [1..n_cells]
     new_row += '<td> <input id="row_" name="row[' + index + '][' + (n_rows + 1) + '][]" size="10" type="text"></td>'
     
+  #adiciona os controls
   new_row += '''
       <td class="table_controls">
           <span class="arrow_up"> <img src="/assets/arrow_up.png"/> </span>
@@ -167,17 +169,19 @@ addRow = (table) ->
   '''
   new_row += "</tr>"
   
+  #adiciona depois da penúltima linha
   table.find("tr:not(.table_vert_controls)").last().after new_row
   
   
 addColumn = (table) ->
   index = table.data('step')
   
+  #adiciona cell a cada linha da tabela
   table.find('tr:not(.table_vert_controls)').each ->
     new_cell = '<td> <input id="row_" name="row[' + index + '][' + $(this).data('index') + '][]" size="10" type="text"></td>'
-    #$(this).append new_cell
     $(this).find("td:not(.table_controls)").last().after new_cell
-    #alert $(this).find("td:not(.table_controls)").last().length
+
+  #adiciona controls
   $("tr.table_vert_controls").append '''
       <td>
         <span class="arrow_left"> <img src="/assets/arrow_left.png"/> </span>
@@ -190,6 +194,7 @@ removeRow = (table) ->
   return if table.find('tr:not(.table_vert_controls)').length == 1
   table.find('tr:not(.table_vert_controls)').last().remove()
   
+  
 removeColumn = (table) ->
   return if table.find('tr').first().find('td:not(.table_controls)').length == 1
   
@@ -199,6 +204,7 @@ removeColumn = (table) ->
   
 
 $ ->
+    #prepara o menu help
     $("div#new_suggestion").append '''
         <div id="popupHotkeys">
           <a id="popupHotkeysClose">x</a>
@@ -251,9 +257,26 @@ $ ->
     
     #aplicada apenas aos inputs directamente descendente do step
     #exlcui inputs da tabela -> previne tabelas dentro de tabelas
-    #$(".new_steps .new_step > input").bind('keyup', 'Alt+t', createTable)
     $(document).delegate ".new_steps .new_step > input", 'keyup', 'Alt+t', createTable
     
     $(document).delegate ".new_steps .new_step table", 'keydown', 'Alt+w Alt+a Alt+s Alt+d', tableActions
       
-
+    
+    #controlos manuais das tabelas
+    $(document).delegate ".arrow_right", "click", ->
+      table = $(this).parents("table")
+      addColumn(table = $(this).parents("table"))
+      
+    $(document).delegate ".arrow_left", "click", ->
+      table = $(this).parents("table")
+      removeColumn(table = $(this).parents("table"))
+      
+    $(document).delegate ".arrow_up", "click", ->
+      table = $(this).parents("table")
+      removeRow(table = $(this).parents("table"))
+      
+    $(document).delegate ".arrow_down", "click", ->
+      table = $(this).parents("table")
+      addRow(table = $(this).parents("table"))
+      
+    
