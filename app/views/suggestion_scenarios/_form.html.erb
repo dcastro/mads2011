@@ -1,7 +1,12 @@
 <div id="new_suggestion">
 	
+	
+	<div id="close_suggestion">
+		<%= image_tag "close_icon.png", height: '15'%> or Alt+P
+	</div>
+	
 	<div id="hotkeys">
-		<%= image_tag "keyboard.gif" -%> Hotkeys
+		<%= image_tag "keyboard.gif", height: '15' -%> Hotkeys
 	</div>
 
 <%= form_for(@sc, :url => suggestion_scenarios_create_path) do |f| %>
@@ -23,7 +28,7 @@
       <br />
       <%= f.text_area :description , :size => "75x7" %>
     </div>
-    
+  </fieldset>  
     <div class="new_steps">
     	<div class="steps">
 	    <%= render :partial => "suggestion_steps/form"%>    
@@ -38,7 +43,7 @@
     <div class="actions">
       <%= f.submit "Create Suggestion" %>
     </div>
-  </fieldset>
+  
   
   
 <% end %>

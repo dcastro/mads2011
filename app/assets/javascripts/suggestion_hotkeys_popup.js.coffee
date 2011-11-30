@@ -53,6 +53,9 @@ disablePopupHotkey = () ->
     disablePopup()
     
 helpHotkey = () ->
+  if ! $("#new_suggestion").is(":visible")
+    return
+    
   if popupStatus == 1
     disablePopup()
   else
@@ -76,6 +79,7 @@ newStep = () ->
     </div>
   
   '''
+  
   $("#no_steps_error").hide()
 
 removeStep = () ->
@@ -211,13 +215,15 @@ removeColumn = (table) ->
   table.find('tr').each ->
     $(this).find("td:not(.table_controls)").last().remove()
   
-  
+toggleDialog = () ->
+  disablePopup()
+  $("#new_suggestion").toggle("slide", { direction: "left" }, 200)
 
 $ ->
     #prepara o menu help
-    $("div#new_suggestion").append '''
+    $("div#new_suggestion").parent().append '''
         <div id="popupHotkeys">
-          <a id="popupHotkeysClose">x</a>
+          <a id="popupHotkeysClose"><img alt="Close_icon" height="15" src="/assets/close_icon.png"></a>
           <h1>Hotkeys</h1>
           <p>
               <p><span class="hotkey">Alt + N:</span> New Step </p>
@@ -294,3 +300,15 @@ $ ->
       addRow(table = $(this).parents("table"))
       
     $(document).delegate ".table_button", "click", createTable
+
+
+    #toggle suggestion dialog
+    $(document).bind 'keydown', 'Alt+p', ->
+      toggleDialog()
+      
+    $("#close_suggestion, #open_suggestion").click ->
+      toggleDialog()
+
+
+
+

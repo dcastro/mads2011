@@ -8,7 +8,7 @@
 	left:0;  
 	background:#000000;  
 	border:1px solid #cecece;  
-	z-index:1;  
+	z-index:11;  
 }  
 #popupHotkeys{  
 	display:none;  
@@ -18,7 +18,7 @@
 	width:408px;  
 	background:#FFFFFF;  
 	border:2px solid #cecece;  
-	z-index:2;  
+	z-index:12;  
 	padding:12px;  
 	font-size:13px;  
 	
@@ -50,4 +50,15 @@
 #hotkeys {
 	display: block;
 	float: right;
+}
+
+#close_suggestion {
+  display: block;
+  float: right;
+  margin-left: 30px;
+}
+
+#open_suggestion {
+  display: inline;
+  float: right;
 }

@@ -2,6 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#new_suggestion {
+  padding: 15px;
+  display: none;
+  position: fixed;
+  top: 20%;
+  z-index: 10;
+  background: #FFFFFF;
+  border:2px solid #cecece; 
+  margin-left: 50px; 
+  
+  max-height: 60%;
+  
+  overflow: scroll;
+}
+
 .new_step {
 
 /*  overflow:auto;

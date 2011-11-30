@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
+
+<div id="open_suggestion">
+	Suggestion <%= image_tag "thought_bubble.png", height: '25'%>
+</div>
+
 <h2> <%= @feature.name %></h2>
 <h3> <%= @feature.description %></h3>
+
 
 
 <script type="text/javascript">
@@ -17,6 +23,7 @@ $(document).ready(function(){
 });
 </script>
 
+<%= render partial: "suggestion_scenarios/form"%>
 
 	<% @feature.scenarios.each do |scenario| %>
 		<h5 class="scenario_head" <%= (scenario.completed)? "style=background-color:#36D88E;": "style=background-color:#FF5D40;" %>>
@@ -56,4 +63,4 @@ $(document).ready(function(){
 		</div>
 	<% end %>
 
-	<%= render partial: "suggestion_scenarios/form"%>
+	
