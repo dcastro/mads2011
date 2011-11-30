@@ -60,12 +60,12 @@ $(document).ready(function(){
 				
 				<p><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
 				
-				<table border="1" rules="all" style="margin:0px 0;border: 1px solid #CCCCCC;">
+				<table border="1" bordercolor="#CCCCCC" rules="all" style="margin-left:40px;">
 				
 				<% step.suggestion_rows.each do |row|%>
 				<tr>
 	            	<% row.suggestion_cells.each do |cell|%>
-	            		<td><%= cell.name %></td>
+	            		<td style="padding-left:4px; padding-right:16px;"><%= cell.name %></td>
 	            	<%end%>
                 </tr>
                 <%end%>
