@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
+	
+<script language="JavaScript" type="text/javascript">
+
+function submitform()
+{
+  document.forms[0].submit();
+}
+</script> 
+	
 <head>
   <title>Mads2011</title>
   <%= stylesheet_link_tag    "application" %>  
@@ -38,22 +47,38 @@
 		
 		<!-- Login -->
 		<div id="login">
-				<% unless session[:username]%>
-			<%= form_tag users_login_path, :class => "form_inline" do %>
-				<%= label_tag 'username', "Username: " %>
-				<%= text_field_tag 'username' %>
-				<%= label_tag 'password', "Password: " %>
-				<%= password_field_tag 'password' %>
-				<%= submit_tag "Login" %>
+			
+			<% unless session[:username]%>
+			<ul id="nav2">
+				<%= form_tag users_login_path, :class => "form_inline" do %>
+					<%= label_tag 'username', "Username: " %>
+					<%= text_field_tag 'username' %>
+					<%= label_tag 'password', "Password: " %>
+					<%= password_field_tag 'password' %>
+					<%= submit_tag "Login", :class => "loginbutton"%>
+					<li>
+						<%= link_to "<span>Login</span>".html_safe, "javascript: submitform()", :method => :post%>
+					</li>
+				<% end %>
+					<li>
+						<%= link_to "<span>Register</span>".html_safe, users_new_path, :method => :get%>
+					</li>
+				<!--<%= button_to "Register", users_new_path, :method => :get, :form_class => "form_inline" %>-->
+			</ul> <!-- nav2 -->
+			
+			<% else %>
+				
+				<ul id="nav2">
+					<%= label_tag "Logged in as " %><%= link_to session[:name], users_show_path(:id => session[:id])%>
+					<li>
+						<%= link_to "<span>Logout</span>".html_safe, users_logout_path, :method => :post%>
+						<!--<%= button_to "Logout", users_logout_path, :form_class => "form_inline" %> -->
+					</li>
+				</ul>
+			
 			<% end %>
-			<%= button_to "Register", users_new_path, :method => :get, :form_class => "form_inline" %>
 			
 		
-		<% else %>
-			<%= label_tag "Logged in as " %><%= link_to session[:name], users_show_path(:id => session[:id])%>
-			<%= button_to "Logout", users_logout_path, :form_class => "form_inline" %>
-		
-		<% end %>
 
 		</div> <!-- Login -->
 		
@@ -78,7 +103,11 @@
 
 </div> <!-- /main -->
 
-<script type="text/javascript"> Cufon.now(); </script>
+<script type="text/javascript"> Cufon.now(); 
+	
+	
+	</script>
+
 
 </body>
 </html>
