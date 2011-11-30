@@ -115,7 +115,7 @@
 		
 		<tr <%= "class='even'" if i%2 == 0 %>>
 			<td>
-				<%= role.user.name %>
+				<%= link_to role.user.name, users_show_path(role.user.id) %>
 			</td>
 			
 			<td>

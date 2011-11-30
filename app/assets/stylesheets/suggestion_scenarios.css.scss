@@ -9,7 +9,7 @@
   top: 20%;
   z-index: 10;
   background: #FFFFFF;
-  border:2px solid #cecece; 
+  border:4px solid #cecece; 
   margin-left: 50px; 
   
   max-height: 60%;
@@ -95,3 +95,8 @@
   
 
 }
+
+div.suggestion_author {
+  float: right;
+}
+
