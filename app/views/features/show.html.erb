@@ -48,7 +48,7 @@ $(document).ready(function(){
 		<h5 class="scenario_head" <%= (true)? "style=background-color:#AAAAAA;": "style=background-color:#FF5D40;" %> >
 			
 			
-			<%= image_tag "thought_bubble.png", height: '20'%>
+			<%= image_tag "under_construction-1.png", height: '20'%>
 			
 			<%= scenario.name %>: <%= scenario.description %>
 		</h5>
@@ -57,10 +57,20 @@ $(document).ready(function(){
 				Suggested by <%= link_to scenario.user.name, users_show_path(id: scenario.user.id) %>
 			</div>
 		<% scenario.suggestion_steps.each do |step|%>
-			
 				
 				<p><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
-
+				
+				<table border="1" rules="all" style="margin:0px 0;border: 1px solid #CCCCCC;">
+				
+				<% step.suggestion_rows.each do |row|%>
+				<tr>
+	            	<% row.suggestion_cells.each do |cell|%>
+	            		<td><%= cell.name %></td>
+	            	<%end%>
+                </tr>
+                <%end%>
+                 
+                </table>
 		
 		<%end%>
 		</div>

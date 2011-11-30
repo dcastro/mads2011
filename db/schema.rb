@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130111720) do
+ActiveRecord::Schema.define(:version => 20111130173155) do
 
   create_table "example_cells", :force => true do |t|
     t.integer  "example_row_id"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20111130111720) do
 
   create_table "suggestion_cells", :force => true do |t|
     t.integer  "suggestion_row_id"
-    t.integer  "order"
+    t.integer  "cell_num"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20111130111720) do
 
   create_table "suggestion_rows", :force => true do |t|
     t.integer  "suggestion_step_id"
-    t.integer  "order"
+    t.integer  "row_num"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

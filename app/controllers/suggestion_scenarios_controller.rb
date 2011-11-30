@@ -12,10 +12,10 @@ class SuggestionScenariosController < ApplicationController
     if params[:row]
       params[:row].each do |index, rows|
         rows.each do |row_num, cells|
-          @sc.suggestion_steps[index.to_i].suggestion_rows.build order: row_num
+          @sc.suggestion_steps[index.to_i].suggestion_rows.build row_num: row_num
           
           for i in 0..(cells.length-1)
-            @sc.suggestion_steps[index.to_i].suggestion_rows.last.suggestion_cells.build order: i, name: cells[i]
+            @sc.suggestion_steps[index.to_i].suggestion_rows.last.suggestion_cells.build cell_num: i, name: cells[i]
           end
         end
       end
