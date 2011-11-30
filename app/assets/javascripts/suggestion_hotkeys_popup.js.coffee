@@ -71,7 +71,7 @@ newStep = () ->
           <option>Then</option>
         </select>
       <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
-      <span class="table_button"><img alt="Table" height="17" src="/assets/table.jpg"></span>
+      <span class="table_button"><img alt="Table" height="17" src="/assets/table.png"></span>
       <span class="add_step">+</span>
     </div>
   
@@ -88,10 +88,11 @@ createTable = () ->
     step = $(this).parent()
     
     #proibe a existencia de mais que uma tabela
-    table = step.find('table')
+    table = step.find('div.step_table_container')
     if(table.size() > 0)
       vtable = -1
-      table.remove()
+      table.hide 'fast', ->
+        $(this).remove()
       return
     
     step_index = $(".new_step").index(step)
@@ -135,6 +136,7 @@ createTable = () ->
     '''
     
     vtable = step.find("table.step_table")
+    vtable.show('fast')
   
 tableActions = (e) ->
   console.log e.which

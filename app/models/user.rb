@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :projects, :through => :roles
+  has_many :suggestion_scenarios, :dependent => :destroy
   
   validates :username, :uniqueness => true
   validates :username, :name, :email, :presence => true

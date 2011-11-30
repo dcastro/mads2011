@@ -1,11 +1,15 @@
 class SuggestionScenariosController < ApplicationController
   def create
-    SuggestionScenario.new params[:suggestion_scenario]
+    @sc = SuggestionScenario.new params[:suggestion_scenario]
+    @sc.user = current_user
     
     @steps = Hash[params[:keyword].zip(params[:name])]
     
-    p "**********************************************"
-    p @steps
+    @steps.each do |keyword, name|
+      @sc.suggestion_steps.build keyword: keyword, name: name
+    end  
+    
+    @sc.save!
     
   end
 
