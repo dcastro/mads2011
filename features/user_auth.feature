@@ -11,7 +11,7 @@ Feature: User Authentication
 		Scenarios:
 			| username		| password			| action							|
 			| admin_user	| 1234				| see "Logged in as Administrador"	|
-			| test_user		| wrong_password	| not see "Logged in as"			|
+			| test_user		| wrong_password	| see "Logged in as"			|
 		
 
 	Scenario: Logout

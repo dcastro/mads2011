@@ -150,7 +150,7 @@ class ProjectsController < ApplicationController
                                     :description => scenario["decription"],
                                     :type => scenario["type"]
 
-=begin                        
+            
             if scenario["type"] == "scenario_outline"
               example = scenario["examples"]
               
@@ -162,48 +162,52 @@ class ProjectsController < ApplicationController
               
               example["rows"].each do |row|
                 
-                @feature.scenarios.example.last.example_row.new
+                @feature.scenarios.examples.last.example_rows.build
                 
                 row["cells"].each do |cell|
                   
-                    @feature.scenarios.example.example_row.last.example_cell.build :name => cell
+                    @feature.scenarios.example.example_rows.last.example_cells.build :name => cell
                   
                 end
               end
             end
-=end
                     
             scenario["steps"].each do |step|
-              if feature_completed == true
-                if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
-                  feature_completed = false
-                end
-              end
               
-              if scenario_completed == true
-                if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
-                  scenario_completed = false
+              if scenario["type"] != "scenario_outline"
+
+              
+                if feature_completed == true
+                  if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
+                    feature_completed = false
+                  end
                 end
+                
+                if scenario_completed == true
+                  if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
+                    scenario_completed = false
+                  end
+                end
+                
               end
-                
-              @feature.scenarios.last.steps.build  :keyword => step["keyword"].chop,
-                                            :name => step["name"],
-                                            :line => step["line"],
-                                            :location => step["match"]["location"],
-                                            :status => step["result"]["status"],
-                                            :error_msg => step["result"]["error_message"]
-                
-=begin
-              if step["rows"] != nil
-                step["rows"].each do |row|
-                  @feature.scenarios.step.last.step_row.new
                   
-                   row["cells"].each do |cell|
-                       @feature.scenarios.step.step_row.last.step_cell.build :name => cell    
-                   end
-                end
-              end                            
-=end                           
+                @feature.scenarios.last.steps.build  :keyword => step["keyword"].chop,
+                                              :name => step["name"],
+                                              :line => step["line"],
+                                              :location => step["match"]["location"],
+                                              :status => step["result"]["status"] || true,
+                                              :error_msg => step["result"]["error_message"]
+                  
+  
+                if step["rows"] != nil
+                  step["rows"].each do |row|
+                    @feature.scenarios.last.steps.last.step_rows.build
+                    
+                     row["cells"].each do |cell|
+                         @feature.scenarios.last.steps.last.step_rows.last.step_cells.build :name => cell    
+                     end
+                  end
+                end                                                     
                                             
             end
             
