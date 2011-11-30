@@ -8,12 +8,20 @@
   <% if @sc.errors.any? %>
   <% end %>
   
+  <%= f.hidden_field :feature_id %>
+  
   <fieldset>
   	<legend>Suggest a new scenario that you find useful</legend>
   	
     <div class="field">
       <%= f.label :name %>
       <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :description %> 
+      <br />
+      <%= f.text_area :description , :size => "75x7" %>
     </div>
     
     <div class="new_steps">

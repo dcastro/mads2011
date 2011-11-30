@@ -8,13 +8,14 @@ $ ->
     
       <div class="new_step">
         <span class="remove_step">-</span>
-        <select id="usertype" name="usertype">
+        <select id="keyword_" name="keyword[]">
           <option>Given</option>
           <option>When</option>
           <option>And</option>
           <option>Then</option>
         </select>
         <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
+        <span class="table_button"><img alt="Table" height="17" src="/assets/table.png"></span>
         <span class="add_step">+</span>
       </div>
     
