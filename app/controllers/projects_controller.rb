@@ -150,7 +150,7 @@ class ProjectsController < ApplicationController
                                     :description => scenario["decription"],
                                     :type => scenario["type"]
 
-            
+=begin            
             if scenario["type"] == "scenario_outline"
               example = scenario["examples"]
               
@@ -171,11 +171,14 @@ class ProjectsController < ApplicationController
                 end
               end
             end
-                    
+=end                    
             scenario["steps"].each do |step|
               
+              status = "passed"
+              errormsg = ""
+              
               if scenario["type"] != "scenario_outline"
-
+                status =  step["result"]["status"]
               
                 if feature_completed == true
                   if step["result"]["status"] == "skipped" || step["result"]["status"] == "failed"
@@ -189,14 +192,19 @@ class ProjectsController < ApplicationController
                   end
                 end
                 
+                errormsg = step["result"]["error_message"]
+                
               end
+              
+              
+             
                   
                 @feature.scenarios.last.steps.build  :keyword => step["keyword"].chop,
                                               :name => step["name"],
                                               :line => step["line"],
                                               :location => step["match"]["location"],
-                                              :status => step["result"]["status"] || true,
-                                              :error_msg => step["result"]["error_message"]
+                                              :status => status,
+                                              :error_msg => errormsg
                   
   
                 if step["rows"] != nil
