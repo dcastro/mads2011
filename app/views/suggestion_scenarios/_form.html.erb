@@ -18,6 +18,11 @@
       <%= f.text_field :name %>
     </div>
     
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description , :size => "75x7" %>
+    </div>
+    
     <div class="new_steps">
     	<div class="steps">
 	    <%= render :partial => "suggestion_steps/form"%>    
