@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 
 	
-	<% @feature.scenarios.each do |scenario| %>
+	<% @feature.suggestion_scenarios.each do |scenario| %>
 		<h5 class="scenario_head" <%= (true)? "style=background-color:#AAAAAA;": "style=background-color:#FF5D40;" %> >
 			
 			
@@ -46,7 +46,7 @@ $(document).ready(function(){
 			<%= scenario.name %>: <%= scenario.description %>
 		</h5>
 		<div class="scenario_body">
-		<% scenario.steps.each do |step|%>
+		<% scenario.suggestion_steps.each do |step|%>
 			
 				
 				<p><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
