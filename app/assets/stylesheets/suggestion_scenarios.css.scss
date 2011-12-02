@@ -101,15 +101,36 @@
 
 }
 
-div.suggestion_author {
-  float: right;
+.scenario_head {
+  img.thrash_can {
+    float: right;
+    z-index: 10;
+  }
+  
+  form.destroy_suggestion {
+    display: inline;
+  }
 }
 
-img.thrash_can {
-  float: right;
-  z-index: 10;
-}
+.scenario_body {
+  div.suggestion_author {
+    float: right;
+  }
+  
+  table.step_table {
+    margin-left:40px;
+    
+    td {
+      padding-left:4px; padding-right:16px;
+    }
+  
+  }
+  
+  div.example {
+    h5 {
+      padding-left: 15px;
+      color:green;
+    }
+  }
 
-form.destroy_suggestion {
-  display: inline;
 }

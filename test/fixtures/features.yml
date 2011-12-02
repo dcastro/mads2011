@@ -11,3 +11,8 @@ two:
   name: MyString
   description: MyText
   done: false
+
+three:
+  project: two
+  name: Fixture Feature
+  done: false
