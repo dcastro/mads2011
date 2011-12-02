@@ -1,30 +1,29 @@
+<script type="text/javascript">
+    $(function(){
+        $('#slider').slides({
+            preload: true,
+            play: 4000,
+            pause: 2500,
+            auto: 2000,
+            hoverPause: true,
+            animationComplete: function(current){
+                $('.caption').animate({
+                    bottom:0
+                },200);
+            },
+            slidesLoaded: function() {
+                $('.caption').animate({
+                    bottom:0
+                },200);
+            }
+        });
+    });
+</script>
 
-        <script type="text/javascript">
-            $(function(){
-                $('#slider').slides({
-                    preload: true,
-                    play: 5000,
-                    pause: 2500,
-                    auto: 2000,
-                    hoverPause: true,
-                    animationComplete: function(current){
-                        $('.caption').animate({
-                            bottom:0
-                        },200);
-                    },
-                    slidesLoaded: function() {
-                        $('.caption').animate({
-                            bottom:0
-                        },200);
-                    }
-                });
-            });
-        </script>
-
-<h2>You describe, iTest it</h2>
+<h2>You describe, iTest it</h2> 
 </br>
 iTest will shorten the distance between programmers and clients. </br></br>
-
+<!-- 
 The clients have the opportunity to get involved into the project development, by suggesting behavior tests in a simple natural language...
 </br>
 <%= image_tag "Capturar1.PNG" , width: '575' %>
@@ -37,23 +36,22 @@ The clients have the opportunity to get involved into the project development, b
 
 ...or you can see were your tests are failling.
 </br>
-<%= image_tag "Capturar3.PNG" , width: '575' %>
+<%= image_tag "Capturar3.PNG" , width: '575' %>-->
 </br></br>
 
-
-
             <div id="slider" class="grid_12">
-                <div class="slides_container">
-                	
+                <div class="slides_container">                	
                     <div class="slide">
-                        <a href="#" title="This is a test"><%= image_tag "Capturar3.PNG" , width: '575' %></a>
-                    </div>
-                    
-                    <div class="slide">
-                        <a href="#"><%= image_tag "Capturar3.PNG" , width: '575' %></a><div class="caption">Insert your caption here</div>
+                        <a href="#"><%= image_tag "Capturar1.PNG" , width: '550' %></a>
+                        <div class="caption">The clients have the opportunity to get involved into the project development, by suggesting behavior tests in a simple natural language...</div>
                     </div>
                     <div class="slide">
-                        <a href="#"><%= image_tag "Capturar3.PNG" , width: '575' %></a>
+                        <a href="#"><%= image_tag "Capturar2.PNG" , width: '550' %></a>
+                        <div class="caption">...and follow the project progress by cheking the tests done and their status...</div>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><%= image_tag "Capturar3.PNG" , width: '550' %></a>
+                        <div class="caption">...or you can see were your tests are failling.</div>
                     </div>
                 </div>
                 <a href="#" class="prev"><%= image_tag "arrow-prev.png", width: '24' , height: '43'%></a>
