@@ -20,6 +20,7 @@
 	overflow:hidden;
 	position:relative;
 	display:none;
+	
 }
 
 /*
@@ -31,8 +32,10 @@
 */
 
 .slides_container div.slide {
-	width:940px;
-	height:395px;
+	width:550px;
+	height:410px;
+	
+	
 	display:block;
 }
 
@@ -41,17 +44,12 @@
 */
 
 #slider .next,#slider .prev {
-	position:absolute;
-	top:200px;
-	left:-34px;
-	width:24px;
-	height:43px;
-	display:block;
-	z-index:101;
+
 }
 
 #slider .next {
-	left:950px;
+	position:relative;
+	left:500px;
 }
 
 /*
