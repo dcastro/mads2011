@@ -17,4 +17,7 @@ Feature: Suggest a new scenario
 		And I am on the projects page
 		When I follow "Fixture Project 2"
 		And I follow "Fixture Feature"
+		And I AJAX click2 on "Suggestion"
+		#And lol
+		And I send [alt, p] to "input#suggestion_scenario_name"
 		Then lol
