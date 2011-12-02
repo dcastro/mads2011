@@ -4,7 +4,7 @@
 	Suggestion <%= image_tag "thought_bubble.png", height: '25'%>
 </div>
 
-<h2> <%= @feature.name %></h2>
+<h2> <%= link_to @feature.name, project_path(@feature.project) %></h2>
 <h3> <%= @feature.description %></h3>
 
 <%= render partial: "suggestion_scenarios/form"%>
@@ -18,11 +18,44 @@
 			
 				
 				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+				<table class="step_table" border="1" bordercolor="#CCCCCC" rules="all">
+					<% step.step_rows.each do |row|%>
+						<tr>
+			            	<% row.step_cells.each do |cell|%>
+			            		<td><%= cell.name %></td>
+			            	<%end%>
+		                </tr>
+	                <%end%>
+                </table>
 				<%if step.error_msg != "" %>
 					<p style="background-color:red;"> <%= step.error_msg%><p>
 				<%end %>
 		
 		<%end%>
+		
+		<% if scenario.example %>
+			<div class="example">
+				<h5>Examples</h5>
+				<table class="example_table" border="1" bordercolor="#CCCCCC" rules="all">
+					<tr>
+						<% scenario.example.example_rows.first.example_cells.each do |cell| %>
+							<th><%= cell.name %></th>
+						<% end %>
+					</tr>
+					<% rows = scenario.example.example_rows %>
+					<% rows.shift %>
+					<% rows.each do |row|%>
+						<tr>
+			            	<% row.example_cells.each do |cell|%>
+			            		<td><%= cell.name %></td>
+			            	<%end%>
+		                </tr>
+		            <%end%>
+		        </table>
+		    </div>
+        <% end %>
+		
+		
 		</div>
 	<% end %>
 
@@ -50,16 +83,14 @@
 				
 				<p><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
 				
-				<table border="1" bordercolor="#CCCCCC" rules="all" style="margin-left:40px;">
-				
-				<% step.suggestion_rows.each do |row|%>
-				<tr>
-	            	<% row.suggestion_cells.each do |cell|%>
-	            		<td style="padding-left:4px; padding-right:16px;"><%= cell.name %></td>
-	            	<%end%>
-                </tr>
-                <%end%>
-                 
+				<table class="step_table" border="1" bordercolor="#CCCCCC" rules="all">
+					<% step.suggestion_rows.each do |row|%>
+						<tr>
+			            	<% row.suggestion_cells.each do |cell|%>
+			            		<td><%= cell.name %></td>
+			            	<%end%>
+		                </tr>
+	                <%end%>
                 </table>
 		
 		<%end%>

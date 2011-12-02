@@ -150,11 +150,12 @@ class ProjectsController < ApplicationController
                                     :description => scenario["decription"],
                                     :type => scenario["type"]
 
-=begin            
+           
             if scenario["type"] == "scenario_outline"
-              example = scenario["examples"]
-              
-              @feature.scenarios.last.example.build :keyword =>  example["keyword"],
+
+              example = scenario["examples"].first
+
+              @feature.scenarios.last.build_example :keyword =>  example["keyword"],
                                                     :name =>  example["name"],
                                                     :line =>  example["line"],
                                                     :description =>  example["description"]
@@ -162,16 +163,16 @@ class ProjectsController < ApplicationController
               
               example["rows"].each do |row|
                 
-                @feature.scenarios.examples.last.example_rows.build
+                @feature.scenarios.last.example.example_rows.build
                 
                 row["cells"].each do |cell|
                   
-                    @feature.scenarios.example.example_rows.last.example_cells.build :name => cell
+                    @feature.scenarios.last.example.example_rows.last.example_cells.build :name => cell
                   
                 end
               end
             end
-=end                    
+                  
             scenario["steps"].each do |step|
               
               status = "passed"
