@@ -1,11 +1,99 @@
 Given /^the following suggestion data:$/ do |table|
-  p table
+  @sug_data = table
 end
 
 Given /^the following suggestion steps:$/ do |table|
-  p table
+  @sug_steps =  table
 end
 
-Then /^lol$/ do
-  sleep 8
+When /^I open and fill in the suggestions form$/ do 
+  
+  #abre o formulario
+  step %{I send [alt, p] to "body"}
+  sleep 1
+  
+  #preenche o nome e a descricao  
+  @sug_data.rows_hash.each do |name, value|
+    step %{I fill in "#{name}" with "#{value}"}
+  end
+  
+  
+  #adiciona os steps necessarios
+  (@sug_steps.hashes.length - 2).times do
+    step %{I send [alt, n] to "body"}
+  end
+  
+  @sug_steps.hashes.each_with_index do |step_data, index|
+    #no ambito de cada step
+    with_scope("step no. " + (index + 1).to_s) do
+      
+      #preenche os campos keyword e nome
+      step %{I select "#{ step_data["keyword"] }" from "keyword[]"}
+      step %{I fill in "name_" with "#{ step_data["name"] }"}
+      
+      #se existirem rows, cria a tabela e adiciona as rows necessarias
+      rows = step_data["rows & cells"].split /\s*&\s*/
+      
+      if not rows.empty?
+        step %{I send [alt, t] to "input#name_"}
+
+        (rows.length - 2).times do
+          step %{I send [alt, s] to "input#name_"}
+        end
+      end
+      
+      #preenche as cells da tabela
+      rows.each_with_index do |row, row_index|
+          row.split( /\s*,\s*/ ).each_with_index do |cell, cell_index|
+            step %{I send '#{cell}' to "tr:nth-child(#{row_index + 1}) td:nth-child(#{ cell_index + 1 }) input"}
+          end
+      end
+      
+    end
+  end
+  
 end
+
+
+Then /^I should see the new suggestion$/ do
+  
+  page.driver.browser.execute_script %Q{ $('h5').trigger("mouseenter").click(); }
+  
+  @sug_data.rows_hash.each do |name, value|
+    step %{I should see "#{value}"}
+  end
+  
+  @sug_steps.hashes.each_with_index do |step_data, index|
+    
+    step %{I should see "#{ step_data["keyword"]  }"}
+    step %{I should see "#{ step_data["name"]     }"}
+  
+    step_data["rows & cells"].split(/\s*&\s*/).each do |row|
+      row.split( /\s*,\s*/ ).each do |cell|
+        step %{I should see "#{cell}"}
+      end
+    end
+  end
+end
+
+
+Given /^the following suggestion belongs to the feature "([^"]*)":$/ do |name, table|
+  
+  @suggestion = Feature.find_by_name(name).suggestion_scenarios.create! table.rows_hash
+  @suggestion.user = @user
+  @suggestion.save!
+  
+end
+
+When /^I delete this suggestion$/ do
+  
+  page.driver.browser.execute_script %Q{ $('h5:contains("#{ @suggestion.name }") .thrash_can').trigger("mouseenter").click(); }
+  
+end
+
+Then /^I should no longer see this suggestion$/ do
+  
+  step %{I should not see "#{@suggestion.name}"}
+  
+end
+

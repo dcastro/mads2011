@@ -4,7 +4,7 @@ class Scenario < ActiveRecord::Base
   has_one :example, :dependent => :destroy
 
   
-  validates :name, :line, :presence => true
+  #validates :name, :line, :presence => true
   
   
 end
