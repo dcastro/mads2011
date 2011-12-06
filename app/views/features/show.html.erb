@@ -4,7 +4,7 @@
 	Suggestion <%= image_tag "thought_bubble.png", height: '25'%>
 </div>
 
-<h2> <%= link_to @feature.name, project_path(@feature.project) %></h2>
+<h2> <%= link_to @feature.project.name, project_path(@feature.project) %> > <%= @feature.name %></h2>
 <h3> <%= @feature.description %></h3>
 
 <%= render partial: "suggestion_scenarios/form"%>

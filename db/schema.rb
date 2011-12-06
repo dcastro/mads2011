@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202143720) do
+ActiveRecord::Schema.define(:version => 20111206111103) do
 
   create_table "example_cells", :force => true do |t|
     t.integer  "example_row_id"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(:version => 20111202143720) do
     t.string   "name"
     t.text     "description"
     t.boolean  "done"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "implemented_steps", :force => true do |t|
+    t.string   "filename"
+    t.string   "name"
+    t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

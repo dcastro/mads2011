@@ -134,6 +134,7 @@ class ProjectsController < ApplicationController
       parsed_msg =cuke_result.match(/[^\[]*(.*)/).to_a
       parsed_msg = parsed_msg.second
       
+      #parse do resultado dos testes
       json = ActiveSupport::JSON.decode(parsed_msg)
       
        json.each do |feature|
@@ -231,7 +232,34 @@ class ProjectsController < ApplicationController
             puts "Erro"
             puts @feature.errors.full_messages
           end 
-        end         
+        end   
+        
+        
+        #parse dos steps implementados
+        
+        project.implemented_steps.destroy_all
+        
+        Dir.glob('features/step_definitions/**/*.rb').each do |filename|
+          
+          file = File.open(filename)
+          
+          file.each do |line|
+            match = line.match /^\s*(And|When|Given|Then)\s*\/(.*)\//  
+            if ( match )
+              
+              project.implemented_steps.create(
+                  filename: filename.split('/').last,
+                  name: match.to_a.last
+              )
+              
+            end
+            
+          end
+          
+          
+          
+        end
+              
       end
     
     

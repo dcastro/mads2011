@@ -40,5 +40,13 @@ class SuggestionScenariosController < ApplicationController
     end
     
   end
+  
+  def run_test
+    
+    suggestion = SuggestionScenario.find(params[:id])
+    
+    
+    
+  end
 
 end
