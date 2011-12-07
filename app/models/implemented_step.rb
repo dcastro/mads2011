@@ -50,7 +50,7 @@ class ImplementedStep < ActiveRecord::Base
     reg = String.new(self.name)
     
     while not reg.empty?
-      if string.match Regexp.new(reg + '$')
+      if string.match /#{reg + '$'}/i #case insensitive partial match
         return true
       end
       

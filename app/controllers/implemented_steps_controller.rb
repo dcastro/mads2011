@@ -7,7 +7,7 @@ class ImplementedStepsController < ApplicationController
        step.match(string)
     end
     
-    render json: steps.collect( &:name )    
+    render json: steps.collect( &:name ).first(7)    
   end
 
 end

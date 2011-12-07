@@ -12,10 +12,12 @@ $ ->
           dataType: "json",
           type: "GET",
           success: response
-          
-          
+      
+      , minLength: 1,
+      delay: 100
+         
+         
       ).data("autocomplete")._renderItem = (ul, item) ->
-        console.log item
         return $("<li></li>").data("item.autocomplete", item).append( item.value ).appendTo(ul)
         
         
