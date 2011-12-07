@@ -47,7 +47,7 @@ class SuggestionScenariosController < ApplicationController
     
     suggestion.dump
     
-    render nothing: true
+    #render nothing: true
     
   end
 
