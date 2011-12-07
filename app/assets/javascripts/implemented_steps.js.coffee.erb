@@ -1,0 +1,21 @@
+$ ->
+  project_id = $("#feature").data("projectid")
+  $('div.new_step > input[name="name[]"]').autocomplete(
+      source: (request, response) ->
+        
+        
+        query = "string=" + request.term + "&project_id=" + project_id
+        
+        $.ajax
+          url: "/implemented_steps/match",
+          data: query,
+          dataType: "json",
+          type: "GET",
+          success: response
+          
+          
+      ).data("autocomplete")._renderItem = (ul, item) ->
+        console.log item
+        return $("<li></li>").data("item.autocomplete", item).append( item.value ).appendTo(ul)
+        
+        

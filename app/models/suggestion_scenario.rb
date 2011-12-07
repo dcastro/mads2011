@@ -4,4 +4,12 @@ class SuggestionScenario < ActiveRecord::Base
   has_many :suggestion_steps
   
   validates :name, :presence  => true
+  
+  def dump
+    
+    
+    
+    
+    
+  end
 end
