@@ -22,6 +22,10 @@ group :test, :development do
   gem 'ffi', " = 1.0.9"
 end
 
+group :production do
+  gem 'pg'
+end
+
 gem 'prawn', "= 0.8.4"
 
 gem 'jquery-rails'
