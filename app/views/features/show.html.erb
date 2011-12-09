@@ -67,7 +67,6 @@
 			<%= form_tag suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), class: "destroy_suggestion" do %>
 			<% end %>
 			
-			<%= button_to "Try running", suggestion_scenarios_run_test_path(id: scenario.id), :method => :get %>
 			<%= image_tag('thrash_can.png', height: '25', class: 'thrash_can') %>
 			
 			<%= image_tag "under_construction-1.png", height: '20'%>
@@ -78,6 +77,9 @@
 		<div class="scenario_body">
 			<div class="suggestion_author">
 				Suggested by <%= link_to scenario.user.name, users_show_path(id: scenario.user.id) %>
+			</div>
+			<div class="try_running">
+				<%= button_to "Try running", suggestion_scenarios_run_test_path(id: scenario.id) %>
 			</div>
 		<% scenario.suggestion_steps.each do |step|%>
 				
