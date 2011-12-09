@@ -9,10 +9,14 @@ class Project < ActiveRecord::Base
   
   def download
     
-    FileUtils.rm_rf "tmp/projects/" + self.id.to_s
+    self.clean_up
     
     str = "git clone " + self.repo + " tmp/projects/" + self.id.to_s
     %x[#{str}]
+  end
+  
+  def clean_up
+    FileUtils.rm_rf "tmp/projects/" + self.id.to_s    
   end
   
   

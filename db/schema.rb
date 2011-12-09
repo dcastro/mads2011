@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206111103) do
+ActiveRecord::Schema.define(:version => 20111209192639) do
 
   create_table "example_cells", :force => true do |t|
     t.integer  "example_row_id"
@@ -134,6 +134,8 @@ ActiveRecord::Schema.define(:version => 20111206111103) do
     t.string   "keyword"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
+    t.text     "error_msg"
   end
 
   create_table "users", :force => true do |t|

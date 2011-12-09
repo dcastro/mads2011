@@ -46,8 +46,10 @@ class SuggestionScenariosController < ApplicationController
     suggestion = SuggestionScenario.find(params[:id])
     
     suggestion.feature.project.download
-    suggestion.dump
-    suggestion.run
+    filename = suggestion.dump
+    suggestion.run(filename)
+    
+    suggestion.feature.project.clean_up
     
     
     #render nothing: true
