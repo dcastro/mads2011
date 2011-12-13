@@ -5,7 +5,24 @@
 show_errors = (error) ->
   $("#suggestion_errors span").text(error)
   $("#suggestion_errors").fadeTo(300, 1).delay(1000).fadeTo(300, 0)
+  
+rearrange_tables = () ->
+  #para cada célula
+  $("#new_suggestion table.step_table tr:not(.table_vert_controls) td:not(.table_controls)").each () ->
+  
+    step = $(this).parents('div.new_step')
+    step_index = $("#new_suggestion div.new_step").index(step)
+    
+    row_index = $(this).parents('tr').data('index')
+    
+    #altera o nome do input
+    $(this).find('input').attr('name', 'row[' + step_index + '][' + row_index + '][]')
+    
+    #altera o index da tabela
+    $(this).parents('table.step_table').data('step', step_index)
+    
 
+  
 $ ->
   $("div.new_steps").delegate ".add_step", "click", ->
     $("div.new_steps .steps").append '''
@@ -20,6 +37,7 @@ $ ->
         </select>
         <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
         <span class="table_button"><img alt="Table" height="17" src="/assets/table.png"></span>
+        <span class="sort_handle"><img alt="Cursor_hand" height="15" src="/assets/cursor_hand.png"></span>
         <span class="add_step">+</span>
       </div>
     
@@ -62,5 +80,10 @@ $ ->
     
     return true
 
-
+  $("div.steps").sortable
+    axis: 'y',
+    handle: 'span.sort_handle',
+    revert: 100,
+    update: -> rearrange_tables()
+    
 
