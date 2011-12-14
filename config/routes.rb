@@ -1,5 +1,11 @@
 Mads2011::Application.routes.draw do
   
+  get "comments/index"
+
+  get "comments/create"
+
+  get "comments/destroy"
+
   post "suggestion_scenarios/run_test"
   
   get "implemented_steps/match"

@@ -103,3 +103,12 @@
 	<% end %>
 
 	
+<%= link_to 'fad', comments_index_path, remote: true %>
+
+
+<script>
+	<%= render(file: "comments/form.js.coffee", locals: { feature: @feature }).html_safe %>
+	<%= render(file: "comments/index.js.coffee", locals: { comments: @feature.comments }).html_safe %>
+	
+</script>
+
