@@ -1,3 +1,36 @@
 // Place all the styles related to the Scenarios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.scenario_body {
+  
+  
+  table {
+    margin-left:17px;
+    border: 2px solid;
+    border-color: #06C;
+    text-align: center;
+    
+    td {
+      border-color: #CED7E6;
+      padding-left:16px; padding-right:16px;
+    }
+    
+    .odd {
+    background-color: #CED7E6;
+    }
+    
+    .odd td {
+      border-color: #FFF;
+    }
+    
+    .example1strow {
+      background-color: #168FD0;
+    }
+    
+    .example1strow th{
+      color: #FFF;
+    }
+  
+  }
+}
