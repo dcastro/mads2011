@@ -1,5 +1,7 @@
 Mads2011::Application.routes.draw do
   
+  get "users/what"
+  
   post "suggestion_scenarios/run_test"
   
   get "implemented_steps/match"

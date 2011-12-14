@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  skip_before_filter :authorize, :only => [:home, :login, :show, :new, :create, :logout]
+  skip_before_filter :authorize, :only => [:home, :login, :show, :new, :create, :logout, :what]
   
   # GET /users
   # GET /users.json
@@ -137,6 +137,11 @@ class UsersController < ApplicationController
                       :only => [:id, :name], 
                       :methods => [:get_photo]
                  )
+  end
+  
+  def what
+    
+
   end
   
 end
