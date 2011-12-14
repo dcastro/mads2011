@@ -18,13 +18,21 @@
 			
 				
 				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
-				<table class="step_table" border="1" bordercolor="#CCCCCC" rules="all">
-					<% step.step_rows.each do |row|%>
-						<tr>
-			            	<% row.step_cells.each do |cell|%>
-			            		<td><%= cell.name %></td>
-			            	<%end%>
-		                </tr>
+				<table class="step_table" rules="cols">
+					<% step.step_rows.each_with_index do |row, index|%>
+						<%if index%2 == 0%>
+							<tr class="odd">
+				            	<% row.step_cells.each do |cell|%>
+				            		<td><%= cell.name %></td>
+				            	<%end%>
+			                </tr>
+			            <%else%>
+			            	<tr class="even">
+				            	<% row.step_cells.each do |cell|%>
+				            		<td><%= cell.name %></td>
+				            	<%end%>
+			                </tr>
+			            <%end%>
 	                <%end%>
                 </table>
 				<%if step.error_msg != "" %>
@@ -36,20 +44,28 @@
 		<% if scenario.example %>
 			<div class="example">
 				<h5>Examples</h5>
-				<table class="example_table" border="1" bordercolor="#CCCCCC" rules="all">
-					<tr>
+				<table class="example_table" rules="cols">
+					<tr class = "example1strow">
 						<% scenario.example.example_rows.first.example_cells.each do |cell| %>
 							<th><%= cell.name %></th>
 						<% end %>
 					</tr>
 					<% rows = scenario.example.example_rows %>
 					<% rows.shift %>
-					<% rows.each do |row|%>
-						<tr>
-			            	<% row.example_cells.each do |cell|%>
-			            		<td><%= cell.name %></td>
-			            	<%end%>
-		                </tr>
+					<% rows.each_with_index do |row, index|%>
+						<%if index%2 == 0%>
+							<tr class="even">
+				            	<% row.example_cells.each do |cell|%>
+				            		<td><%= cell.name %></td>
+				            	<%end%>
+			                </tr>
+			            <%else%>
+			            	<tr class="odd">
+				            	<% row.example_cells.each do |cell|%>
+				            		<td><%= cell.name %></td>
+				            	<%end%>
+			                </tr>
+			            <%end%>
 		            <%end%>
 		        </table>
 		    </div>
@@ -63,7 +79,7 @@
 	
 	<% @feature.suggestion_scenarios.each do |scenario| %>
 	
-		<h5 class="scenario_head" <%= (true)? "style=background-color:#AAAAAA;": "style=background-color:#FF5D40;" %> >
+		<h5 class="scenario_head" style="background-color:#AAAAAA;" >
 			<%= form_tag suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), class: "destroy_suggestion" do %>
 			<% end %>
 			
@@ -85,13 +101,21 @@
 				
 				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
 				
-				<table class="step_table" border="1" bordercolor="#CCCCCC" rules="all">
+				<table class="step_table" rules="cols">
 					<% step.suggestion_rows.each do |row|%>
-						<tr>
-			            	<% row.suggestion_cells.each do |cell|%>
-			            		<td><%= cell.name %></td>
-			            	<%end%>
-		                </tr>
+						<%if row.row_num%2 == 0%>
+							<tr class="even">
+				            	<% row.suggestion_cells.each do |cell|%>
+				            		<td><%= cell.name %></td>
+				            	<%end%>
+			                </tr>
+			            <%else%>
+			            	<tr class="odd">
+				            	<% row.suggestion_cells.each do |cell|%>
+				            		<td><%= cell.name %></td>
+				            	<%end%>
+			                </tr>
+			            <%end%>
 	                <%end%>
                 </table>
                 <%if step.error_msg != "" %>
