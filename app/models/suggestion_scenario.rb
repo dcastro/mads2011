@@ -3,6 +3,8 @@ class SuggestionScenario < ActiveRecord::Base
   belongs_to :user
   has_many :suggestion_steps
   
+  has_many :comments, :as => :commentable
+  
   validates :name, :presence  => true
   
   def dump

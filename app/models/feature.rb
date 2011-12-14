@@ -3,5 +3,7 @@ class Feature < ActiveRecord::Base
   has_many :scenarios, :dependent => :destroy
   has_many :suggestion_scenarios
   
+  has_many :comments, :as => :commentable
+  
   validates :name, :presence  => true
 end
