@@ -66,21 +66,23 @@
 
 </script>
 
+
+<%= link_to 'Back', projects_path %> |
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Update State', projects_update_state_path(:id => @project.id), :method => :post%>
+<!--<%= button_to "Update State", projects_update_state_path(:id => @project.id) %> -->
+
 <p>
   <b>Name:</b>
   <%= @project.name %>
-</p>
-
-<p>
-  <b>Repo:</b>
+  
+  <b style="margin-left: 80px;">Repo:</b>
   <%= @project.repo %>
 </p>
 
 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
-<%= button_to "Update State", projects_update_state_path(:id => @project.id) %>
+<br/>
 
 <h2>Users</h2>
 
@@ -143,6 +145,7 @@
 	
 </table>
 
+<br/><br/>
 
 <h2>Features</h2>
 
