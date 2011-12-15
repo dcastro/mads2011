@@ -1,11 +1,16 @@
 Mads2011::Application.routes.draw do
   
+<<<<<<< HEAD
+  get "users/what"
+  
+=======
   get "comments/index"
 
   get "comments/create"
 
   get "comments/destroy"
 
+>>>>>>> 8819cbf9a4f275d447fb9a30ce6a6ace9383d5d1
   post "suggestion_scenarios/run_test"
   
   get "implemented_steps/match"
