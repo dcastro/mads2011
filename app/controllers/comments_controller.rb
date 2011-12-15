@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
                   
     respond_to do |format|
       format.html {  }
-      format.js {  }
+      format.js { @commentable = {type: params[:commentable_type], id: params[:commentable_id]} }
     end
   end
 

@@ -1,1 +1,8 @@
-<%= comment.content %>
+
+<div class="comment">
+
+	<div class="author" ><%= link_to comment.user.name, users_show_path(comment.user) %></div> <div class="date"><%= comment.created_at.strftime("%I:%M%p %d/%m/%Y") %> </div>
+    <div class="content"><%= sanitize(comment.content.gsub(/(?:\n\r?|\r\n?)/, '<br>')) %></div>
+    <%= link_to 'delete', del_comment_path(:id => comment.id), :method => :delete, :remote => true if comment.user.id == session[:user_id] %>	
+
+</div>
