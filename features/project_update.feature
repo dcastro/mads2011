@@ -7,7 +7,7 @@ Feature: Project Update
 		Given I am logged in as "admin" with password "admin"
 		And I am on the projects page
 		When I follow "Fixture Project 2"
-		And I press "Update State"	
+		And I follow "Update State"	
 		Then "Lol" should be a feature of "Fixture Project 2"
 		And feature "Lol" should have the following scenarios:
 			| Name					|
