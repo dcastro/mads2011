@@ -11,8 +11,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    Comment.new 
-    render js: '$("#new_comment_form textarea").val("")'
+    @comment = Comment.new content: params[:content],
+                          user: current_user,
+                          commentable_id: params[:commentable_id],
+                          commentable_type: params[:commentable_type]
+    unless @comment.save
+      render js: 'alert("An error occurred while saving your comment.")'
+    end
   end
 
   def destroy

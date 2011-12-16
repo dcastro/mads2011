@@ -4,7 +4,7 @@ Mads2011::Application.routes.draw do
   
   get "comments/index"
 
-  get "comments/create"
+  post "comments/create"
 
   get "comments/destroy"
 
