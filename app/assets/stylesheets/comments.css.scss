@@ -45,6 +45,11 @@ div#comments {
           display: inline;
           //font-family: Tahoma;
       }
+      
+      a.del_comment {
+        float: right;
+        clear: both;
+      }
   
   
   }

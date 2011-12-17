@@ -21,6 +21,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    if comment.user.id == session[:id]
+      comment.destroy
+      render js: "$('.comment[data-comment_id=\"#{ params[:id] }\"]').slideUp(100);"
+    else
+      render js: "alert('This comment was not made by you.');"
+    end
   end
 
 end

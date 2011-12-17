@@ -6,7 +6,7 @@ Mads2011::Application.routes.draw do
 
   post "comments/create"
 
-  get "comments/destroy"
+  delete "comments/destroy"
 
   post "suggestion_scenarios/run_test"
   
