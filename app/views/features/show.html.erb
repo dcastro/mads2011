@@ -15,9 +15,11 @@
 		</h5>
 		<div class="scenario_body">
 		<% scenario.steps.each do |step|%>
+			<%= link_to comments_index_path(commentable_type: step.class, commentable_id: step.id), remote: true do %>
 			
 				
-				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%></p>
+					
 				<table class="step_table" rules="cols">
 					<% step.step_rows.each_with_index do |row, index|%>
 						<%if index%2 == 0%>
@@ -36,9 +38,9 @@
 	                <%end%>
                 </table>
 				<%if step.error_msg != "" %>
-					<p style="background-color:red;"> <%= step.error_msg%><p>
+					<p style="background-color:red;"> <%= step.error_msg%></p>
 				<%end %>
-		
+			<% end %>
 		<%end%>
 		
 		<% if scenario.example %>
@@ -99,7 +101,7 @@
 			</div>
 		<% scenario.suggestion_steps.each do |step|%>
 				
-				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%><p>
+				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%></p>
 				
 				<table class="step_table" rules="cols">
 					<% step.suggestion_rows.each do |row|%>
@@ -119,7 +121,7 @@
 	                <%end%>
                 </table>
                 <%if step.error_msg != "" %>
-					<p style="background-color:red;"> <%= step.error_msg%><p>
+					<p style="background-color:red;"> <%= step.error_msg%></p>
 				<%end %>
 		
 		<%end%>
@@ -131,8 +133,8 @@
 
 
 <script>
-	<%= render(file: "comments/form.js.coffee", locals: { feature: @feature }).html_safe %>
-	<%= render(file: "comments/index.js.coffee", locals: { comments: @feature.comments }).html_safe %>
+	
+	<%= render(file: "comments/comments.js.coffee", locals: { comments: @feature.comments }).html_safe %>
 	
 </script>
 

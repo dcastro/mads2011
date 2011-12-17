@@ -18,19 +18,19 @@ p {
   background-color:#F4F4F8;
   
   .passed {
-    color: green;
+    color: green !important;
   }
   
   .undefined {
-    color: orange;
+    color: orange !important;
   }
   
   .failed {
-    color: red;
+    color: red !important;
   }
 
   .skipped {
-    color: #4775c9; //light blue
+    color: #4775c9 !important; //light blue
   }
 
 }

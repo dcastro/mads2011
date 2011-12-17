@@ -1,7 +1,6 @@
 <% @comments = comments if defined? comments %>
 <% @commentable = commentable if defined? commentable %>
 
-$ ->
 	$("div#comments").replaceWith '''
 
 		<div id="comments">

@@ -5,6 +5,7 @@ class FeaturesController < ApplicationController
     @sc.feature = @feature
     
     @commentable = {type: "Feature", id: params[:id]}
+    @comments = @feature.comments
   end
 
 end

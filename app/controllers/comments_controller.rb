@@ -1,12 +1,17 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Comment.all #Comment.where(commentable_type: params[:commentable_type],
-                  #commentable_id: params[:commentable_id]
-                  #)
+    @comments = Comment.where(commentable_type: params[:commentable_type],
+                  commentable_id: params[:commentable_id]
+                  )
                   
     respond_to do |format|
       format.html {  }
-      format.js { @commentable = {type: params[:commentable_type], id: params[:commentable_id]} }
+      format.js { @commentable = {type: params[:commentable_type], id: params[:commentable_id]} 
+      
+      render file: "comments/comments.js.coffee"
+      
+      
+      }
     end
   end
 
