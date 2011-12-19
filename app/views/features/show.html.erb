@@ -4,7 +4,10 @@
 	Suggestion <%= image_tag "thought_bubble.png", height: '25'%>
 </div>
 <div id="feature_comments">
-	<%= @feature.comments.count %> comments <%= image_tag "comments_bubbles.png", height: '25'%>
+	<span id ="Feature<%= @feature.id %>">
+		<%= @feature.comments.count %>
+	</span>	
+	comments <%= image_tag "comments_bubbles.png", height: '25'%>
 </div>
 
 <h2 id="feature" data-projectid="<%= @feature.project.id %>" data-featureid="<%= @feature.id %>" > <%= link_to @feature.project.name, project_path(@feature.project) %> > <%= @feature.name %></h2>

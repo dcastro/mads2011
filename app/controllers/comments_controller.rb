@@ -17,6 +17,8 @@ class CommentsController < ApplicationController
                           user: current_user,
                           commentable_id: params[:commentable_id],
                           commentable_type: params[:commentable_type]
+    @commentable = {type: params[:commentable_type], id: params[:commentable_id]}
+    
     unless @comment.save
       render js: 'alert("An error occurred while saving your comment.")'
     end
@@ -24,9 +26,11 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    @commentable = {type: comment.commentable_type, id: comment.commentable_id.to_s}
+    
     if comment.user.id == session[:id]
       comment.destroy
-      render js: "$('.comment[data-comment_id=\"#{ params[:id] }\"]').slideUp(100);"
+      #render js: "$('.comment[data-comment_id=\"#{ params[:id] }\"]').slideUp(100);"
     else
       render js: "alert('This comment was not made by you.');"
     end
