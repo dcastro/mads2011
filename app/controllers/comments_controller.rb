@@ -4,14 +4,11 @@ class CommentsController < ApplicationController
                   commentable_id: params[:commentable_id]
                   )
                   
+    @commentable = {type: params[:commentable_type], id: params[:commentable_id]}
+    
     respond_to do |format|
       format.html {  }
-      format.js { @commentable = {type: params[:commentable_type], id: params[:commentable_id]} 
-      
-      render file: "comments/comments.js.coffee"
-      
-      
-      }
+      format.js { render file: "comments/comments.js.coffee" }
     end
   end
 

@@ -1,10 +1,12 @@
 $ ->
-  $("div#sidebar").replaceWith '''
-    <div id="sidebar">
-        <div id="comments"> </div>
-  
-        <div id="new_comment"> </div>
-    </div>
-  '''
-<%= render(file: "comments/form.js.coffee").html_safe %>
-<%= render(file: "comments/index.js.coffee").html_safe %>
+  $("div#sidebar").fadeOut 'fast', ->
+    $("div#sidebar").replaceWith '''
+      <div id="sidebar">
+          <%= render(file: "comments/index.html.erb").html_safe %>
+          <%= render(file: "comments/form.html.erb").html_safe %>
+      </div>
+    '''
+
+    
+    $("div#sidebar").hide()
+    $("div#sidebar").fadeIn('fast')

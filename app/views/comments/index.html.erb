@@ -1,2 +1,4 @@
-<h1>Comments#index</h1>
-<p>Find me in app/views/comments/index.html.erb</p>
+<div id="comments">
+	<h4 id="comments_title"><%= @commentable[:type] %> Comments</h4>
+	<%= render partial: "comments/comment", collection: @comments %>
+</div>
