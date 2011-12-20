@@ -1,10 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  feature_id: 1
-  name: MyString
+  feature: three
+  name: Dummy Scenario
   line: 1
-  description: MyText
+  description: Just a dummy scenario
 
 two:
   feature_id: 1

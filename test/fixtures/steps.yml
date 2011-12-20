@@ -1,19 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  scenario_id: 1
-  keyword: MyString
-  name: MyString
+  scenario: one
+  keyword: Given
+  name: I am on the homepage
   line: 1
   location: MyString
-  status: MyString
-  error_msg: MyText
+  status: Passed
 
 two:
-  scenario_id: 1
-  keyword: MyString
-  name: MyString
+  scenario: one
+  keyword: Then
+  name: I should see nothing
   line: 1
   location: MyString
-  status: MyString
-  error_msg: MyText
+  status: Passed
