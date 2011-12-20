@@ -11,7 +11,7 @@
 </div>
 
 <h2 id="feature" data-projectid="<%= @feature.project.id %>" data-featureid="<%= @feature.id %>" > <%= link_to @feature.project.name, project_path(@feature.project) %> > <%= @feature.name %></h2>
-<h3> <%= @feature.description %></h3>
+<h3> <%= @feature.description.gsub(/$/, "</br>").html_safe %></h3>
 
 <%= render partial: "suggestion_scenarios/form"%>
 
