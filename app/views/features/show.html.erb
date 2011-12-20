@@ -27,11 +27,18 @@
 		</h5>
 		<div class="scenario_body">
 		<% scenario.steps.each do |step|%>
+			<div class="step">
 			<%= link_to comments_index_path(commentable_type: step.class, commentable_id: step.id), remote: true do %>
-			
+				
+				<span class="step_comments" data-commentable_type="<%= step.class.name %>" data-commentable_id="<%= step.id %>"  <%= "style='display:none'" if step.comments.count == 0 %>  >
+					<span id ="<%= step.class.name + step.id.to_s %>">
+						<%= step.comments.count %>
+					</span>	
+					<%= image_tag "comments_bubbles.png", height: '17'%>
+				</span>
 				
 				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%></p>
-					
+									
 				<table class="step_table" rules="cols">
 					<% step.step_rows.each_with_index do |row, index|%>
 						<%if index%2 == 0%>
@@ -53,6 +60,7 @@
 					<p style="background-color:red;"> <%= step.error_msg%></p>
 				<%end %>
 			<% end %>
+			</div>
 		<%end%>
 		
 		<% if scenario.example %>
@@ -128,33 +136,44 @@
 			<div class="suggestion_author">
 				Suggested by <%= link_to scenario.user.name, users_show_path(id: scenario.user.id) %>
 			</div>
-		<% scenario.suggestion_steps.each do |step|%>
-			<%= link_to comments_index_path(commentable_type: step.class, commentable_id: step.id), remote: true do %>
-				
-				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%></p>
-				
-				<table class="step_table" rules="cols">
-					<% step.suggestion_rows.each do |row|%>
-						<%if row.row_num%2 == 0%>
-							<tr class="even">
-				            	<% row.suggestion_cells.each do |cell|%>
-				            		<td><%= cell.name %></td>
-				            	<%end%>
-			                </tr>
-			            <%else%>
-			            	<tr class="odd">
-				            	<% row.suggestion_cells.each do |cell|%>
-				            		<td><%= cell.name %></td>
-				            	<%end%>
-			                </tr>
-			            <%end%>
-	                <%end%>
-                </table>
-                <%if step.error_msg != "" %>
-					<p style="background-color:red;"> <%= step.error_msg%></p>
-				<%end %>
-			<% end %>
-		<%end%>
+			<div class="suggestion_steps">
+				<% scenario.suggestion_steps.each do |step|%>
+					<div class="step">
+					<%= link_to comments_index_path(commentable_type: step.class, commentable_id: step.id), remote: true do %>
+					
+						<span class="step_comments" data-commentable_type="<%= step.class.name %>" data-commentable_id="<%= step.id %>"  <%= "style='display:none'" if step.comments.count == 0 %>  >
+							<span id ="<%= step.class.name + step.id.to_s %>">
+								<%= step.comments.count %>
+							</span>	
+							<%= image_tag "comments_bubbles.png", height: '17'%>
+						</span>
+						
+						<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%></p>
+						
+						<table class="step_table" rules="cols">
+							<% step.suggestion_rows.each do |row|%>
+								<%if row.row_num%2 == 0%>
+									<tr class="even">
+						            	<% row.suggestion_cells.each do |cell|%>
+						            		<td><%= cell.name %></td>
+						            	<%end%>
+					                </tr>
+					            <%else%>
+					            	<tr class="odd">
+						            	<% row.suggestion_cells.each do |cell|%>
+						            		<td><%= cell.name %></td>
+						            	<%end%>
+					                </tr>
+					            <%end%>
+			                <%end%>
+		                </table>
+		                <%if step.error_msg != "" %>
+							<p style="background-color:red;"> <%= step.error_msg%></p>
+						<%end %>
+					<% end %>
+					</div>
+				<%end%>
+			</div>
 		</div>
 	<% end %>
 
