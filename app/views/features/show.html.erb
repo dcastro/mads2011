@@ -5,17 +5,20 @@
 <h3> <%= @feature.description.gsub(/$/, "</br>").html_safe %></h3>
 
 
-<div id="feature_options">
-	<div id="open_suggestion">
+<span id="feature_options">
+	<div id="open_suggestion" class="option">
 		Suggestion <%= image_tag "thought_bubble.png", height: '25'%>
 	</div>
-	<div id="feature_comments">
+	<div id="feature_comments" class="option">
 		<span id ="Feature<%= @feature.id %>">
 			<%= @feature.comments.count %>
 		</span>	
 		comments <%= image_tag "comments_bubbles.png", height: '25'%>
 	</div>
-</div>
+	<div id="open_help" class="option">
+		Help <%= image_tag "help_bubble.png", height: '25' %>
+	</div>
+</span>
 
 
 <%= render partial: "suggestion_scenarios/form"%>
