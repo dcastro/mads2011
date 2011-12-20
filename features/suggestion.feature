@@ -1,6 +1,6 @@
 Feature: Suggest a new scenario
 	In order to get involved with the project
-	As an authenticated user
+	As a project member
 	I want to be able to suggest a new scenario for a given feature
 
 	@javascript
