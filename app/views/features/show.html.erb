@@ -17,6 +17,12 @@
 
 	<% @feature.scenarios.each do |scenario| %>
 		<h5 class="scenario_head" <%= (scenario.completed)? "style=background-color:#36D88E;": "style=background-color:#FF5D40;" %>>
+			<span class="scenario_comments" data-commentable_type="<%= scenario.class.name %>" data-commentable_id="<%= scenario.id %>">
+				<span id ="<%= scenario.class.name + scenario.id.to_s %>">
+					<%= scenario.comments.count %>
+				</span>	
+				<%= image_tag "comments_bubbles.png", height: '20'%>
+			</span>
 			<%= scenario.name %>: <%= scenario.description %>
 		</h5>
 		<div class="scenario_body">
@@ -88,10 +94,30 @@
 	<% @feature.suggestion_scenarios.each do |scenario| %>
 	
 		<h5 class="scenario_head" style="background-color:#AAAAAA;" >
-			<%= form_tag suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), class: "destroy_suggestion" do %>
-			<% end %>
+
 			
-			<%= image_tag('thrash_can.png', height: '25', class: 'thrash_can') %>
+			<span class="scenario_comments" data-commentable_type="<%= scenario.class.name %>" data-commentable_id="<%= scenario.id %>">
+				<span id ="<%= scenario.class.name + scenario.id.to_s %>">
+					<%= scenario.comments.count %>
+				</span>	
+				<%= image_tag "comments_bubbles.png", height: '20'%>
+			</span>
+			
+			<div class="suggestion_options">
+				<%= image_tag('options.png', height: '25') %>
+				<ul>
+					<li>
+						<%= form_tag suggestion_scenarios_run_test_path(id: scenario.id), class: "run_suggestion" do %>
+						<% end %>
+						<a class="run_suggestion">Run</a>
+					</li>
+					<li>
+						<%= form_tag suggestion_scenarios_destroy_path(suggestion_scenario_id: scenario.id), class: "destroy_suggestion" do %>
+						<% end %>
+						<a class="thrash_can">Delete</a>
+					</li>
+				</ul>
+			</div>
 			
 			<%= image_tag "under_construction-1.png", height: '20'%>
 			
@@ -102,10 +128,8 @@
 			<div class="suggestion_author">
 				Suggested by <%= link_to scenario.user.name, users_show_path(id: scenario.user.id) %>
 			</div>
-			<div class="try_running">
-				<%= button_to "Try running", suggestion_scenarios_run_test_path(id: scenario.id) %>
-			</div>
 		<% scenario.suggestion_steps.each do |step|%>
+			<%= link_to comments_index_path(commentable_type: step.class, commentable_id: step.id), remote: true do %>
 				
 				<p class="<%= step.status%>"><label style="color:blue"><%= step.keyword %></label> <%= step.name%></p>
 				
@@ -129,7 +153,7 @@
                 <%if step.error_msg != "" %>
 					<p style="background-color:red;"> <%= step.error_msg%></p>
 				<%end %>
-		
+			<% end %>
 		<%end%>
 		</div>
 	<% end %>

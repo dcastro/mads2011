@@ -110,16 +110,20 @@
   form.destroy_suggestion {
     display: inline;
   }
+  form.run_suggestion {
+    display: inline;
+  }
 }
 
 .scenario_body {
   div.suggestion_author {
     float: right;
+    clear: both ;
   }
   
   div.try_running {
    float: right;
-   clear:right;
+   clear: both;
   }
   
   
@@ -139,3 +143,70 @@ form#new_suggestion_scenario {
   border-top: thin dashed #ff0000;
   
 }
+
+
+
+div.suggestion_options {
+  float: right;
+  list-style: none;
+  
+  img {
+    display: block;
+    //background: #20548E;
+    //padding: 5px 12px;
+    text-decoration: none;
+    //border-right: 1px solid white;
+    //width: 70px;
+    //color: #EAFFED;
+    //white-space: nowrap;
+  
+  }
+  
+  img:hover {
+    //background: #1A4473;
+  }
+  
+  ul {
+  z-index: 10;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+    border-top: 1px solid white;
+    
+    /* Fallback for web browsers that don't support RGBa */
+    background-color: rgb(0, 0, 0);
+    /* RGBa with 0.6 opacity */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    
+    padding: 5px;
+    padding-right: 20px;
+    padding-left: 10px;
+    
+    li {
+      float: none;
+      display: block;
+      
+      a {
+        width: auto;
+        //background: #9F1B1B
+      }
+      
+      a:hover {
+        //background: #7F1616
+      }
+    }
+  }
+  
+  
+  
+
+}
+
+
+
+

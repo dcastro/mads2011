@@ -52,7 +52,7 @@ class SuggestionScenariosController < ApplicationController
     suggestion.feature.project.clean_up
     
     
-    #render nothing: true
+    redirect_to features_show_url(id: suggestion.feature.id)
     
   end
 

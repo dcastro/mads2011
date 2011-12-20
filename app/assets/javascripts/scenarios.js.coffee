@@ -15,6 +15,10 @@ $ ->
     
 
 
-  $("img.thrash_can").click ->
+  $(".thrash_can").click ->
     $(this).prev("form.destroy_suggestion").submit()
+    return false
+    
+  $("div.suggestion_options .run_suggestion").click ->
+    $(this).prev("form.run_suggestion").submit()
     return false

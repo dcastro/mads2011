@@ -9,3 +9,8 @@ $ ->
       url: "/comments/index?commentable_id=" + $("#feature").data('featureid') + "&commentable_type=Feature",
       dataType: 'script'
  
+  $("span.scenario_comments").click (e) ->
+    $.ajax
+      url: "/comments/index?commentable_id=" + $(this).data('commentable_id') + "&commentable_type=" + $(this).data('commentable_type'),
+      dataType: 'script'
+    e.stopPropagation()
