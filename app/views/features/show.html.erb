@@ -2,7 +2,15 @@
 
 
 <h2 id="feature" data-projectid="<%= @feature.project.id %>" data-featureid="<%= @feature.id %>" > <%= link_to @feature.project.name, project_path(@feature.project) %> > <%= @feature.name %></h2>
-<h3 class="feature_description"> <%= @feature.description.gsub(/$/, "</br>").html_safe %></h3>
+<% if @feature.description? %>
+	<h3 class="feature_description">
+		<% @feature.description.split(/$/).each do |line| %>
+			<%= line %>
+			</br>
+		<% end %>
+		
+	</h3>
+<% end %>
 
 
 <span id="feature_options">
