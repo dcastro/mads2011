@@ -4,15 +4,6 @@
 
 
 $ ->
-  
-  $(".scenario_body").hide()
-
-  
-  $(".scenario_head").toggle ->
-    $(this).next(".scenario_body").slideDown(100);
-  , ->
-    $(this).next(".scenario_body").slideUp(300);
-    
 
 
   $(".thrash_can").click ->
