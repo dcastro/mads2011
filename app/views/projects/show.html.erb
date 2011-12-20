@@ -163,7 +163,11 @@
 			</tr>
 		<% end %>	
 	</table>
-
+	<% if @project.tested? %>
+		<div id="report">
+			This project was last tested on <%= @project.updated_at %>. Download a full pdf report by clicking <%= link_to 'here', "/reports/#{ @project.id }.pdf" %>.
+		</div>
+	<% end %>
 <% else %>
 	There are no features in this project. Have you tried updating the project's state?
 <% end %>

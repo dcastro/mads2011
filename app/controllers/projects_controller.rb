@@ -130,6 +130,10 @@ class ProjectsController < ApplicationController
       %x[bundle install]
       %x[bundle exec rake db:setup RAILS_ENV=test]   
       cuke_result = %x[bundle exec cucumber -f json -f pdf --out ../../../public/reports/#{project.id.to_s}.pdf RAILS_ENV=test]
+      
+      project.tested = true
+      project.save
+      
       #puts cuke_result
       parsed_msg =cuke_result.match(/[^\[]*(.*)/).to_a
       parsed_msg = parsed_msg.second
@@ -264,6 +268,7 @@ class ProjectsController < ApplicationController
     
     
     respond_to do |format|
+      
       FileUtils.rm_rf "tmp/projects/" + project.id.to_s
       format.html { redirect_to project_url(project), notice: "Project updated successfully." }
       format.json { head :ok }
