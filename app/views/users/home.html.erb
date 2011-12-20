@@ -26,25 +26,49 @@ iTest will shorten the distance between programmers and clients. </br></br>
 
 </br></br>
 
-            <div id="slider" class="grid_12">
+            <div id="slider" class="grid_12" style="width:398px; height:330px; overflow:hidden; background:url(../assets/imac.png)">
                 <div class="slides_container">                	
                     <div class="slide">
-                        <a href="#"><%= image_tag "Capturar1.PNG" , width: '550' %></a>
-                        <div class="caption">The clients have the opportunity to get involved into the project development, by suggesting behavior tests in a simple natural language...</div>
+                        <img src="assets/Capturar1.PNG" alt="" style="padding-top:13px; padding-left:14px; width:371px; height:211px; overflow:hidden;" />
                     </div>
                     <div class="slide">
-                        <a href="#"><%= image_tag "Capturar2.PNG" , width: '550' %></a>
-                        <div class="caption">...and follow the project progress by cheking the tests done and their status...</div>
+                        <img src="assets/Capturar2.PNG" alt="" style="padding-top:13px; padding-left:14px; width:371px; height:211px; overflow:hidden;"/>
                     </div>
                     <div class="slide">
-                        <a href="#"><%= image_tag "Capturar3.PNG" , width: '550' %></a>
-                        <div class="caption">...or you can see were your tests are failling.</div>
+                        <img src="assets/Capturar3.PNG" alt="" style="padding-top:13px; padding-left:14px; width:371px; height:211px; overflow:hidden;"/>
                     </div>
                 </div>
-                <a href="#" class="prev"><%= image_tag "arrow-prev.png", width: '24' , height: '43'%></a>
-                <a href="#" class="next"><%= image_tag "arrow-next.png", width: '24' , height: '43'%></a>
             </div>
-		
+            
+            
+            
+            <ul class="products">
+				<li class="box">
+					<div class="products-img"><img src="assets/product-01.jpg" alt="" /></div>
+					<!-- Photo: (c) Nic McPhee -->
+					<div class="products-desc">
+						<h3><a href="#">Web Design</a></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
+					</div> <!-- /products-desc -->
+				</li>
+				<li class="box">
+					<div class="products-img"><img src="assets/product-02.jpg" alt="" /></div>
+					<!-- Photo: (c) Emran Kassim -->
+					<div class="products-desc">
+						<h3><a href="#">Graphic Design</a></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
+					</div> <!-- /products-desc -->
+				</li>
+				<li class="last box">
+					<div class="products-img"><img src="assets/product-03.jpg" alt="" /></div>
+					<!-- Photo: (c) Scott Robinson -->
+					<div class="products-desc">
+						<h3><a href="#">Corporate Identity</a></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisquemi nisi nunc, aliquam quis sollicitudin in, malesuada lectus. Vivamuse sodales semper ultricies. Ut dui anteestem dignissim ac ornareget, sollicitudin a libero. Donec quis sem magna, a venenatis felisti.</p>
+					</div> <!-- /products-desc -->
+				</li>
+			</ul>
+
 
 <% if notice %>
 <p id="notice"> <%= notice %> </p>
