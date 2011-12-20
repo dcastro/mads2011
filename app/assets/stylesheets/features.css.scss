@@ -2,6 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.feature_description{
+  //color:#000;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  
+  
+  padding: 5px 10px 5px 10px;
+  position: relative;
+  margin:1px;
+  margin-top: 20px;
+  
+  background: -moz-linear-gradient(left, rgba(255, 255, 255,0.8) 40%, rgba(255, 255, 255,0.8) 76%, rgba(255, 255, 255,0.2) 99%, rgba(255, 255, 255,0.2) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(40%,rgba(255, 255, 255,0.8)), color-stop(76%,rgba(255, 255, 255,0.8)), color-stop(99%,rgba(255, 255, 255,0.2)), color-stop(100%,rgba(255, 255, 255,0.2))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255,0.8) 40%,rgba(255, 255, 255,0.8) 76%,rgba(255, 255, 255,0.2) 99%,rgba(255, 255, 255,0.2) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, rgba(255, 255, 255,0.8) 40%,rgba(255, 255, 255,0.8) 76%,rgba(255, 255, 255,0.2) 99%,rgba(255, 255, 255,0.2) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, rgba(255, 255, 255,0.8) 40%,rgba(255, 255, 255,0.8) 76%,rgba(255, 255, 255,0.2) 99%,rgba(255, 255, 255,0.2) 100%); /* IE10+ */
+    background: linear-gradient(left, rgba(255, 255, 255,0.8) 40%,rgba(255, 255, 255,0.8) 76%,rgba(255, 255, 255,0.2) 99%,rgba(255, 255, 255,0.2) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#FFFFFF',GradientType=1 ); /* IE6-9 */
+}
+
+
+
 p {
   padding: 0 0 1em;
 }
@@ -12,7 +36,6 @@ p {
   position: relative;
   margin:1px;
   margin-top: 20px;
-  
 
 
   //corners

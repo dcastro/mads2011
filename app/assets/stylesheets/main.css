@@ -15,8 +15,8 @@ form li {display:block; padding-bottom:7px;}
 form li label {display:block; padding-bottom:3px;}
 input, select, textarea {font-size:100%; font-family:"arial",sans-serif;}
 table.table {border-collapse:collapse; border-spacing:0;}
-table.table th, table.table td {padding:7px 10px;}
-table.table th {font-weight:bold;}
+table.table th, table.table td {padding:7px 10px; background:rgba(255, 255, 255,0.6);}
+table.table th {font-weight:bold; background: #EEE;}
 ul.ul {margin-left:20px; list-style:none;}
 ul.ul li {padding-left:15px; background:url("../assets/ul.gif") 0 5px no-repeat;}
 ul.ul ul {margin:0 0 0 20px; list-style:none;}
