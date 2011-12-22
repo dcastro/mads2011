@@ -33,9 +33,6 @@ function submitform()
 			<li <%= "class='current'" if current_page?(home_path) %>>
 				<%= link_to "<span>Homepage</span>".html_safe, home_path %>
 			</li>
-			<li <%= "class='current'" if current_page?(users_what_path) %>>
-				<%= link_to "<span>What is iTest</span>".html_safe, users_what_path %>
-			</li>
 			<% if session[:username] %>
 				<li <%= "class='current'" if current_pages?(projects_path, new_project_path) %>>
 					<%= link_to "<span>Projects</span>".html_safe, projects_path %>
