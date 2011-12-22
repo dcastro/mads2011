@@ -156,11 +156,13 @@
 			<th>Name</th>
 			<th>State</th>
 		</tr>
+		<% i = 0 %>
 		<% @project.features.each do |feature| %>
-			<tr>
+			<tr <%= "class='even'" if i%2 == 0 %>>
 				<td><%= link_to feature.name, features_show_path(:id => feature.id) %></td>
 				<td><%= (feature.done)? "✔" : "✘" %></td>
 			</tr>
+			<% i+=1%>
 		<% end %>	
 	</table>
 	<% if @project.tested? %>
