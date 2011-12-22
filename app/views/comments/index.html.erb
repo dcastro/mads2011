@@ -1,4 +1,6 @@
-<div id="comments">
+<div id="commets_holder">
 	<h4 id="comments_title"><%= @commentable[:type] %> Comments</h4>
+<div id="comments">
 	<%= render partial: "comments/comment", collection: @comments %>
+</div>
 </div>

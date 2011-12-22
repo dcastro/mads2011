@@ -6,7 +6,6 @@ $bg: #ddd;
 $font: #ffffff;
 
 div#new_comment {
-
   textarea {
     width: 90% !important;
   }
@@ -14,6 +13,10 @@ div#new_comment {
 }
 
 div#comments {
+  position:relative;
+  overflow-y:auto;
+  max-height:400px;
+    
   .comment{
   
       background-color: #ddd;
