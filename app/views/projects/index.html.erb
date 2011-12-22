@@ -11,14 +11,16 @@
     <th></th>
   </tr>
 
+<% i = 0 %>
 <% @projects.each do |project| %>
-  <tr>
+  <tr <%= "class='even'" if i%2 == 0 %>>
     <td><%= link_to project.name, project_path(project)  %></td>
     <td><%= project.roles.count %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= destroy_tag project %></td>
   </tr>
+<% i+=1%>
 <% end %>
 </table>
 
