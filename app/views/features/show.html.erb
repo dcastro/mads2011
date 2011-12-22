@@ -72,8 +72,8 @@
 			            <%end%>
 	                <%end%>
                 </table>
-				<%if step.error_msg != "" %>
-					<p style="background-color:red;"> <%= step.error_msg%></p>
+				<%if step.error_msg != nil %>
+					<p class="step_error"> <%= step.error_msg%></p>
 				<%end %>
 			<% end %>
 			</div>

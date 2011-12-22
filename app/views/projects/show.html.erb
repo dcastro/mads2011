@@ -67,110 +67,118 @@
 </script>
 
 
-<%= link_to 'Back', projects_path %> |
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Update State', projects_update_state_path(:id => @project.id), :method => :post%>
-<!--<%= button_to "Update State", projects_update_state_path(:id => @project.id) %> -->
 
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-  
-  <b style="margin-left: 80px;">Repo:</b>
-  <%= @project.repo %>
-</p>
+<h1> <%= @project.name %> </h1>
 
 
+<div class="mybubble" style="padding: 30px; margin-top: 30px">
 
-<br/>
 
-<h2>Users</h2>
-
-<% if @user_type == "Manager"%>
-
-	<%= form_tag(roles_create_path, :method => "post", :onsubmit=>"return submitCheck()") do %>
+	
+	<%= link_to 'Back', projects_path %> |
+	<%= link_to 'Edit', edit_project_path(@project) %> |
+	<%= link_to 'Update State', projects_update_state_path(:id => @project.id), :method => :post%>
+	<!--<%= button_to "Update State", projects_update_state_path(:id => @project.id) %> -->
+	
+	<p>
+	  <b >Repo:</b>
+	  <%= @project.repo %>
+	</p>
+	
+	
+	
+	<br/>
+	
+	<h2 style="text-align: center; padding-bottom: 20px;">Users</h2>
+	
+	<% if @user_type == "Manager"%>
+	
+		<%= form_tag(roles_create_path, :method => "post", :onsubmit=>"return submitCheck()") do %>
+			
+			<%= hidden_field_tag "projectid", @project.id %>
+			<%= hidden_field_tag "userid" %>
 		
-		<%= hidden_field_tag "projectid", @project.id %>
-		<%= hidden_field_tag "userid" %>
-	
-		<%= search_field_tag "username", "username" , :onfocus=>"if(this.value==this.defaultValue) this.value='';"%>
-	  	
-	  	<%= select_tag "usertype", "<option>Client</option><option>Developer</option><option>Manager</option>".html_safe  %>
-	  	<%= submit_tag("Add") %>
-	  
-	<% end %>
-
-<% end %>
-
-<table class="table">
-	
-	<tr>
-		<th>Name</th>
-		<th>Role</th>
-		<% if @user_type == "Manager"%>
-			<th></th>
+			<%= search_field_tag "username", "username" , :onfocus=>"if(this.value==this.defaultValue) this.value='';"%>
+		  	
+		  	<%= select_tag "usertype", "<option>Client</option><option>Developer</option><option>Manager</option>".html_safe  %>
+		  	<%= submit_tag("Add") %>
+		  
 		<% end %>
-		
-	</tr>
-	<% i = 0 %>
-	<% @project.roles.each do |role|%>
-		
-		<tr <%= "class='even'" if i%2 == 0 %>>
-			<td>
-				<%= link_to role.user.name, users_show_path(role.user.id) %>
-			</td>
-			
-			<td>
-				<%= role.name %>
-			</td>
-			
-			
-			<% if @user_type == "Manager"%>
-				<td>
-					<% if role.user_id !=  session[:id] %>
-					 
-						<%= form_tag(roles_remove_path, :method => "post") do %>
-							<%= hidden_field_tag "userid", role.user.id %>
-							<%= hidden_field_tag "projectid", @project.id %>
-						  	<%= submit_tag("Delete", id: "remove_" + role.user.username) %>
-						<% end %>
-						
-					<% end %>
-				</td>
-			<% end %>
-			
-			</tr>
-			<% i+=1%>
+	
 	<% end %>
 	
-</table>
-
-<br/><br/>
-
-<h2>Features</h2>
-
-<% unless @project.features.empty? %>
-
 	<table class="table">
+		
 		<tr>
 			<th>Name</th>
-			<th>State</th>
+			<th>Role</th>
+			<% if @user_type == "Manager"%>
+				<th></th>
+			<% end %>
+			
 		</tr>
 		<% i = 0 %>
-		<% @project.features.each do |feature| %>
+		<% @project.roles.each do |role|%>
+			
 			<tr <%= "class='even'" if i%2 == 0 %>>
-				<td><%= link_to feature.name, features_show_path(:id => feature.id) %></td>
-				<td><%= (feature.done)? "✔" : "✘" %></td>
-			</tr>
-			<% i+=1%>
-		<% end %>	
+				<td>
+					<%= link_to role.user.name, users_show_path(role.user.id) %>
+				</td>
+				
+				<td>
+					<%= role.name %>
+				</td>
+				
+				
+				<% if @user_type == "Manager"%>
+					<td>
+						<% if role.user_id !=  session[:id] %>
+						 
+							<%= form_tag(roles_remove_path, :method => "post") do %>
+								<%= hidden_field_tag "userid", role.user.id %>
+								<%= hidden_field_tag "projectid", @project.id %>
+							  	<%= submit_tag("Delete", id: "remove_" + role.user.username) %>
+							<% end %>
+							
+						<% end %>
+					</td>
+				<% end %>
+				
+				</tr>
+				<% i+=1%>
+		<% end %>
+		
 	</table>
-	<% if @project.tested? %>
-		<div id="report">
-			This project was last tested on <%= @project.updated_at %>. Download a full pdf report by clicking <%= link_to 'here', "/reports/#{ @project.id }.pdf" %>.
-		</div>
+	
+	<br/><br/>
+	
+	<h2 style="text-align: center; padding-bottom: 20px;">Features</h2>
+	
+	<% unless @project.features.empty? %>
+	
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>State</th>
+			</tr>
+			<% i = 0 %>
+			<% @project.features.each do |feature| %>
+				<tr <%= "class='even'" if i%2 == 0 %>>
+					<td><%= link_to feature.name, features_show_path(:id => feature.id) %></td>
+					<td><%= (feature.done)? "✔" : "✘" %></td>
+				</tr>
+				<% i+=1%>
+			<% end %>	
+		</table>
+		<% if @project.tested? %>
+			<div id="report" style="margin-top: 30px;">
+				This project was last tested on <%= @project.updated_at %>. Download a full pdf report by clicking <%= link_to 'here', "/reports/#{ @project.id }.pdf" %>.
+			</div>
+		<% end %>
+	<% else %>
+		There are no features in this project. Have you tried updating the project's state?
 	<% end %>
-<% else %>
-	There are no features in this project. Have you tried updating the project's state?
-<% end %>
+
+</div>
+
 

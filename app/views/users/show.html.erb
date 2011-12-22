@@ -1,15 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h1> <%= @user.name %>'s Profile</h1>
-<% if @user.photo %>
-	<%= image_tag @user.photo, height: '64' %>
-<% else %>
-	<%= image_tag "new_user.png", height: '64' %>
-<% end %>
 
-<p>E-mail: <%= mail_to @user.email %></p>
-<% if @user.contact %>
-	<p>Contact: <%= @user.contact %> </p>
-<% end %>
+<div class="mybubble" style="padding: 30px; margin-top: 30px">
 
+	<% if @user.photo %>
+		<%= image_tag @user.photo, height: '64' %>
+	<% else %>
+		<%= image_tag "new_user.png", height: '64' %>
+	<% end %>
+	
+	<p>E-mail: <%= mail_to @user.email %></p>
+	<% if @user.contact %>
+		<p>Contact: <%= @user.contact %> </p>
+	<% end %>
+
+</div>
 

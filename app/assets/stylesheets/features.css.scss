@@ -55,7 +55,6 @@ p {
 }
 
 .scenario_head.completed.selected {
-
     background: -moz-linear-gradient(left, rgba(0,170,51,0.9) 40%, rgba(0,170,51,0.9) 76%, rgba(0,170,51,0.2) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right top, color-stop(40%,rgba(0,170,51,0.9)), color-stop(76%,rgba(0,170,51,0.9)), color-stop(100%,rgba(0,170,51,0.2))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(left, rgba(0,170,51,0.9) 40%,rgba(0,170,51,0.9) 76%,rgba(0,170,51,0.2) 100%); /* Chrome10+,Safari5.1+ */
@@ -131,6 +130,16 @@ p {
     color: #4775c9 !important; //light blue
   }
 
+}
+
+.step_error{
+  background:#FF7373;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  padding:5px;
+  color: #000;
+  
 }
 
 span#feature_options {
