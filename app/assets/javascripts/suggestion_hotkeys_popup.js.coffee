@@ -74,8 +74,8 @@ newStep = () ->
           <option>Then</option>
         </select>
       <input id="name_" name="name[]" placeholder="step description" size="45" type="text">
-      <span class="table_button"><img alt="Table" height="17" src="/assets/table.png"></span>
-      <span class="sort_handle"><img alt="Cursor_hand" height="15" src="/assets/cursor_hand.png"></span>
+      <span class="table_button"><img alt="Table" height="17" src="/assets/table.png" title="Add a table to this step"></span>
+      <span class="sort_handle"><img alt="Cursor_hand" height="15" src="/assets/cursor_hand.png" title="Change the steps' order"></span>
       <span class="add_step">+</span>
     </div>
   

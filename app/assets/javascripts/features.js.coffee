@@ -52,8 +52,39 @@ $ ->
           <a id="popupHelpClose"><img alt="Close_icon" height="15" src="/assets/close_icon.png"></a>
           <h1>Help</h1>
           <p>
-              trololol
+              Click on any given scenario to expand it and see its description.
           </p>
+          <p>    
+              You can navigate through this feature, its scenarios and their steps' comments by clicking on the <img alt="Comments_bubbles" height="20" src="/assets/comments_bubbles.png"/>s
+              or by clicking on the step itself.
+          </p>
+          <p>
+              Click on <img alt="Thought_bubble" height="20" src="/assets/thought_bubble.png"> to let the development team know of a scenario that you find suitable for this feature.
+          </p>
+          <p>
+              You can Run or Delete a suggestion by opening the tools menu <img alt="Options" height="20" src="/assets/options.png"/>
+          </p>
+          
+          
+          <div> 
+            Steps Markup:
+            
+            <ul>
+              <li><span class="passed">Green:</span> OK!</li>
+              <li><span class="failed">Red:</span> Failed..</li>
+              <li><span class="undefined">Yellow:</span> Undefined step.</li>
+              <li><span class="skipped">Blue:</span> Cucumber skipped this step.</li>
+            </ul>
+          </div>
+          <div>
+            Scenarios Markup:
+            <ul>
+              <li><span class="completed markup">Green:</span> Awesome!</li>
+              <li><span class="incomplete markup">Red:</span> Something's wrong</li>
+              <li><span class="suggestion markup">Grey:</span> This scenario was suggested by a member.</li>
+            </ul>
+            
+          </div>
         </div>
         <div id="backgroundPopupHelp"></div>
   
