@@ -39,6 +39,10 @@
         <%= f.label :contact, 'Contact' %><br />
         <%= f.text_field :contact, :size => 40 %>
       </div>
+      <div class="field">
+        <%= f.label :photo, 'Contact' %><br />
+        <%= f.file_field :photo %>
+      </div>
       <div class="actions">
         <%= f.submit "Create Account" %>
       </div>

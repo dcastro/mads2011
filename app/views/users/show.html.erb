@@ -5,7 +5,7 @@
 <div class="mybubble" style="padding: 30px; margin-top: 30px">
 
 	<% if @user.photo %>
-		<%= image_tag @user.photo, height: '64' %>
+		<%= image_tag @user.photo.url(:medium) %>
 	<% else %>
 		<%= image_tag "new_user.png", height: '64' %>
 	<% end %>
