@@ -15,7 +15,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @user_type = @project.roles.where(:user_id => session[:id]).first.name
-
+    
+    @stats = @project.get_stats
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

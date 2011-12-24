@@ -20,4 +20,11 @@ class Project < ActiveRecord::Base
   end
   
   
+  def get_stats
+    self.features.collect do |f| 
+      [f.name, (f.scenarios.count > 0)? (f.scenarios.where(:completed => true).count.to_f / f.scenarios.count.to_f) : 0]
+    end
+  end
+  
+  
 end
