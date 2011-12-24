@@ -31,14 +31,20 @@ div#comments {
           color: darken($bg, 50%);
           padding: 15px;
           word-wrap: break-word;
+          clear: both;
           //font-family: Lucida Console;
       }
   
       .author {
-          padding-left: 5px;
+          
           display:inline;
           //font-family: Tahoma;
           font-weight: bold;
+          
+          * {
+            padding: 5px;
+            float: left;
+          }
       }
   
       .date {
@@ -51,7 +57,7 @@ div#comments {
       
       a.del_comment {
         float: right;
-        clear: both;
+        //clear: both;
       }
   
   

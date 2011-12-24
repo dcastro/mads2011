@@ -1,7 +1,7 @@
 
 <div class="comment" data-comment_id="<%= comment.id %>">
 
-	<div class="author" ><%= link_to comment.user.name, users_show_path(comment.user) %></div> 
+	<div class="author" ><%= image_tag comment.user.photo.url(:thumb), height: '30' %> <%= link_to comment.user.name, users_show_path(comment.user) %></div> 
 	<%= link_to image_tag('close_icon.png', height: '15', alt: 'delete_comment'), comments_destroy_path(:id => comment.id), :class => 'del_comment', :method => :delete, :remote => true if comment.user.id == session[:id] %>
 	<div class="date"><%= comment.created_at.strftime("%I:%M%p %d/%m/%Y") %> </div>
 	
