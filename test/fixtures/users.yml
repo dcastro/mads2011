@@ -8,7 +8,6 @@ Admin:
   name: Administrador
   email: admin@gmail.com
   contact: 91 442 45 59
-  photo: 
 
 Dcastro:
   username: dcastro
@@ -17,4 +16,3 @@ Dcastro:
   name: Diogo
   email: MyString
   contact: MyString
-  photo: MyString
