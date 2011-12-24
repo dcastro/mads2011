@@ -72,7 +72,7 @@
 			            <%end%>
 	                <%end%>
                 </table>
-				<%if step.error_msg != nil %>
+				<%if step.error_msg? %>
 					<p class="step_error"> <%= step.error_msg%></p>
 				<%end %>
 			<% end %>

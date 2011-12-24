@@ -26,11 +26,7 @@ class User < ActiveRecord::Base
   
   
   def get_photo
-    if(self.photo)
-      photo
-    else
-      "/assets/new_user.png"
-     end
+    self.photo.url(:thumb)
   end
   
   private
