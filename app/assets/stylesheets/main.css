@@ -43,6 +43,7 @@ LAYOUT
 #header #nav-icons a {margin-left:7px;}
 #title {margin:0; padding:25px 25px 45px 25px; background:url("../assets/section.png") 0 100% no-repeat;}
 #section {overflow:hidden; margin:0 0 30px 0; padding:5px 25px 0 25px; background:url("../assets/hp-section.png") 575px 0 repeat-y;}
+#contentexpander {/*float:left;*/ width:950px;}
 #content {/*float:left;*/ width:525px; overflow:hidden; text-align:justify;}
 #sidebar { /*float:right; */ width:330px; overflow:hidden; position:fixed}
 #contact {padding:15px 0;}
@@ -86,9 +87,9 @@ PAGE: HOMEPAGE (body#hp)
 .products {margin:15px 0; list-style:none;}
 .products li {padding:15px 0;}
 .products li.last {border:0;}
-.products .products-img {float:left; width:160px; height:120px;}
+.products .products-img {float:left; width:160px; height:120px; padding-left: 20px}
 .products .products-img img {width:160px; height:120px;}
-.products .products-desc {padding-left:5px; float:left; width:390px; padding-right: 5px}
+.products .products-desc {padding-left:5px; float:left; width:600px; padding-right: 20px}
 .products .products-desc h3 {margin:0 0 10px 0; font-size:140%;}
 .products .products-desc p {margin:0;}
 .articles {margin:15px 0; list-style:none;}

@@ -193,10 +193,8 @@
 		</div>
 	<% end %>
 
-
 <script>
 	$("#content").after("<div id=\"sidebar\"></div>");
 	<%= render(file: "comments/comments.js.coffee", locals: { comments: @feature.comments }).html_safe %>
 	
 </script>
-

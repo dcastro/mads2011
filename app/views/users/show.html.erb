@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1> <%= @user.name %>'s Profile</h1>
+
+<h1 align="center"> <%= @user.name %>'s Profile</h1>
 
 <div class="mybubble" style="padding: 30px; margin-top: 30px">
 
 	<% if @user.photo %>
-		<%= image_tag @user.photo, height: '64' %>
+		<%= image_tag @user.photo, height: '64', :options => {:align=>"center"} %>
 	<% else %>
-		<%= image_tag "new_user.png", height: '64' %>
+		<%= image_tag "new_user.png", height: '64', :options => {:style=>"margin-left:auto; margin-right:auto"} %>
 	<% end %>
 	
 	<p>E-mail: <%= mail_to @user.email %></p>

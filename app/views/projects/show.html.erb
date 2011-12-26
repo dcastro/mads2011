@@ -2,8 +2,8 @@
 
 <p id="notice"><%= notice %></p>
 
-
- <script type="text/javascript" >
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" >
 	
 	var filled = false;
 	var projectid = <%= @project.id %>;
@@ -63,7 +63,35 @@
 		 	return false;
 		 }
 	}
+	
+	
+	google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Feature');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
 
+          	["<%= @project.name %>", 1],
+          	["<%= @project.name %>", 0.7],
+          	["<%= @project.name %>", 0.6],
+
+          	         
+        ]);
+
+        var options = {
+          width: 320,
+          title: 'Project Completion',
+          backgroundColor: {fill: "none"},
+          hAxis: {format:'#%'}
+		};
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+	
+	
 </script>
 
 
@@ -182,3 +210,9 @@
 </div>
 
 
+<script>
+
+	$("#content").after('<div id="sidebar" style="padding-left: 10px;"></div>');
+	$("#sidebar").append('<div class="mybubble" style="margin-top: 100px;"> <div id="chart_div"></div> </div>');
+
+</script>
