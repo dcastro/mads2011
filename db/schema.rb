@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220122157) do
+ActiveRecord::Schema.define(:version => 20111224224755) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20111220122157) do
     t.string   "name"
     t.string   "email"
     t.string   "contact"
-    t.string   "photo"
+    t.string   "photo_file_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
