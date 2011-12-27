@@ -103,40 +103,26 @@ class ProjectsController < ApplicationController
     
     FileUtils.rm_rf "tmp/projects/" + project.id.to_s
     
-    str = "git clone " + project.repo + " tmp/projects/" + project.id.to_s
+    str = "git clone " + project.get_git_url + " tmp/projects/" + project.id.to_s
     %x[#{str}]
     
-    #TODO:  fazer parse em caso de erro
-    #p "**************************************************************************"
     filenames = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
-    #p "**************************************************************************"
-    #filenames.each do |f|
-    #  file = File.open("#{f}")
-    #  primeira_linha = file.first.chomp
-    #  feature_name = primeira_linha.split(": ")[1]
-    #  project.features.create!(name: feature_name, done: false)
-    #  file.close
-    #end
 
-=begin    
-    p "***************BUNDLE INSTALL *****************"
-    p %x[cd tmp/projects/#{project.id.to_s} & bundle install]
-    
-    p "***************RAKE *****************"
-    puts %x[cd tmp/projects/#{project.id.to_s} & bundle exec rake db:setup RAILS_ENV=test]
-    
-    p "***************CUCUMBER *****************"
-=end
-
+    #change dir
     Dir.chdir("tmp/projects/#{project.id.to_s}") do
-      %x[bundle install]
-      %x[bundle exec rake db:setup RAILS_ENV=test]   
+      
+      #execute user script
+      p.script.split(/\n|\r\n/).each do |line|
+         %x[#{line}]
+      end
+      
+      #execute cucumber
       cuke_result = %x[bundle exec cucumber -f json -f pdf --out ../../../public/reports/#{project.id.to_s}.pdf RAILS_ENV=test]
       
       project.tested = true
       project.save
       
-      #puts cuke_result
+      #remove irrelevant info
       parsed_msg =cuke_result.match(/[^\[]*(.*)/).to_a
       parsed_msg = parsed_msg.second
       

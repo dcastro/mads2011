@@ -1,12 +1,13 @@
 <h1>Editing Project</h1>
 
-<%= link_to 'Back to Projects', projects_path %> |
-<%= link_to 'Show Project', @project %> 
+<div class="mybubble" style="padding: 30px; margin-top: 30px">
+	<%= link_to 'Back to Projects', projects_path %> |
+	<%= link_to 'Show Project', @project %> 
+	
+	<br/>
+	
+	
+	<%= render 'form' %>
 
-<br/>
 
-
-<%= render 'form' %>
-
-
-
+</div>

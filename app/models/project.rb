@@ -5,13 +5,17 @@ class Project < ActiveRecord::Base
   has_many :suggestion_scenarios, :through => :features
   has_many :implemented_steps
   
-  validates :name, :repo, :presence => true
+  validates :name, :github_username, :github_repo, :presence => true
   
   #after_initialize :set_default_script
   
   #def set_default_script
   #  self.script = "bundle install\r\nbundle exec rake db:setup RAILS_ENV=test"
   #end
+  
+  def get_git_url
+    "http://github.com/#{ self.github_username }/#{ self.github_repo }.git"
+  end
   
   def download
     

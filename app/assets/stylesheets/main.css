@@ -158,6 +158,7 @@ div#sidebar {
 
 
 .mybubble {
+	overflow: auto;
 	padding:5px;	
   	border-radius: 7px;
   	-moz-border-radius: 7px;
@@ -176,6 +177,6 @@ div#sidebar {
    	padding-bottom: 10px;
 }
 
-label {
+form label {
   font-weight: bold;
 }

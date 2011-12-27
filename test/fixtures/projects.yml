@@ -2,7 +2,9 @@
 
 one:
   name: Fixture Project
+  
 
 two:
   name: Fixture Project 2
-  repo: https://github.com/dcastro/teste.git
+  github_username: dcastro
+  github_repo: teste

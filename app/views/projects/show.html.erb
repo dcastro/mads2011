@@ -97,6 +97,10 @@
 
 <h1> <%= @project.name %> </h1>
 
+<div class="script_line" style="padding-left: 20px;">
+	http://github.com/<span id="github_username"><%= @project.github_username || "<username>" %></span>/<span id="github_repo"><%= @project.github_repo || "<repo>" %></span>.git
+</div>
+
 
 <div class="mybubble" style="padding: 30px; margin-top: 30px">
 

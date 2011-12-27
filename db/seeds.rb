@@ -19,8 +19,8 @@ Step.delete_all
 @admin = User.create! username: "admin", password: "admin", name: "Sereno", email: "b.boy.souljah@gmail.com", contact: "91 101 01 01"
 @yuno = User.create! username: "yuno", password: "1234", name: "Yuno", email: "xyunox@gmail.com", contact: "91 11 11 111"
 
-@proj = Project.create! name: "Project XPTO", repo: "http://github.com/dcastro/mads2011.git"
-@proj_teste = Project.create! name: "Teste", repo: "http://github.com/dcastro/teste.git"
+@proj = Project.create! name: "Project XPTO", github_username: "dcastro", github_repo: "mads2011" #repo: "http://github.com/dcastro/mads2011.git"
+@proj_teste = Project.create! name: "Teste", github_username: "dcastro", github_repo: "teste" #repo: "http://github.com/dcastro/teste.git"
 
 @role = Role.create! user: @admin, project: @proj, name: "Manager"
 @role = Role.create! user: @yuno, project: @proj, name: "Developer"

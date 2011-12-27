@@ -5,8 +5,9 @@ Feature: Project Management
 		And I am on the projects page
 		When I follow "New Project"
 		And I fill in the following:
-			| Name	| Dummy Project								|
-			| Repo	| http://github.com/dcastro/mads.2011.git	|
+			| project_name		| Dummy Project	|
+			| Github username	| dcastro		|
+			| Github repo		| mads2011		|
 		And I press "Create Project"
 		And I go to the projects page
 		Then I should have a project named "Dummy Project" with 1 member

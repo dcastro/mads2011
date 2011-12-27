@@ -22,16 +22,17 @@ div.project_script {
     width: 470px;
     padding: 10px;
   }
-  
-  
-  
-  .script_line {
-    color: grey;
-    font-style: italic;
-  }
 
 }
 
+.script_line {
+  color: grey;
+  font-style: italic;
+  
+  #github_username, #github_repo {
+    font-weight: bold;
+  }
+}
 
 
 table#project_fields {
