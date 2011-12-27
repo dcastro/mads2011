@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   # GET /projects/new.json
   def new
-    @project = Project.new
+    @project = Project.new script: "bundle install\r\nbundle exec rake db:setup RAILS_ENV=test"
 
     respond_to do |format|
       format.html # new.html.erb

@@ -7,6 +7,12 @@ class Project < ActiveRecord::Base
   
   validates :name, :repo, :presence => true
   
+  #after_initialize :set_default_script
+  
+  #def set_default_script
+  #  self.script = "bundle install\r\nbundle exec rake db:setup RAILS_ENV=test"
+  #end
+  
   def download
     
     self.clean_up

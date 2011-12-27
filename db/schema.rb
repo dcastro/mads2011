@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224224755) do
+ActiveRecord::Schema.define(:version => 20111224224757) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -68,6 +68,9 @@ ActiveRecord::Schema.define(:version => 20111224224755) do
     t.datetime "updated_at"
     t.string   "repo"
     t.boolean  "tested"
+    t.string   "github_username"
+    t.string   "github_repo"
+    t.text     "script"
   end
 
   create_table "roles", :force => true do |t|
