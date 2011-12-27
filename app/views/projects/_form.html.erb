@@ -1,3 +1,4 @@
+<div id="contentexpander">
 <%= form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
@@ -10,29 +11,43 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :repo %><br />
-    <%= f.text_field :repo %>
-  </div>
-  <div class="field">
-    <%= f.label :github_username %><br />
-    <%= f.text_field :github_username %>
-  </div>
-  <div class="field">
-    <%= f.label :github_repo %><br />
-    <%= f.text_field :github_repo %>
-  </div>
-  <div class="field">
+  
+  <div class="field project_script">
     <%= f.label :script %><br />
+    <p>
+    	This script will be executed after cloning your project and before running cucumber.
+    	Gem calls should be prefixed with "bundle exec".
+    	
+    </p>
+    
+    <div class="script_line"> git clone http://github.com/<span id="github_username"><%= @project.github_username || "<username>" %></span>/<span id="github_repo"><%= @project.github_repo || "<repo>" %></span>.git</div>
     <%= f.text_area :script, rows: '7', cols: '60' %>
+    <div class="script_line">bundle exec cucumber</div>
   </div>
+  
+  <table id="project_fields">
+  	<tr>
+  		<td><%= f.label :title %></td>
+    	<td><%= f.text_field :name %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td><%= f.label :github_username %></td>
+  		<td><%= f.text_field :github_username %></td>
+  	</tr>
+  	
+  	<tr>
+  		<td><%= f.label :github_repo %></td>
+  		<td><%= f.text_field :github_repo %></td>
+  	</tr>
+  	
+  </table>
+  
+
   
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+</div>

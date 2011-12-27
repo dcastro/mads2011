@@ -8,3 +8,39 @@ table.projects {
    text-align: center;
    }
 }
+
+
+div.project_script {
+  float: right;
+  
+  
+  div, textarea {
+    margin-left: 20px;
+  }
+  
+  p, label {
+    width: 470px;
+    padding: 10px;
+  }
+  
+  
+  
+  .script_line {
+    color: grey;
+    font-style: italic;
+  }
+
+}
+
+
+
+table#project_fields {
+  td:last-child {
+    padding-left: 50px;
+  }
+
+  td {
+    padding-bottom: 10px;
+  }
+
+}
