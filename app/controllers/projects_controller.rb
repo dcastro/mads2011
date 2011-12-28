@@ -112,7 +112,7 @@ class ProjectsController < ApplicationController
     Dir.chdir("tmp/projects/#{project.id.to_s}") do
       
       #execute user script
-      p.script.split(/\n|\r\n/).each do |line|
+      project.script.split(/\n|\r\n/).each do |line|
          %x[#{line}]
       end
       
