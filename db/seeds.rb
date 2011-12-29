@@ -18,6 +18,7 @@ Step.delete_all
 
 @admin = User.create! username: "admin", password: "admin", name: "Sereno", email: "b.boy.souljah@gmail.com", contact: "91 101 01 01"
 @yuno = User.create! username: "yuno", password: "1234", name: "Yuno", email: "xyunox@gmail.com", contact: "91 11 11 111"
+@dcastro = User.create! username: "dcastro", password: "1234", name: "Diogo Castro", email: "diogo.filipe.acastro@gmail.com", contact: "91 11 11 111"
 
 @proj = Project.create! name: "Project XPTO", github_username: "dcastro", github_repo: "mads2011", script: "bundle install\r\nbundle exec rake db:setup RAILS_ENV=test"
 @proj_teste = Project.create! name: "Teste", github_username: "dcastro", github_repo: "teste", script: "bundle install\r\nbundle exec rake db:setup RAILS_ENV=test"

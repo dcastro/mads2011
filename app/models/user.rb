@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "30x30>" }, 
                     :default_url   => "/assets/new_user.png"
   
-  validates :username, :uniqueness => true
+  validates :username, :email, :uniqueness => true
   validates :username, :name, :email, :presence => true
   
   

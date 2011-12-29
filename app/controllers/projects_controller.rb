@@ -46,6 +46,10 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.roles.build name: Role.role_types.first,
                          user: User.find(session[:id])
+                         
+    @project.add_colaborators
+                         
+                         
 
     respond_to do |format|
       if @project.save

@@ -13,6 +13,24 @@ class Project < ActiveRecord::Base
   #  self.script = "bundle install\r\nbundle exec rake db:setup RAILS_ENV=test"
   #end
   
+  def add_colaborators
+    colabs = https_request "https://api.github.com/repos/#{ self.github_username }/#{ self.github_repo }/collaborators"
+    
+    colabs.each do |colab|
+
+      git_user = https_request 'https://api.github.com/users/' + colab["login"]
+      if git_user["email"]
+        
+        if user = User.find_by_email(git_user["email"])
+            self.roles.build name: Role.role_types.second,
+                            user: user
+        end
+        
+      end
+    
+    end
+  end
+  
   def get_git_url
     "http://github.com/#{ self.github_username }/#{ self.github_repo }.git"
   end
@@ -34,6 +52,24 @@ class Project < ActiveRecord::Base
     self.features.collect do |f| 
       [f.name, (f.scenarios.count > 0)? (f.scenarios.where(:completed => true).count.to_f / f.scenarios.count.to_f) : 0]
     end
+  end
+  
+  
+  private
+  def https_request(uri)
+    uri = URI(uri)
+  
+    http = Net::HTTP.new(uri.host, uri.port)
+  
+    if uri.scheme =='https'
+      http.use_ssl = true
+    end
+  
+    http.start do
+      @request = Net::HTTP::Get.new(uri.request_uri)
+      #puts http.request(request)
+    end
+    return ActiveSupport::JSON.decode(http.request(@request).body)
   end
   
   
