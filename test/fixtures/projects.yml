@@ -2,9 +2,11 @@
 
 one:
   name: Fixture Project
+  script: bundle install && bundle exec rake db:setup RAILS_ENV=test
   
 
 two:
   name: Fixture Project 2
   github_username: dcastro
   github_repo: teste
+  script: bundle install && bundle exec rake db:setup RAILS_ENV=test

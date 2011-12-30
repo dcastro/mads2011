@@ -36,7 +36,7 @@ Given /^the following user records:$/ do |table|
                   password: user["password"],
                   password_confirmation: user["password"],
                   name: user["name"],
-                  email: user["email"] || "a@a.com"
+                  email: user["email"] || user["username"] + "@a.com"
   end
 end
   
