@@ -1,31 +1,33 @@
-<h1>Listing Projects</h1>
+<div id="contentexpander">
+	<h1>My Projects</h1>
 
-<div class="mybubble" style="padding: 30px; margin-top: 30px">
-
-	<table class="projects , table" style="margin-left:auto; margin-right:auto;">
-	  <tr>
-	    <th>Name</th>
-	    <th>Members</th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	  </tr>
+	<div class="mybubble" style="padding: 30px; margin-top: 30px">
 	
-	<% i = 0 %>
-	<% @projects.each do |project| %>
-	  <tr <%= "class='even'" if i%2 == 0 %>>
-	    <td><%= link_to project.name, project_path(project)  %></td>
-	    <td><%= project.roles.count %></td>
-	    <td><%= link_to 'Show', project %></td>
-	    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-	    <td><%= destroy_tag project %></td>
-	  </tr>
-	<% i+=1%>
-	<% end %>
-	</table>
+		<table class="projects , table" style="margin-left:auto; margin-right:auto;">
+		  <tr>
+		    <th>Name</th>
+		    <th>Members</th>
+		    <th></th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+		
+		<% i = 0 %>
+		<% @projects.each do |project| %>
+		  <tr <%= "class='even'" if i%2 == 0 %>>
+		    <td><%= link_to project.name, project_path(project)  %></td>
+		    <td><%= project.roles.count %></td>
+		    <td><%= link_to 'Show', project %></td>
+		    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+		    <td><%= destroy_tag project %></td>
+		  </tr>
+		<% i+=1%>
+		<% end %>
+		</table>
+		
+		<br /><br />
+		
+		<%= link_to 'New Project', new_project_path %>
 	
-	<br /><br />
-	
-	<%= link_to 'New Project', new_project_path %>
-
+	</div>
 </div>

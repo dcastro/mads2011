@@ -1,17 +1,19 @@
-<h1 align="center"> <%= @user.name %>'s Profile</h1>
+<div id="contentexpander">
+	<h1 align="center"> <%= @user.name %>'s Profile</h1>
 
-<div class="mybubble" style="padding: 30px; margin-top: 30px">
-
-	<% if @user.photo %>
-		<%= image_tag @user.photo.url(:medium) , :options => {:align=>"center"}%>
-	<% else %>
-		<%= image_tag "new_user.png", height: '64', :options => {:style=>"margin-left:auto; margin-right:auto"} %>
-	<% end %>
+	<div class="mybubble" style="padding: 30px; margin-top: 30px">
 	
-	<p>E-mail: <%= mail_to @user.email %></p>
-	<% if @user.contact %>
-		<p>Contact: <%= @user.contact %> </p>
-	<% end %>
+		<% if @user.photo %>
+			<%= image_tag @user.photo.url(:medium) , :options => {:align=>"center"}%>
+		<% else %>
+			<%= image_tag "new_user.png", height: '64', :options => {:style=>"margin-left:auto; margin-right:auto"} %>
+		<% end %>
+		
+		<p>E-mail: <%= mail_to @user.email %></p>
+		<% if @user.contact %>
+			<p>Contact: <%= @user.contact %> </p>
+		<% end %>
+	
+	</div>
 
 </div>
-
