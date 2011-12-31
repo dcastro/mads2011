@@ -19,3 +19,8 @@ $ ->
       $("#github_repo").text("<repo>")
     else
       $("#github_repo").text(repo)
+      
+
+  $("a.update_link").click ->
+    $("span#loading").show 'slide', direction: 'left'
+    return true
