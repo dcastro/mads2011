@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-
 <h2 id="feature" data-projectid="<%= @feature.project.id %>" data-featureid="<%= @feature.id %>" > <%= link_to @feature.project.name, project_path(@feature.project) %> > <%= @feature.name %></h2>
 <% if @feature.description? %>
 	<h3 class="feature_description">

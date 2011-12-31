@@ -28,7 +28,25 @@ div {
     margin-bottom: 10px; } }
 
 #notice {
-  color: green; }
+  margin-top: 20px;
+  text-align: center;
+  clear: both;
+  
+  
+  
+  span {
+    color: green; 
+    background: rgba(54, 216, 142, 0.8);
+   
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    
+    padding: 3px 20px;
+    display:inline-block;
+  }
+  
+}
 
 .field_with_errors {
   padding: 2px;

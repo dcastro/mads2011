@@ -81,10 +81,14 @@ function submitform()
 		
 	</div> <!-- /header -->
 
-	
+	<% if notice %>
+		<p id="notice"><span><%= notice %></span></p>
+	<% end %>
 	<div id="content_table">
+		
 		<div id="content_row">
 			<!-- CONTENT -->
+	
 			<div id="content">
 				<%= yield %>
 			</div> <!-- /content -->
