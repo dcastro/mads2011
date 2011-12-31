@@ -88,7 +88,7 @@ PAGE: HOMEPAGE (body#hp)
 .products li {padding:15px 0;}
 .products li.last {border:0;}
 .products .products-img {float:left; width:160px; height:120px; padding-left: 20px}
-.products .products-img img {width:160px; height:120px;}
+.products .products-img img {max-width:160px; max-height:120px; display: block; margin-left: auto; margin-right: auto;}
 .products .products-desc {padding-left:5px; float:left; width:600px; padding-right: 20px}
 .products .products-desc h3 {margin:0 0 10px 0; font-size:140%;}
 .products .products-desc p {margin:0;}

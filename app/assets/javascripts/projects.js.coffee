@@ -24,3 +24,7 @@ $ ->
   $("a.update_link").click ->
     $("span#loading").show 'slide', direction: 'left'
     return true
+
+
+  $("div.project.clickable").click ->
+    window.location.href = "/projects/" + $(this).data("proj_id")

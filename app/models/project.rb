@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
   has_many :features
+  has_many :scenarios, :through => :features
   has_many :suggestion_scenarios, :through => :features
   has_many :implemented_steps
   
@@ -52,6 +53,18 @@ class Project < ActiveRecord::Base
     self.features.collect do |f| 
       [f.name, (f.scenarios.count > 0)? (f.scenarios.where(:completed => true).count.to_f / f.scenarios.count.to_f) : 0]
     end
+  end
+  
+  def percentage_done 
+    
+    if self.scenarios.empty?
+      return "No scenarios yet."
+    else
+      perc = self.scenarios.where(:completed => true).count.to_f / self.scenarios.count.to_f * 100
+      perc = perc.to_i if perc == perc.to_i
+      return perc.to_s + '%'
+    end
+    
   end
   
   

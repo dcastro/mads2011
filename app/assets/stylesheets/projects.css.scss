@@ -62,3 +62,52 @@ table#project_fields {
   padding: 2px 45px;
 
 }
+
+/**
+ * projects index
+ */
+div.projects {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+
+  .project {
+      padding-bottom: 15px;
+      padding-top: 10px;
+      border-bottom:1px solid blue;
+      padding-right: 10px;
+      
+      .name {
+        font-size: 150%;
+        font-weight: bold;  
+        padding-bottom: 55px;
+      }
+      
+      .role {
+        float: right;
+        
+        .role_name {
+          font-weight: bold;
+        }
+      
+      }
+      
+      .done {
+        
+      }
+      
+      .members {
+        padding-right: 55%;
+        float: right;
+      }
+  }
+  
+  
+  .project:hover {
+  
+    background-color: #B9D1E5;
+    cursor: pointer;
+  
+  }
+
+}
