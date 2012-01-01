@@ -1,7 +1,7 @@
 class SuggestionScenario < ActiveRecord::Base
   belongs_to :feature
   belongs_to :user
-  has_many :suggestion_steps
+  has_many :suggestion_steps, :dependent => :destroy
   
   has_many :comments, :as => :commentable
   

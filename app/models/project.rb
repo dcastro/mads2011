@@ -1,10 +1,10 @@
 class Project < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :users, :through => :roles
-  has_many :features
+  has_many :features, :dependent => :destroy
   has_many :scenarios, :through => :features
   has_many :suggestion_scenarios, :through => :features
-  has_many :implemented_steps
+  has_many :implemented_steps, :dependent => :destroy
   
   validates :name, :github_username, :github_repo, :presence => true
   
