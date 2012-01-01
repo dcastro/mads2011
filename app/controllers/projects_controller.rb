@@ -47,13 +47,18 @@ class ProjectsController < ApplicationController
     @project.roles.build name: Role.role_types.first,
                          user: User.find(session[:id])
                          
-    @project.add_colaborators
+    n_invitations = @project.add_colaborators
+    notice = 'Project was successfully created. '
+    
+    notice += '1 user has been automatically added to the project.' if n_invitations == 1
+    notice += n_invitations.to_s + ' users have been automatically added to the project.' if n_invitations > 1
+
                          
                          
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to @project, notice: notice }
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }

@@ -16,6 +16,7 @@ class Project < ActiveRecord::Base
   
   def add_colaborators
     colabs = https_request "https://api.github.com/repos/#{ self.github_username }/#{ self.github_repo }/collaborators"
+    n_invitations = 0
     
     colabs.each do |colab|
 
@@ -25,11 +26,13 @@ class Project < ActiveRecord::Base
         if user = User.find_by_email(git_user["email"])
             self.roles.build name: Role.role_types.second,
                             user: user
+            n_invitations += 1
         end
         
       end
     
     end
+    return n_invitations
   end
   
   def get_git_url

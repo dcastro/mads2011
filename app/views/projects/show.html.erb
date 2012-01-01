@@ -104,6 +104,7 @@
 	<span id="loading">This may take a while..</span>
 	<%= link_to 'Back', projects_path %> |
 	<%= link_to 'Edit', edit_project_path(@project) %> |
+	<%= destroy_tag(@project) %>
 	<%= link_to 'Update State', projects_update_state_path(:id => @project.id), :method => :post, :class => 'update_link'%>
 	
 	<!--<%= button_to "Update State", projects_update_state_path(:id => @project.id) %> -->
