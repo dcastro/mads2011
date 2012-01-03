@@ -158,13 +158,7 @@
 				<% if @user_type == "Manager"%>
 					<td>
 						<% if role.user_id !=  session[:id] %>
-						 
-							<%= form_tag(roles_remove_path, :method => "post") do %>
-								<%= hidden_field_tag "userid", role.user.id %>
-								<%= hidden_field_tag "projectid", @project.id %>
-							  	<%= submit_tag("Delete", id: "remove_" + role.user.username) %>
-							<% end %>
-							
+						 	<%= link_to "Remove", roles_remove_path(userid: role.user.id, projectid: @project.id), method: :post, id: "remove_" + role.user.username  %>							
 						<% end %>
 					</td>
 				<% end %>

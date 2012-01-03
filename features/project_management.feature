@@ -31,6 +31,6 @@ Feature: Project Management
 		And I am on the projects page
 		When I follow "Fixture Project 2"
 		Then I should see "Diogo"
-		When I press "remove_dcastro"
+		When I follow "remove_dcastro"
 		Then "dcastro" should not be a member of "Fixture Project 2"
 
