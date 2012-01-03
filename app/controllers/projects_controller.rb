@@ -46,14 +46,17 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.roles.build name: Role.role_types.first,
                          user: User.find(session[:id])
-                         
-    n_invitations = @project.add_colaborators
-    notice = 'Project was successfully created. '
-    
-    notice += '1 user has been automatically added to the project.' if n_invitations == 1
-    notice += n_invitations.to_s + ' users have been automatically added to the project.' if n_invitations > 1
+    begin                     
+      n_invitations = @project.add_colaborators
+      notice = 'Project was successfully created. '
+      
+      notice += '1 user has been automatically added to the project.' if n_invitations == 1
+      notice += n_invitations.to_s + ' users have been automatically added to the project.' if n_invitations > 1
 
-                         
+    rescue
+      redirect_to @project, notice: "An error occurred. You may have entered invalid github information."
+      return
+    end                     
                          
 
     respond_to do |format|
@@ -109,11 +112,13 @@ class ProjectsController < ApplicationController
   def update_state
     project = Project.find(params[:id])
     project.features.destroy_all
+    log = ""
     
+    begin
     FileUtils.rm_rf "tmp/projects/" + project.id.to_s
     
-    str = "git clone " + project.get_git_url + " tmp/projects/" + project.id.to_s
-    %x[#{str}]
+    str = "git clone " + project.get_git_url + " tmp/projects/" + project.id.to_s + " 2>&1" #redirects stderr to stdout
+    log = %x[#{str}]
     
     filenames = Dir.glob("tmp/projects/#{project.id.to_s}/features/*.feature")
 
@@ -122,7 +127,7 @@ class ProjectsController < ApplicationController
       
       #execute user script
       project.script.split(/\n|\r\n/).each do |line|
-         %x[#{line}]
+         log = %x[#{line}]
       end
       
       #execute cucumber
@@ -262,7 +267,13 @@ class ProjectsController < ApplicationController
         end
               
       end
-    
+    rescue Exception => e
+      log += "</br></br>" + e.message
+      
+      redirect_to project_url(project), notice: "An error occurred: </br>" + log
+      return
+      
+    end
     
     respond_to do |format|
       
