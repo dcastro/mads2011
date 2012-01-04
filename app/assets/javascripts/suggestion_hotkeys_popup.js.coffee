@@ -230,7 +230,6 @@ $ ->
               <p><span class="hotkey">Alt + N:</span> New Step </p>
               <p><span class="hotkey">Alt + X:</span> Remove Last Step </p>  
               <p><span class="hotkey">Alt + T:</span> Add/Remove Table </p>
-              <p><span class="hotkey">Alt + C:</span> Create Suggestion</p>                
               <br/>
               <p>Tables</p>
                 <p><span class="hotkey">Alt + W:</span> Remove Row</p>  

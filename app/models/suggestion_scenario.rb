@@ -36,8 +36,11 @@ class SuggestionScenario < ActiveRecord::Base
   
   def run(filename)
     Dir.chdir("tmp/projects/#{self.feature.project.id.to_s}") do
-      %x[bundle install]
-      %x[bundle exec rake db:setup RAILS_ENV=test]   
+      
+      self.feature.project.script.split(/\n|\r\n/).each do |line|
+         %x[#{line}]
+      end
+      
       cuke_result = %x[bundle exec cucumber features/#{ filename } -f json RAILS_ENV=test]
       
       parsed_msg =cuke_result.match(/[^\[]*(.*)/).to_a      

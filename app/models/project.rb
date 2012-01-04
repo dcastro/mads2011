@@ -43,7 +43,7 @@ class Project < ActiveRecord::Base
     
     self.clean_up
     
-    str = "git clone " + self.repo + " tmp/projects/" + self.id.to_s
+    str = "git clone " + self.get_git_url + " tmp/projects/" + self.id.to_s
     %x[#{str}]
   end
   
