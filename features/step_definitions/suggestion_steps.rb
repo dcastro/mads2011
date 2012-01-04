@@ -9,7 +9,7 @@ end
 When /^I open and fill in the suggestions form$/ do 
   
   #abre o formulario
-  step %{I send [alt, p] to "body"}
+  page.driver.browser.execute_script %Q{ $('#open_suggestion').trigger("mouseenter").click(); }
   sleep 1
   
   #preenche o nome e a descricao  
@@ -20,7 +20,7 @@ When /^I open and fill in the suggestions form$/ do
   
   #adiciona os steps necessarios
   (@sug_steps.hashes.length - 2).times do
-    step %{I send [alt, n] to "body"}
+    page.driver.browser.execute_script %Q{ $('div.new_step:last-child span.add_step').trigger("mouseenter").click(); }
   end
   
   @sug_steps.hashes.each_with_index do |step_data, index|
@@ -35,10 +35,13 @@ When /^I open and fill in the suggestions form$/ do
       rows = step_data["rows & cells"].split /\s*&\s*/
       
       if not rows.empty?
-        step %{I send [alt, t] to "input#name_"}
+        #step %{I send [alt, t] to "input#name_"}
+        page.driver.browser.execute_script %Q{ $('.new_step:nth-child(#{(index + 1).to_s}) span.table_button').trigger("mouseenter").click(); }
 
         (rows.length - 2).times do
-          step %{I send [alt, s] to "input#name_"}
+          #step %{I send [alt, s] to "input#name_"}
+          page.driver.browser.execute_script %Q{ $('.new_step:nth-child(#{(index + 1).to_s}) table.step_table tr:nth-last-child(2) .table_controls .arrow_down').trigger("mouseenter").click(); }
+          
         end
       end
       
